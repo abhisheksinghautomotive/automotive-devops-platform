@@ -1,0 +1,100 @@
+# Operating System
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv
+env/
+venv/
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs and Databases
+*.log
+*.sql
+*.sqlite
+
+# Build and Dependency Artifacts
+node_modules/
+bower_components/
+dist/
+build/
+target/
+bin/
+
+# Terraform 
+*.tfstate
+*.tfstate.*
+.terraform/
+crash.log
+override.tf
+override.tf.json
+terraform.tfvars
+terraform.tfvars.json
+
+# Docker
+docker-compose.override.yml
+docker-compose.override.yaml
+docker-compose.*.yml
+docker-compose.*.yaml
+**/Dockerfile.*
+*.dockerignore
+
+# Kubernetes
+*.kubeconfig
+*secret.yaml
+*.secret.yml
+*.local.yaml
+*.local.yml
+
+# Codecov
+.codecov.yml
+
+# VS code specific
+.vscode/*
+
+# Python test coverage
+htmlcov/
+.coverage
+.coverage.*
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Generated files
+*.pdf
+*.log
+
+# Poetry
+poetry.lock
+
+# Flask
+instance/
+
+# Misc
+*.swp
+*.lock
+
+# Secrets and Credentials
+*.env
+.env.*
+
+# OS metadata
+._*
+
+# Ansible
+.retry
+.ansible/
