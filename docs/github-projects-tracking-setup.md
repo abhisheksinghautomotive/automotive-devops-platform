@@ -11,243 +11,82 @@
 
 ## 📊 Project Setup Structure
 
-### 1. Project Creation
-**Name**: `Automotive DevOps Learning Journey`
-**Description**: `Enterprise-scale DevOps platform development with interview preparation tracking`
+### ⚡ Starter Mode (Weeks 1–2)
+Use only what builds habit—avoid over-configuring.
+| Element | Use Now | Defer | Rationale |
+|---------|---------|-------|-----------|
+| Columns | Backlog, In Progress, Review, Done | Interview Ready column | Keep board lean |
+| Fields | Project Phase, Priority | Skill Level, Interview Readiness, Business Impact, Hours | Reduce friction |
+| Labels | `project-01-telemetry`, `status-in-progress`, `status-completed` | Skill + future project labels | Start focused |
+| Metrics | Issues closed/week, Refined answers count, Avg batch latency | Cost per 1K msgs (later) | Simplicity first |
+| Automation | None | Progress workflow | Build manual rhythm first |
+| Views | Kanban only | Roadmap, Interview dashboard, Learning table | Avoid empty views |
 
-### 2. Custom Fields Configuration
+# Minimal Project Tracking (GitHub Projects)
 
-#### Learning Progress Fields:
-- **Project Phase** (Single Select):
-  - 🔵 Planning
-  - 🟡 Development  
-  - 🟠 Testing
-  - 🟢 Documentation
-  - ✅ Interview-Ready
+Goal: Track progress without overhead while building Project 01.
 
-- **Technical Skill Level** (Single Select):
-  - 🔴 Beginner
-  - 🟡 Intermediate  
-  - 🟠 Advanced
-  - 🟢 Expert
+## 1. Board Setup (Takes 2 Minutes)
+Columns: Backlog | In Progress | Review | Done
 
-- **Interview Readiness** (Single Select):
-  - ❌ Not Ready
-  - 🟡 Partially Ready
-  - ✅ Ready
-  - 🌟 Expert Level
+## 2. Create 5 Micro Issues
+Suggested:
+1. Create FastAPI skeleton
+2. Add API key validation
+3. Simulate vehicle messages script
+4. Batch list in memory & log count
+5. Update project README with flow
 
-- **Priority** (Single Select):
-  - 🔥 High (Critical for interviews)
-  - ⚡ Medium (Important)  
-  - 📝 Low (Nice to have)
+Move one issue at a time. No multitasking.
 
-- **Estimated Hours** (Number):
-  - Time estimate for completion
-
-- **Actual Hours** (Number):
-  - Actual time spent (for learning analytics)
-
-- **Business Impact** (Text):
-  - Quantified outcomes for interview stories
-
-### 3. Issue Templates
-
-#### Learning Task Template:
-```markdown
-## Learning Objective
-**Project**: [Project Name]
-**Component**: [Specific component/feature]
-**Skill Focus**: [Primary skill being developed]
-
-## Acceptance Criteria
-- [ ] Understand core concepts through guided questions
-- [ ] Implement working solution with best practices
-- [ ] Document architecture decisions and trade-offs
-- [ ] Prepare interview explanation and demo
-- [ ] Achieve performance/quality targets
-
-## Learning Outcomes
-**Technical Skills**:
-- [ ] [Specific technical skill 1]
-- [ ] [Specific technical skill 2]
-
-**Interview Preparation**:
-- [ ] Can explain system design decisions
-- [ ] Can demonstrate technical implementation
-- [ ] Can discuss business impact and metrics
-
-## Resources
-- Project specification: [Link]
-- AI learning guide: [Link]  
-- Related documentation: [Links]
-
-## Success Metrics
-- **Performance Target**: [Specific metric]
-- **Quality Target**: [Specific criteria]
-- **Learning Target**: [Skill level achievement]
+## 3. Daily Log
+File: `progress-tracking/daily-log.md`
+Format:
+```
+YYYY-MM-DD | Did: <task> | Learned: <concept> | Next: <focus>
 ```
 
-#### Bug/Issue Template:
-```markdown
-## Problem Description
-**Project**: [Project Name]
-**Component**: [Component affected]
+## 4. Minimal Fields / Labels
+- Field: Project Phase (Planning → Development → Review)
+- Label (optional): `project-01-telemetry`
+- Status is shown by column; no extra labels needed.
 
-## Current Behavior
-[Describe what's happening]
+## 5. Only 2 Metrics (Weekly)
+| Metric | How |
+|--------|-----|
+| Issues closed | Count Done column |
+| Refined answers | Count updated answers (V2+) in question bank |
 
-## Expected Behavior  
-[Describe what should happen]
+Log them each weekend in a short weekly note.
 
-## Learning Opportunity
-**Skill Development**:
-- [ ] Debugging and troubleshooting
-- [ ] Root cause analysis
-- [ ] System monitoring and observability
+## 6. Upgrade Triggers (Don’t Add Before These)
+| Unlock | Trigger |
+|--------|---------|
+| Add Skill Level field | 10 issues closed |
+| Add Interview Readiness | First aggregation script done |
+| Add Automation | 2 weekly summaries written |
 
-## Resolution Strategy
-- [ ] Investigate and analyze issue
-- [ ] Implement fix with best practices
-- [ ] Add monitoring to prevent recurrence
-- [ ] Document learning for interview scenarios
+## 7. Workflow Loop
+Plan → Do → Log → Move card → Reflect (weekly)
+
+## 8. Keep It Lean
+Skip: hours tracking, business impact, dashboards, automation—for now.
+
+## 9. Weekly Reflection (One Paragraph)
+Format:
+```
+Week #: Built <X>. Learned <Y>. Struggled with <Z>. Next: <focus>.
 ```
 
-### 4. Labels Configuration
+## 10. Link Decisions
+When a decision is made (e.g., SQS choice) link ADR file in issue comment for traceability.
 
-#### Project Labels:
-- `project-01-telemetry` (🔵 Blue)
-- `project-02-containers` (🟢 Green)  
-- `project-03-cicd` (🟡 Yellow)
-- `project-04-kubernetes` (🟠 Orange)
-- `project-05-terraform` (🟣 Purple)
-- `project-06-platform` (🔴 Red)
-
-#### Skill Labels:
-- `skill-system-design` (🎯 Target)
-- `skill-aws-cloud` (☁️ Cloud)
-- `skill-kubernetes` (⚙️ Gear)
-- `skill-cicd` (🔄 Sync)
-- `skill-monitoring` (📊 Chart)
-- `skill-security` (🔒 Lock)
-
-#### Priority Labels:
-- `priority-interview-critical` (🔥 Fire)
-- `priority-learning-important` (⭐ Star)
-- `priority-nice-to-have` (💡 Bulb)
-
-#### Status Labels:
-- `status-blocked` (⛔ Stop)
-- `status-in-progress` (🏃 Running)
-- `status-review-needed` (👀 Eyes)
-- `status-completed` (✅ Check)
-
-### 5. Project Views Configuration
-
-#### View 1: Kanban Board (Primary View)
-**Columns**:
-- **📋 Backlog**: Planned learning tasks
-- **🔄 In Progress**: Currently working on
-- **👀 Review**: Completed, needs self-review
-- **✅ Done**: Completed and documented
-- **🎯 Interview Ready**: Fully prepared for interviews
-
-**Filters**: Group by Project, Color by Priority
-
-#### View 2: Learning Progress Table
-**Columns**:
-- Title
-- Project Phase
-- Technical Skill Level  
-- Interview Readiness
-- Estimated vs Actual Hours
-- Business Impact
-
-**Sorting**: By Project, then by Priority
-
-#### View 3: Skill Development Roadmap
-**View Type**: Roadmap
-**Timeline**: By target completion dates
-**Grouping**: By technical skill areas
-**Filters**: Show only high-priority learning objectives
-
-#### View 4: Interview Preparation Dashboard  
-**Filters**: Interview Readiness = "Ready" or "Expert Level"
-**Grouping**: By project for portfolio presentation
-**Focus**: Stories and demonstrations ready for interviews
-
-### 6. Milestones Setup
-
-#### Project Milestones:
-- **Foundation Complete** (Projects 1-2)
-  - Target: Week 4
-  - Description: Cloud basics + Container fundamentals
-
-- **Intermediate Skills** (Projects 3-4)  
-  - Target: Week 8
-  - Description: CI/CD mastery + K8s platform engineering
-
-- **Advanced Platform** (Projects 5-6)
-  - Target: Week 12
-  - Description: Infrastructure automation + Platform leadership
-
-#### Interview Readiness Milestones:
-- **Technical Interview Ready**
-  - Target: Week 10
-  - Criteria: Can explain all system designs and implementations
-
-- **Behavioral Interview Ready**  
-  - Target: Week 11
-  - Criteria: Have quantified impact stories for all projects
-
-- **Portfolio Complete**
-  - Target: Week 12  
-  - Criteria: Professional presentation of all projects
-
-### 7. Automation Setup
-
-#### GitHub Actions for Tracking:
-```yaml
-# .github/workflows/learning-progress.yml
-name: Update Learning Progress
-
-on:
-  issues:
-    types: [closed]
-  pull_request:
-    types: [merged]
-
-jobs:
-  update-progress:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Update Project Progress
-        # Custom action to update progress metrics
-        # - Calculate completion percentages  
-        # - Update skill level assessments
-        # - Generate learning analytics
+---
+Later (Optional) Advanced Mode lives in commit history; reintroduce when you are ready.
 ```
-
-#### Automated Progress Reports:
-- **Weekly Progress Summary**: Automated issue creation with week's accomplishments
-- **Skill Level Updates**: Automatic progression tracking based on completed tasks  
-- **Interview Readiness Scoring**: Calculated readiness based on completion criteria
-
-### 8. Learning Analytics Dashboard
-
-#### Key Metrics to Track:
-- **Project Completion Rate**: % of tasks completed per project
-- **Skill Progression**: Movement through skill levels over time
-- **Time Management**: Estimated vs actual hours analysis
-- **Interview Readiness**: Portfolio completion and demonstration readiness
-
-#### Weekly Review Process:
-1. **Progress Review**: Check completed tasks and update skill levels
-2. **Learning Reflection**: Document key insights and challenges in issues
-3. **Interview Preparation**: Update readiness status and prepare demonstrations
-4. **Planning**: Create next week's learning tasks and priorities
-
-### 9. Integration with Repository
+progress-tracking/daily-log.md
+2025-10-04 | Focus: ingestion endpoint | Win: first 200 OK | Next: add SQS client
+```
 
 #### Connecting Issues to Code:
 ```bash
@@ -312,11 +151,12 @@ Related to project-01-telemetry milestone"
 
 ## 🚀 Getting Started
 
-### Initial Setup Steps:
-1. **Create GitHub Project**: Set up with custom fields and views
-2. **Configure Labels and Milestones**: Import learning-focused organization  
-3. **Create First Issues**: Break down Project 01 into learning tasks
-4. **Set Up Automation**: Configure progress tracking workflows
-5. **Begin Learning Journey**: Start with first project planning issue
+### Initial Setup Steps (Starter Mode):
+1. Create GitHub Project (Kanban only, Backlog/In Progress/Review/Done).
+2. Add two custom fields: Project Phase, Priority.
+3. Create 5 micro issues (e.g., "Create FastAPI skeleton", "Add API key check").
+4. Start `daily-log.md` and log first entry after completing one issue.
+5. Add ADR 0001 link to project README for traceability.
+6. Defer automation & extra views until triggers met.
 
 This comprehensive tracking system ensures you maintain momentum, track skill development, and prepare systematically for technical interviews while building an impressive DevOps platform portfolio.
