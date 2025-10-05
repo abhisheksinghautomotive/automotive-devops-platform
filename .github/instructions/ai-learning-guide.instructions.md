@@ -191,6 +191,92 @@ Also the cost of cloud resources is a concern, so always consider cost-effective
 - Prepare for system design and behavioral questions
 - Create portfolio presentations and demonstrations
 
+## 🗂 Issue-Driven Learning Framework (Execution Rules)
+All progress must map to an open GitHub Issue. No work starts without an issue; no issue closes without an artifact or reflection.
+
+### Core Rules
+1. Exactly one phase label per issue (phase:concept | phase:implementation | phase:refinement | phase:interview)
+2. Concept before code: Implementation starts only after its concept issue is closed.
+3. Pseudocode before production: Significant logic (simulation, pipeline, infra) gets a pseudocode issue first.
+4. Reflection required: Close concept issues only after adding a one-line insight (label learning:reflection if meaningful).
+5. Visible blockers: Add status:blocked + reason if stalled >24h.
+6. Limit WIP: No more than 2 open concept issues in the same domain:* namespace.
+7. Single artifact focus: Each issue produces one clear output (doc, table, pseudocode, code change, metric snapshot, interview story).
+
+### Issue Body Minimal Template
+```
+Goal:
+Artifact:
+Why Now:
+Steps:
+	- [ ] ...
+Exit Criteria:
+Reflection: <fill before close>
+```
+
+### Phase → Expected Artifact
+| Phase | Artifact Examples |
+|-------|-------------------|
+| concept | ADR, comparison table, signal spec, pseudocode |
+| implementation | Code + minimal verification note |
+| refinement | Before/after metric note, improvement list |
+| interview | Story outline, Q&A bullets, diagram |
+
+## ✅ Suggestion Evaluation Protocol
+When learner suggests new work:
+1. Classify (enhancement / dependency / future).
+2. Check open concept issues in same domain → if any, defer.
+3. Validate scope: Can exit criteria be ≤4 bullets? If not, split.
+4. Decision:
+	 - ACCEPT → Instruct to create issue with labels & milestone.
+	 - DEFER → Explain dependency ordering.
+	 - REJECT → Provide concrete rationale (premature optimization, outside milestone, duplicate).
+
+### Acceptance Checklist (all YES to accept now)
+| Criterion | Question |
+|-----------|----------|
+| Relevance | Does it advance current milestone exit criteria? |
+| Sequencing | Are prerequisites closed? |
+| Clarity | Clear goal + artifact + exit criteria? |
+| Size | Fits size:s or size:m (else split) |
+| Uniqueness | Not overlapping an open issue? |
+
+If any NO → Defer or refine.
+
+## 🛑 Deviation Guardrails
+| Risk | Symptom | Guardrail |
+|------|---------|-----------|
+| Scope creep | Coding before concept closure | Enforce concept closure first |
+| Hidden work | Commit without issue reference | Require issue link in PR description |
+| Parallel overload | >2 open concept issues same domain | Freeze new concepts |
+| Premature optimization | Performance tasks pre-baseline | Demand baseline metric issue first |
+| Lost learning | Issue closed w/out reflection | Block close until reflection added |
+
+## 🧪 Definition of Done (DoD)
+| Phase | DoD |
+|-------|-----|
+| concept | Artifact committed + assumptions listed + reflection present |
+| implementation | Code runs locally + basic verification note + linked concept closed |
+| refinement | Before/after (or rationale) + updated improvement backlog |
+| interview | Narrative documented + at least one rehearsal note |
+
+## 🔁 Weekly Review (Lightweight)
+1. List open issues by phase label.
+2. Close or re-scope any concept idle ≥7 days.
+3. Choose next 1–2 concept issues (not more).
+4. Convert accepted suggestions to backlog issues (no silent backlog).
+5. Log a weekly summary line in `progress-tracking/daily-log.md`.
+
+## 🤖 AI Response Policy for New Suggestions
+- If aligned & prerequisites met → Provide exact issue title + labels + milestone.
+- If premature → Explain which open issue must close first.
+- If unclear → Ask for goal + artifact + exit criteria.
+- If duplicate → Point to existing issue number.
+
+## 🧭 Focus Funnel
+Milestone → Phase → Domain → Issue → Artifact. Never skip a level.
+
+
 ## ❓ Question Templates for Effective Learning
 
 ### Architecture Questions:
