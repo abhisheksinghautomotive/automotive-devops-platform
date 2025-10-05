@@ -3,6 +3,9 @@
 Thumbs.db
 desktop.ini
 
+# raw dbc files
+projects/01-can-data-platform/data/raw/DBC-files-master
+
 # Python
 __pycache__/
 *.pyc
