@@ -119,11 +119,12 @@ Entry template:
 
 ---
 
-## Issue Metrics Template
-
-| Issue | Phase | Time Spent | Blocked Days | Reflection                |
-|-------|-------|------------|--------------|---------------------------|
-| #12   | Concept | 1h 40m | 2      | Found SQS docs confusing    |
+## Issue Metrics Template in GitHub
+Goal:
+Artifact:
+Time Spent: <fill before close>
+Blocked Days: <fill if needed>
+Reflection: <fill before close>
 
 
 ## 9) Examples (Current Work)
