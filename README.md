@@ -1,4 +1,4 @@
-# Automotive DevOps Platform (Lean Mode)
+# Automotive DevOps Platform
 
 Badges: In development | MIT License
 
