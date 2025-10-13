@@ -119,6 +119,13 @@ Entry template:
 
 ---
 
+## Issue Metrics Template
+
+| Issue | Phase | Time Spent | Blocked Days | Reflection                |
+|-------|-------|------------|--------------|---------------------------|
+| #12   | Concept | 1h 40m | 2      | Found SQS docs confusing    |
+
+
 ## 9) Examples (Current Work)
 - Issue: #7 BMW battery DBC inspection → `battery-dbc-survey.md` (concept) → complete.
 - Signals selected (MVP): Cell_1_Voltage_mV, Cell_4_Voltage_mV + derived avg/min/max.
