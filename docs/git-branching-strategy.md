@@ -1,4 +1,4 @@
-# Git Branching Strategy (Lean Mode)
+# Git Branching Strategy
 
 Optimize for focus and fast learning. Everything else is deferred.
 
