@@ -7,6 +7,13 @@ Date: 2025-10-13
 
 
 ## 1) Core Principles
+- Issue-first: No work starts without an open GitHub Issue; every commit/PR links to it.
+- One thing at a time: Exactly one active feature branch unless the current task is blocked and the block reason is logged.
+- Phase flow: Concept → Implementation → Refinement → Interview. Close the concept issue before writing production code.
+- Pseudocode before code: Any non-trivial logic (simulation, pipeline, infra) gets a short pseudocode artifact first.
+- Small, visible steps: Each issue produces one concrete artifact and has ≤4 exit-criteria bullets.
+- Cost-aware: Prefer local, zero-cost validation (docs/samples) over cloud resources until needed.
+- Definition of Done: Use phase-specific DoD to decide when to close issues and move forward.
 
 
 ## 2) Daily Flow (Checklist)
@@ -72,6 +79,16 @@ Entry template:
 
 
 ## 8) Minimal Metrics to Track
+- Time Spent: Total focused time on the issue (e.g., 1h 30m). Fill in the issue on close.
+- Blocked Days: Count and reason (e.g., 2 days waiting for X). Fill in the issue on close.
+- Artifacts Produced: File paths and a one-liner (e.g., docs, schema, sample data).
+- New Concepts Learned: 1–2 bullets to aid interview stories.
+- Decision Snapshot: Keep/change direction notes (with rationale).
+- Basic Implementation Metrics (when relevant): e.g., event count accepted, rough latency.
+
+How to log
+- Daily: Add a row in `progress-tracking/daily-log.md` with Date, Issue, Phase, Time Spent, Blocked, Reflection.
+- On Close: Populate “Time Spent” and “Blocked Days” fields in the issue body template.
 
 
 ## Issue Metrics Template in GitHub
