@@ -28,6 +28,17 @@ git push origin main
 git branch -D feature/123-signal-table
 ```
 
+Minimal Workflow
+----------------
+
+All merges to main MUST go through a Pull Request (PR).
+Direct pushes/merges to main (even for docs) are prohibited.
+Always link PRs to the related issue and artifact.
+
+Example:
+git checkout -b feature/123-signal-table # Work & commit
+git push -u origin feature/123-signal-table # Open PR (#123 ...)
+
 ## Commit Format
 ```
 <type>(<issue>-<scope>): <description>
