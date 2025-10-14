@@ -20,13 +20,6 @@ Date: 2025-10-13
 
 ## 3) Weekly Review (15–20 min)
 
-Checklist:
-- Close or re-scope any concept idle ≥7 days
-- Pick the next 1–2 concept issues only
-- Convert accepted suggestions into issues; no silent backlog
-- Add a weekly summary line in the daily log
-- Add “What worked / What was blocked / What’s next” bullets for the week
-
 Optional commands to prep:
 ```zsh
 # Past week highlights
@@ -126,30 +119,4 @@ Add one section per calendar week (e.g., 2025-W42):
 | GitHub Milestones       | Create via Issues → Milestones UI                 | GitHub UI              |
 | Tag Completed Versions  | `git tag -a … && git push origin …`               | Local Git + GitHub     |
 
----
-
-## End-of-MVP Retrospective (add after shipping MVP)
-
-Create a short retrospective to crystallize learnings, tradeoffs, and business value.
-
-Template:
-```
-## Retrospective: <Project/MVP Name>
-Date: <yyyy-mm-dd>
-
-What worked:
-- 
-
-What was blocked / slowed us:
-- 
-
-Key trade-offs made:
-- 
-
-Outcomes / business value:
-- 
-
-What we’ll change next time:
-- 
-```
 ```

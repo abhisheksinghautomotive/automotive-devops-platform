@@ -190,6 +190,7 @@ Also the cost of cloud resources is a concern, so always consider cost-effective
 - Develop technical depth stories with business impact
 - Prepare for system design and behavioral questions
 - Create portfolio presentations and demonstrations
+ - Add occasional system design diagrams (hand-drawn or Excalidraw/diagrams.net) to strengthen explanations
 
 ## 🗂 Issue-Driven Learning Framework (Execution Rules)
 All progress must map to an open GitHub Issue. No work starts without an issue; no issue closes without an artifact or reflection.
