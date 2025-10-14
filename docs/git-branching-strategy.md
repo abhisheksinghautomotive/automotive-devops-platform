@@ -27,10 +27,6 @@ git merge --squash feature/123-signal-table
 git push origin main
 git branch -D feature/123-signal-table
 ```
-
-Minimal Workflow
-----------------
-
 All merges to main MUST go through a Pull Request (PR).
 Direct pushes/merges to main (even for docs) are prohibited.
 Always link PRs to the related issue and artifact.
@@ -38,6 +34,15 @@ Always link PRs to the related issue and artifact.
 Example:
 git checkout -b feature/123-signal-table # Work & commit
 git push -u origin feature/123-signal-table # Open PR (#123 ...)
+
+## Main Branch Protection
+
+- Direct pushes/commits to `main` are prohibited for all users (including admins).
+- All contributions to main must go through a Pull Request (PR).
+- This is enforced by GitHub branch protection rules.
+
+See repo settings (“Branches”) for rule details.
+
 
 ## Commit Format
 ```
