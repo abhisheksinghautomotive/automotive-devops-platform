@@ -1,4 +1,4 @@
-# Project 01 – Telemetry Ingestion MVP (Lean Summary)
+# Project 01 – Telemetry Ingestion MVP
 
 Focus: Ship a minimal, explainable ingestion + batching pipeline and capture upgrade triggers—not build a platform prematurely.
 
