@@ -1,10 +1,14 @@
 """Generate sample events for battery cell voltages and write to a JSONL file."""
-
 import random
 import json
+import argparse
 
-with open("projects/01-can-data-platform/docs/sample-events-mvp.jsonl", "w") as f:
-    for _ in range(10):
+parser = argparse.ArgumentParser(description="Generate sample events for battery cell voltages.")
+parser.add_argument("--events", type=int, default=10, help="Number of sample events to generate")
+args = parser.parse_args()
+
+with open("projects/01_can_data_platform/data/sample_events_mvp.jsonl", "w") as f:
+    for _ in range(args.events):
         c1 = random.randint(3000, 4200)
         c4 = random.randint(3000, 4200)
         mn = min(c1, c4)
