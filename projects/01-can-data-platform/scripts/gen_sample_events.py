@@ -1,3 +1,5 @@
+"""Generate sample events for battery cell voltages and write to a JSONL file."""
+
 import random
 import json
 
