@@ -1,0 +1,25 @@
+{
+  "milestone_name": "P01-ADR-and-Design-Doc-Finalization",
+  "issues": [
+    {
+      "title": "Finalize Critical Architecture Decision Records (ADR)",
+      "body": "Draft, review, and commit at least one ADR covering each of: storage format choices (e.g., JSONL vs. Parquet), event transport/ingestion stack, and cloud/persistence selection. Reference key design tradeoffs.\n\nExit Criteria:\n- New/updated ADRs in docs/adr/\n- Each tradeoff explained and referenced in main README\n",
+      "labels": ["docs", "adr", "architecture", "phase:finalization", "proj:can-data", "size:s"]
+    },
+    {
+      "title": "Publish Final Project Design Document (or Summary)",
+      "body": "Write an updated, high-level project design or summary document: capture all current architectural decisions, flow diagrams, table of components, and why each choice was made. Ready for interview, handoff, or audit.\n\nExit Criteria:\n- Design doc in docs/design/ or docs/\n- Shows final project state after all simulation/infra/cloud features\n- Linked in main README\n",
+      "labels": ["docs", "design", "architecture", "phase:finalization", "proj:can-data", "size:m"]
+    },
+    {
+      "title": "Cross-check ADRs vs Implementation",
+      "body": "Review all ADRs to ensure they accurately match code, scripts, and project usage as implemented at MVP completion. Note and fix any drift or coverage gaps.\n\nExit Criteria:\n- Review log (as checklist or short notes in docs/adr/)\n- Corrections committed if needed\n",
+      "labels": ["docs", "adr", "review", "phase:finalization", "proj:can-data", "size:s"]
+    },
+    {
+      "title": "Reflect on Project Architecture Choices",
+      "body": "Write a reflection or lessons learned on architecture/design process. What tradeoffs worked? What would you change for scale/team? What design calls enabled (or limited) your workflow?\n\nExit Criteria:\n- Reflection/retrospective doc or section in design artifacts\n- At least one suggestion for future improvements\n",
+      "labels": ["reflection", "adr", "docs", "phase:finalization", "proj:can-data"]
+    }
+  ]
+}

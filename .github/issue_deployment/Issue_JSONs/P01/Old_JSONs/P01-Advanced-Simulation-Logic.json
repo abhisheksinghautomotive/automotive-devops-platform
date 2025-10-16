@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Integrate Temperature Effects in Simulation",
+    "body": "Implement temperature coupling for battery cell voltages in the simulator code. Voltages should vary realistically with ambient and cell/module temperature (e.g., using a basic physics correlation or lookup table).\n\nExit Criteria:\n- Every cell/module event includes temperature values affecting simulated voltages\n- Document the chosen correlation/model and sources\n- Before/after sample and plots shown in docs\n",
+    "labels": ["simulation", "temperature", "phase:advanced", "proj:can-data", "size:m"]
+  },
+  {
+    "title": "Add Degradation and Aging Effects to Battery Model",
+    "body": "Simulate cell/module degradation over cycles, including slow drop in voltage, increasing internal resistance, or increased noise as batteries age. Model could be linear or exponential over time/cycles.\n\nExit Criteria:\n- Each event or set shows age, cycles, and degradation in one or more physical features\n- Document model used and key tuning parameters\n- Before/after impact on a batch shown in docs\n",
+    "labels": ["simulation", "cycle-life", "phase:advanced", "proj:can-data", "size:m"]
+  },
+  {
+    "title": "Inject Anomaly Events and Faults",
+    "body": "Add logic to inject rare anomaly spikes (unexpected jumps, drops, sensor errors) into the event stream. Enable control of anomaly frequency and magnitude for testing detection logic.\n\nExit Criteria:\n- Simulator can inject configurable anomaly events, with random or fixed pattern\n- Each batch stat shows anomaly count\n- Docs/charts illustrate impact and configuration\n",
+    "labels": ["simulation", "anomaly", "phase:advanced", "proj:can-data", "size:s"]
+  },
+  {
+    "title": "Simulate Message Dropouts and Data Loss",
+    "body": "Introduce random or patterned message drops (CAN loss, sensor dropout) in simulation events. Enable configuration of loss fraction/pattern for robustness testing.\n\nExit Criteria:\n- Data pipeline experiences message drops per configuration\n- Logging/artifact shows drop statistics per batch\n- Analyze detection and downstream resilience\n",
+    "labels": ["simulation", "dropout", "phase:advanced", "proj:can-data", "size:s"]
+  },
+  {
+    "title": "Correlate Load, Charge, and Environmental Effects",
+    "body": "Model physical correlations such as high load/charge events affecting multiple signals (temperature, voltage, noise) simultaneously. Simulate realistic multi-signal behavior for advanced analytics.\n\nExit Criteria:\n- Simulator can produce batched, correlated events for system-level testing\n- Explain chosen physical relationships, document in code/docs\n- Impact on batch statistics and visual shown\n",
+    "labels": ["simulation", "correlation", "phase:advanced", "proj:can-data", "size:l"]
+  },
+  {
+    "title": "Update Advanced Simulation Documentation",
+    "body": "Document all advanced simulation features (temperature, aging, anomaly, dropout, correlation) added in code, sample events, and charts. Provide clear usage notes and references for future contributors/interviewers.\n\nExit Criteria:\n- Advanced features all described\n- Before/after examples shown\n- Demo/test script for new features included or outlined\n",
+    "labels": ["docs", "simulation", "phase:advanced", "proj:can-data", "size:s"]
+  },
+  {
+    "title": "Reflection & Analysis for Advanced Logic Milestone",
+    "body": "After implementing advanced simulation features, write a retrospective covering what changed, impact on analytics/test, any feature needing adjustment or further study. Suggest next priorities for future refinement.\n\nExit Criteria:\n- Reflection committed in docs/\n- Action points listed for next loop\n",
+    "labels": ["reflection", "milestone-retro", "phase:advanced"]
+  }
+]
