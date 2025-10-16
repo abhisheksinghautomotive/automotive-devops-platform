@@ -1,0 +1,25 @@
+{
+  "milestone_name": "P01-Cloud/Persistence-Intro",
+  "issues": [
+    {
+      "title": "Add Cloud Data Export Option to Simulator",
+      "body": "Update the event generation pipeline so batches can be optionally written to a remote cloud object store (e.g., S3, MinIO, or mock endpoint) in JSONL or Parquet form. Enable toggling cloud sync by config or CLI arg.\n\nExit Criteria:\n- Events written to cloud bucket (real or emulated) or logged as would-be uploaded\n- Demo/test script for local+cloud export\n- Docs updated with usage and caveats\n",
+      "labels": ["cloud", "storage", "simulation", "phase:cloud", "proj:can-data", "size:m"]
+    },
+    {
+      "title": "Implement Persistence for Receiver (DB/Cloud Storage)",
+      "body": "Add logic to the FastAPI/receiver app to persist received events either to a local DB (SQLite/Postgres) or directly to a cloud blob store. Allow swap by config for test and local/CI runs.\n\nExit Criteria:\n- Each received event logged to configured store\n- Example Docker Compose for local receiver + DB\n- Docs with sample queries, schema, limitations\n",
+      "labels": ["cloud", "db", "receiver", "phase:cloud", "proj:can-data", "size:m"]
+    },
+    {
+      "title": "Document Cloud/Persistence Extensions",
+      "body": "Update technical docs to show new options (cloud sync/export, DB write, etc). Include simple diagrams of new flows, usage example, and local-only fallback for demo/interview.\n\nExit Criteria:\n- All new modes/flags/data flows explained\n- Screenshot or diagram of config/architecture\n- Demo script/cli notes updated\n",
+      "labels": ["docs", "cloud", "phase:cloud", "simulation", "proj:can-data"]
+    },
+    {
+      "title": "Cloud/Persistence Integration Demo and Reflection",
+      "body": "Provide a demo walkthrough of cloud export and data persistence, with a brief reflection: What changed? What value did cloud bring? What would you generalize/change for full production use?\n\nExit Criteria:\n- Reflection doc/PR with analysis\n- Sample logs/screens/caveats noted\n- List of open questions for future cloud/data team\n",
+      "labels": ["demo", "reflection", "phase:cloud", "proj:can-data"]
+    }
+  ]
+}

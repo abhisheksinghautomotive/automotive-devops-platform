@@ -1,0 +1,25 @@
+{
+  "milestone_name": "P01-README + Demos + Interview Prep",
+  "issues": [
+    {
+      "title": "Complete Project README and Architecture Overview",
+      "body": "Write a full project README with: high-level feature summary, architecture diagram, startup instructions, milestone map, and link-out to all major docs/artifacts.\n\nExit Criteria:\n- README.md covers technical/project narrative\n- Instructions for local and CI/CD startup\n- References all simulation, refinement, and cloud components\n- Diagrams and team-ready summary included\n",
+      "labels": ["docs", "readme", "overview", "proj:can-data", "size:m"]
+    },
+    {
+      "title": "Produce End-to-End Demo Script(s)",
+      "body": "Write and test demo script(s) for: generating battery events, sending batches, viewing logs/artifacts, optional cloud or DB workflow. Includes comments, pauses, and recorder callouts for video or interview use.\n\nExit Criteria:\n- Script covers typical workflow (\n- Comments and prompts in place for self-demo and recording\n- Linked in README and tested on a fresh clone\n",
+      "labels": ["docs", "demo", "script", "proj:can-data", "size:s"]
+    },
+    {
+      "title": "Create Interview/Presentation Deck",
+      "body": "Build a PDF or slide deck with: project motivation, architecture, realism wins, traceability highlights, and possible 'what I'd do next' slides for interviewers. Concise, tech-focused, and visually clear.\n\nExit Criteria:\n- Deck covers narrative + key technical wins\n- Sits in docs/, linked from README\n",
+      "labels": ["docs", "interview-prep", "presentation", "proj:can-data", "size:s"]
+    },
+    {
+      "title": "Write Reflection and Q&A Notes for Interview Prep",
+      "body": "Document prompts, technical Q&A, gotchas, and personal retrospectives from building/simulating/presenting the project. Use this as a boilerplate for technical prep and retrospective at interview time.\n\nExit Criteria:\n- Document with Q&A and reflection\n- Practical answers and gotchas highlighted\n",
+      "labels": ["reflection", "interview-prep", "docs", "proj:can-data"]
+    }
+  ]
+}
