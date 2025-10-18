@@ -1,0 +1,45 @@
+[flake8]
+# Flake8 configuration
+
+# Maximum line length
+max-line-length = 79
+
+# Maximum cyclomatic complexity
+max-complexity = 10
+
+# Exclude patterns
+exclude =
+    .git,
+    __pycache__,
+    .venv,
+    venv,
+    env,
+    .eggs,
+    *.egg,
+    build,
+    dist,
+    .pytest_cache,
+    .coverage,
+    htmlcov
+
+# Error codes to ignore
+ignore =
+    E203,
+    W503,
+
+# Per-file ignores
+per-file-ignores =
+    __init__.py:F401
+    test_*.py:E501
+
+# Enable naming conventions
+enable-extensions = N
+
+# Show source code for errors
+show-source = True
+
+# Show statistics
+statistics = True
+
+# Count errors
+count = True

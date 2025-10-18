@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+pydantic
+requests
+pytest
+coverage
+flake8
+pylint
+pydocstyle
+lizard
