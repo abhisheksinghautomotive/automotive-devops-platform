@@ -66,16 +66,7 @@ jobs:
           
           # Check if critical security issues found
           if [ -f bandit-report.json ]; then
-            HIGH_ISSUES=$(python -c "
-            import json
-            try:
-                with open('bandit-report.json') as f:
-                    data = json.load(f)
-                    high_count = len([r for r in data.get('results', []) if r.get('issue_severity') == 'HIGH'])
-                    print(high_count)
-            except:
-                print(0)
-            ")
+            HIGH_ISSUES=$(python -c "import json; data=json.load(open('bandit-report.json')); print(len([r for r in data.get('results', []) if r.get('issue_severity') == 'HIGH']))" 2>/dev/null || echo "0")
             if [ "$HIGH_ISSUES" -gt 0 ]; then
               echo "❌ HIGH severity security issues found: $HIGH_ISSUES"
               exit 1
@@ -197,7 +188,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           MINIMUM_GREEN: 95
           MINIMUM_ORANGE: 90
-          COVERAGE_FILE: coverage.xml
       
       - name: 🏷️ Generate Coverage Badge (Main Branch)
         if: github.ref == 'refs/heads/main' && matrix.python-version == '3.11'
