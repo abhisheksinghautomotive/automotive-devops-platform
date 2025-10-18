@@ -188,7 +188,6 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
           MINIMUM_GREEN: 95
           MINIMUM_ORANGE: 90
-          COVERAGE_FILE: coverage.xml
       
       - name: 🏷️ Generate Coverage Badge (Main Branch)
         if: github.ref == 'refs/heads/main' && matrix.python-version == '3.11'
