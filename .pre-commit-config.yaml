@@ -1,0 +1,76 @@
+# Pre-commit hooks for automotive DevOps platform
+# Install with: pip install pre-commit && pre-commit install
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ['--maxkb=500']
+      - id: mixed-line-ending
+      - id: check-executables-have-shebangs
+
+  - repo: https://github.com/psf/black
+    rev: 23.12.1
+    hooks:
+      - id: black
+        language_version: python3
+        files: ^(projects|tests)/.*\.py$
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        files: ^(projects|tests)/.*\.py$
+        args: [--count, --statistics, --show-source]
+
+  - repo: https://github.com/PyCQA/pylint
+    rev: v3.0.3
+    hooks:
+      - id: pylint
+        files: ^projects/.*\.py$
+        args: [--fail-under=9.5]
+      - id: pylint
+        name: pylint-tests
+        files: ^tests/.*\.py$
+        args: [--fail-under=8.0]
+
+  - repo: https://github.com/PyCQA/pydocstyle
+    rev: 6.3.0
+    hooks:
+      - id: pydocstyle
+        files: ^(projects|tests)/.*\.py$
+
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.5
+    hooks:
+      - id: bandit
+        files: ^projects/.*\.py$
+        args: ['-r', '--severity-level', 'medium']
+
+  - repo: local
+    hooks:
+      - id: pytest-coverage
+        name: pytest with coverage
+        entry: bash -c 'cd /Users/abhisheksingh/Desktop/automotive-devops-platform && python -m pytest tests/unit/ --cov=projects/can_data_platform/scripts --cov-fail-under=95 --cov-report=term-missing'
+        language: system
+        files: ^(projects|tests)/.*\.py$
+        pass_filenames: false
+
+      - id: complexity-check
+        name: Lizard complexity analysis
+        entry: lizard
+        language: python
+        files: ^projects/.*\.py$
+        args: ['--CCN', '8', '--length', '100', '--arguments', '6']
+
+# Configuration
+default_language_version:
+  python: python3.11
+
+fail_fast: true
