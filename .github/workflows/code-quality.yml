@@ -60,9 +60,11 @@ jobs:
           # Install workflow quality tools
           sudo apt-get update && sudo apt-get install -y yamllint
 
-          # Install actionlint using Go (more reliable than manual download)
-          go install github.com/rhymond/actionlint/cmd/actionlint@latest
-          echo "$HOME/go/bin" >> $GITHUB_PATH
+          # Install actionlint - simplified approach
+          wget https://github.com/rhymond/actionlint/releases/download/v1.7.8/actionlint_1.7.8_linux_amd64.tar.gz -O /tmp/actionlint.tar.gz
+          tar -xzf /tmp/actionlint.tar.gz -C /tmp/
+          sudo mv /tmp/actionlint /usr/local/bin/
+          chmod +x /usr/local/bin/actionlint
 
       - name: 🔍 Security scan with Bandit
         run: |
