@@ -1,0 +1,30 @@
+{
+  "milestone_name": "P01-Core-Pipeline-MVP",
+  "issues": [
+    {
+      "title": "Build SQS Batch Consumer",
+      "body": "Create `batch_consumer.py` that polls SQS, buffers messages, and writes batches to time-partitioned JSONL files.\n\n**Deliverables**:\n- Long polling implementation (10s wait, max 10 messages)\n- Batch flush on: 100 messages OR 5-second timeout\n- Time-partitioned paths: `data/raw/year=YYYY/month=MM/day=DD/hour=HH/`\n- Delete messages from SQS after successful write\n- Graceful shutdown handling (SIGTERM)\n- Log batch metrics (size, latency, queue depth)\n- Unit tests with mocked SQS\n\n**Exit Criteria**:\n- [ ] Consumer processes 100 events and creates JSONL file\n- [ ] File path follows time-partitioned structure\n- [ ] SQS messages deleted after successful write\n- [ ] Logs show batch size, write latency, queue depth\n- [ ] Unit tests cover all code paths with 95%+ coverage",
+      "labels": ["feature", "consumer", "sqs", "size:l", "priority:p0", "proj:can-data"]
+    },
+    {
+      "title": "Implement End-to-End Latency Tracking",
+      "body": "Add comprehensive latency tracking throughout pipeline to measure performance and validate SLA targets.\n\n**Deliverables**:\n- Track SQS poll latency\n- Track batch write latency\n- Track end-to-end latency (event timestamp → persisted)\n- Log P50, P95, P99 percentiles every 100 events\n- Store metrics in `data/metrics/latency-{date}.json`\n\n**Exit Criteria**:\n- [ ] Latency metrics logged every 100 events\n- [ ] Metrics file contains P50, P95, P99 for all three latency types\n- [ ] P95 end-to-end latency < 5 seconds (ADR 0001 target)\n- [ ] Example output: `{\"sqs_poll_p95_ms\": 120, \"batch_write_p95_ms\": 35, \"e2e_p95_s\": 3.2}`",
+      "labels": ["observability", "metrics", "size:s", "priority:p1", "proj:can-data"]
+    },
+    {
+      "title": "Build Hourly Aggregation Script",
+      "body": "Create `aggregate_counts.py` that reads JSONL batches and computes vehicle event counts per hour.\n\n**Deliverables**:\n- Read all JSONL files for specified date/hour\n- Count events per `vehicle_id`\n- Compute: total events, unique vehicles, avg events/vehicle\n- Output to `data/aggregates/vehicle_counts_{date}_{hour}.json`\n- CLI arguments: `--date YYYY-MM-DD --hour HH`\n- Support incremental aggregation\n\n**Exit Criteria**:\n- [ ] Can run: `python aggregate_counts.py --date 2025-10-20 --hour 14`\n- [ ] Output file contains: total_events, unique_vehicles, vehicle_counts dict\n- [ ] Correctly counts events from multiple JSONL batch files\n- [ ] Unit tests validate counting logic",
+      "labels": ["analytics", "aggregation", "size:m", "priority:p1", "proj:can-data"]
+    },
+    {
+      "title": "Create End-to-End Integration Test",
+      "body": "Build integration test that validates complete pipeline flow from event generation through aggregation.\n\n**Deliverables**:\n- Test generates 100 events → publishes to SQS\n- Consumer processes all events → writes JSONL\n- Aggregator produces correct counts\n- Verify JSONL file structure and content\n- Verify SQS queue empty after processing\n- Test runs successfully in CI/CD pipeline\n\n**Exit Criteria**:\n- [ ] Integration test passes: generates → SQS → consumer → JSONL → aggregation\n- [ ] Verifies 100 events processed correctly\n- [ ] Verifies SQS queue depth = 0 after test\n- [ ] Verifies aggregation output matches input\n- [ ] Test runs in GitHub Actions CI/CD",
+      "labels": ["testing", "integration", "size:m", "priority:p0", "proj:can-data"]
+    },
+    {
+      "title": "Accept ADR 0001 - SQS Transport Decision",
+      "body": "Update ADR 0001 status from \"Proposed\" to \"Accepted\" after first successful end-to-end test run with observed metrics.\n\n**Deliverables**:\n- Change status in `docs/adr/0001-ingestion-transport.md`\n- Add \"Date Accepted\" field\n- Add \"Outcomes Observed\" section with real metrics\n- Document any deviations from original proposal\n- Update upgrade triggers status table\n\n**Exit Criteria**:\n- [ ] ADR 0001 status = \"Accepted\"\n- [ ] Includes observed metrics: throughput, P95 latency, queue depth, duplicate rate\n- [ ] Documents actual batch size used (vs proposed)\n- [ ] Upgrade triggers table shows current status vs thresholds\n- [ ] Commit message: \"docs: Accept ADR 0001 after MVP validation\"",
+      "labels": ["adr", "docs", "size:s", "priority:p0", "proj:can-data"]
+    }
+  ]
+}
