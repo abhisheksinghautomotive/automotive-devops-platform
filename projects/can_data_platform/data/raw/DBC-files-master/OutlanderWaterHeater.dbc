@@ -31,8 +31,8 @@ NS_ :
     BU_BO_REL_
     SG_MUL_VAL_
 
-BS_: 
-BU_: 
+BS_:
+BU_:
 BO_ 920 Status: 8 Vector__XXX
    SG_ InWaterTemp : 24|8@1+ (1,-50) [0|0] "" Vector__XXX
    SG_ OutWaterTemp : 32|8@1+ (1,-50) [0|0] "" Vector__XXX

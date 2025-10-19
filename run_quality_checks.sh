@@ -34,6 +34,17 @@ run_check() {
 # Ensure we're in the right directory
 cd "$(dirname "$0")"
 
+# Activate virtual environment if it exists
+if [ -d ".venv" ]; then
+    echo "🐍 Activating virtual environment..."
+    source .venv/bin/activate
+elif [ -d "venv" ]; then
+    echo "🐍 Activating virtual environment..."
+    source venv/bin/activate
+else
+    echo "⚠️  No virtual environment found. Using system Python."
+fi
+
 # Define Python source directories to check
 PYTHON_DIRS=(
     "projects/can_data_platform/scripts/"

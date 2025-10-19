@@ -17,5 +17,5 @@ Focusing first on module variance and Gaussian noise will quickly add realism an
 
 ---
 
-Time spent: **~10 min for backlog review**  
+Time spent: **~10 min for backlog review**
 Blocked days: **None**

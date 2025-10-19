@@ -8,77 +8,77 @@ rules:
   line-length:
     max: 120
     level: error
-  
+
   # Indentation - enforce 2 spaces for consistency
   indentation:
     spaces: 2
     indent-sequences: true
     check-multi-line-strings: false
-  
+
   # Truthy values - prevent ambiguous boolean representations
   truthy:
     allowed-values: ["true", "false"]
     check-keys: true
-  
+
   # Comments formatting
   comments:
     min-spaces-from-content: 1
     require-starting-space: true
-  
+
   # Empty lines - improve readability
   empty-lines:
     max: 2
     max-start: 0
     max-end: 1
-  
+
   # Document formatting
   document-start:
     present: false  # GitHub Actions don't require ---
-  
+
   document-end:
     present: false  # GitHub Actions don't require ...
-  
+
   # Brackets and braces
   brackets:
     min-spaces-inside: 0
     max-spaces-inside: 1
     min-spaces-inside-empty: -1
     max-spaces-inside-empty: -1
-  
+
   braces:
     min-spaces-inside: 0
     max-spaces-inside: 1
     min-spaces-inside-empty: -1
     max-spaces-inside-empty: -1
-  
+
   # Colons
   colons:
     max-spaces-before: 0
     min-spaces-after: 1
     max-spaces-after: 1
-  
+
   # Commas
   commas:
     max-spaces-before: 0
     min-spaces-after: 1
     max-spaces-after: 1
-  
+
   # Hyphens
   hyphens:
     max-spaces-after: 1
-  
+
   # Key ordering - don't enforce to allow logical grouping
   key-ordering: disable
-  
+
   # Quoted strings - allow flexibility for GitHub Actions syntax
   quoted-strings:
     quote-type: any
     required: only-when-needed
     check-keys: false  # GitHub Actions often require unquoted keys
-  
+
   # Trailing spaces
   trailing-spaces: enable
-  
+
   # New line at end of file
   new-line-at-end-of-file: enable
 

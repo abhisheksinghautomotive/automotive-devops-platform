@@ -35,5 +35,5 @@ Audit shows most MVP-phase docs are present and useful, except for a few process
 
 ---
 
-Time spent: **10 min**  
+Time spent: **10 min**
 Blocked days: **None**

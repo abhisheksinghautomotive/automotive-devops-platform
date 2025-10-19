@@ -31,8 +31,8 @@ NS_ :
     BU_BO_REL_
     SG_MUL_VAL_
 
-BS_: 
-BU_: 
+BS_:
+BU_:
 BO_ 1313 CURRENT: 6 Vector__XXX
    SG_ Current : 16|32@1- (1,0) [0|0] "mA" Vector__XXX
 

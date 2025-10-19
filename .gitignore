@@ -38,7 +38,7 @@ build/
 target/
 bin/
 
-# Terraform 
+# Terraform
 *.tfstate
 *.tfstate.*
 .terraform/

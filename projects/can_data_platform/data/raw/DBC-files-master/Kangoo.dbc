@@ -31,8 +31,8 @@ NS_ :
     BU_BO_REL_
     SG_MUL_VAL_
 
-BS_: 
-BU_: Battery 
+BS_:
+BU_: Battery
 BO_ 341 Battery_1: 8 Battery
    SG_ SoC : 39|16@0+ (0.0025,0) [0|0] "" Vector__XXX
    SG_ MaxChargeAllowed : 7|8@0+ (300,0) [0|0] "W" Vector__XXX

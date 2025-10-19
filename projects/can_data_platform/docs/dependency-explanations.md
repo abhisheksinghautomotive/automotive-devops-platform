@@ -24,5 +24,5 @@ Every dependency included powers MVP simulation and dataflow, with only minimal 
 
 ---
 
-Time spent: **10 min**  
+Time spent: **10 min**
 Blocked days: **0**

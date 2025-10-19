@@ -31,8 +31,8 @@ NS_ :
     BU_BO_REL_
     SG_MUL_VAL_
 
-BS_: 
-BU_: BMC CMC_01 CMC_02 CMC_03 CMC_04 CMC_05 CMC_06 CMC_07 CMC_08 P2_CMC_01 HVBatteryController 
+BS_:
+BU_: BMC CMC_01 CMC_02 CMC_03 CMC_04 CMC_05 CMC_06 CMC_07 CMC_08 P2_CMC_01 HVBatteryController
 BO_ 441799690 BMC_CMC_01_01: 8 BMC
    SG_ BMC_CMC_01_BalCommand_01 : 0|8@1+ (2,0) [0|506] "Minute" CMC_01
    SG_ BMC_CMC_01_BalCommand_02 : 8|8@1+ (2,0) [0|506] "Minute" CMC_01

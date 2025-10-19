@@ -7,10 +7,10 @@
 
 ---
 
-Reflection:  
+Reflection:
 Created normalized DBC signal table; flagged missing fields and ambiguous signals for future refinement.
 
-Time spent: ~20 minutes  
+Time spent: ~20 minutes
 Blockers: None
 
 ---

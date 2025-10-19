@@ -141,7 +141,7 @@ Vehicle Fleet → API Gateway → Message Queue → Stream Processing → Storag
 
 This project directly prepares you for system design questions commonly asked at:
 - **Tesla**: Vehicle telemetry and fleet management systems
-- **Uber**: Real-time location and ride data processing  
+- **Uber**: Real-time location and ride data processing
 - **Netflix**: Streaming analytics and recommendation engines
 - **Amazon**: IoT device management and analytics platforms
 

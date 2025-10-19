@@ -12,7 +12,7 @@ action_security:
     - "actions/cache@v3"
     - "github/super-linter@latest"
     - "py-cov-action/python-coverage-comment-action@v3"
-  
+
   # Deprecated/vulnerable actions to avoid
   vulnerable_actions:
     - "actions/checkout@v1"        # Vulnerable to command injection
@@ -28,19 +28,19 @@ action_security:
 permissions:
   # Minimal permissions principle
   default_permissions: "read"
-  
+
   # Maximum allowed permissions by job type
   job_permissions:
     code_analysis:
       contents: "read"
       security-events: "write"  # For uploading SARIF files
       pull-requests: "write"    # For PR comments
-    
+
     release:
       contents: "write"
       packages: "write"
       releases: "write"
-    
+
     testing:
       contents: "read"
       checks: "write"          # For test result reporting
@@ -53,7 +53,7 @@ environment_security:
     - "production"
     - "staging"
     - "release"
-  
+
   # Secrets management
   secret_patterns:
     # Patterns that should never appear in workflows
@@ -63,7 +63,7 @@ environment_security:
       - "api_key"
       - "private_key"
       - "access_token"
-    
+
     # Required secret context usage
     required_secrets_context: true
 
@@ -74,13 +74,13 @@ workflow_standards:
     - "timeout-minutes"         # Prevent runaway jobs
     - "concurrency"            # Prevent resource conflicts
     - "if: github.event_name"  # Conditional execution controls
-  
+
   # Recommended security enhancements
   recommended_elements:
     - "environment"            # Environment protection rules
     - "permissions"            # Explicit permission scoping
     - "needs"                  # Job dependency management
-  
+
   # Security validation rules
   validation_rules:
     max_timeout_minutes: 60    # Maximum job timeout
@@ -96,14 +96,14 @@ dependency_security:
     - "pypi.org"
     - "npmjs.com"
     - "github.com"
-  
+
   # Security scanning requirements
   required_scans:
     - "bandit"           # Python security linting
     - "safety"           # Python dependency vulnerability scanning
     - "yamllint"         # YAML syntax and security
     - "actionlint"       # GitHub Actions specific linting
-  
+
   # Vulnerability thresholds
   vulnerability_thresholds:
     critical: 0          # No critical vulnerabilities allowed
@@ -120,13 +120,13 @@ audit:
     - "job_duration"
     - "artifacts_created"
     - "secrets_accessed"
-  
+
   # Compliance frameworks
   compliance_standards:
     - "SOC2"             # Service Organization Control 2
     - "ISO27001"         # Information Security Management
     - "NIST"             # National Institute of Standards
-  
+
   # Retention policies
   retention:
     workflow_logs: "90 days"

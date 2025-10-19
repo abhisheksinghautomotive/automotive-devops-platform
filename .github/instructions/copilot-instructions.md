@@ -49,7 +49,7 @@ automotive-devops-platform/
 - **Language**: Python 3.9+
 - **Web Framework**: FastAPI (async REST API)
 - **Message Queue**: AWS SQS (Standard Queue)
-- **Storage**: 
+- **Storage**:
   - Local: JSONL files (time-partitioned)
   - Cloud: AWS S3 (with lifecycle policies - in progress)
 - **Data Processing**: Batch processing with asyncio
@@ -257,7 +257,7 @@ git push origin feature/<issue-number>-<short-description>
 
 ### GitHub Actions Workflow
 - **Triggers**: Push to main, Pull Requests
-- **Jobs**: 
+- **Jobs**:
   1. Install dependencies
   2. Run flake8 (linting)
   3. Run pylint (static analysis)
@@ -514,6 +514,6 @@ git push origin feature/<issue-number>-<short-description>
 
 ---
 
-**Last Updated**: October 19, 2025  
-**Current Milestone**: P01-Core-Pipeline-MVP (Due: Oct 26, 2025)  
+**Last Updated**: October 19, 2025
+**Current Milestone**: P01-Core-Pipeline-MVP (Due: Oct 26, 2025)
 **Project Phase**: MVP Development → Cloud Integration → Interview Prep

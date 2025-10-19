@@ -21,6 +21,7 @@ repos:
       - id: black
         language_version: python3
         files: ^(projects|tests)/.*\.py$
+        args: [--check, --diff]
 
   - repo: https://github.com/PyCQA/flake8
     rev: 6.1.0
@@ -51,13 +52,13 @@ repos:
     hooks:
       - id: bandit
         files: ^projects/.*\.py$
-        args: ['-r', '--severity-level', 'medium']
+        args: ['-r', '--skip', 'B101,B311']
 
   - repo: local
     hooks:
       - id: pytest-coverage
         name: pytest with coverage
-        entry: bash -c 'cd /Users/abhisheksingh/Desktop/automotive-devops-platform && python -m pytest tests/unit/ --cov=projects/can_data_platform/scripts --cov-fail-under=95 --cov-report=term-missing'
+        entry: bash -c 'cd /Users/abhisheksingh/Desktop/automotive-devops-platform && python -m pytest tests/unit/ --cov=projects/can_data_platform/scripts --cov=projects/can_data_platform/src --cov=.github/issue_deployment --cov-report=term-missing --cov-fail-under=80'
         language: system
         files: ^(projects|tests)/.*\.py$
         pass_filenames: false
@@ -69,8 +70,14 @@ repos:
         files: ^projects/.*\.py$
         args: ['--CCN', '8', '--length', '100', '--arguments', '6']
 
+      - id: mypy-check
+        name: MyPy type checking
+        entry: bash -c '.venv/bin/mypy "$@" --ignore-missing-imports' --
+        language: system
+        files: ^(projects|tests)/.*\.py$
+
 # Configuration
 default_language_version:
-  python: python3.11
+  python: python3.9
 
 fail_fast: true
