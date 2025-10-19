@@ -60,14 +60,9 @@ jobs:
           # Install workflow quality tools
           sudo apt-get update && sudo apt-get install -y yamllint
 
-          # Install actionlint for GitHub Actions specific validation
-          curl -s https://api.github.com/repos/rhymond/actionlint/releases/latest | \
-            grep -E 'browser_download_url.*linux_amd64' | \
-            cut -d '"' -f 4 | \
-            wget -qi - -O /tmp/actionlint.tar.gz
-          tar -xzf /tmp/actionlint.tar.gz -C /tmp/
-          sudo mv /tmp/actionlint /usr/local/bin/
-          chmod +x /usr/local/bin/actionlint
+          # Install actionlint using Go (more reliable than manual download)
+          go install github.com/rhymond/actionlint/cmd/actionlint@latest
+          echo "$HOME/go/bin" >> $GITHUB_PATH
 
       - name: 🔍 Security scan with Bandit
         run: |
