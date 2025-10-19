@@ -24,27 +24,28 @@ REPO = os.getenv("GITHUB_REPO")
 if __name__ == "__main__" and (not GITHUB_TOKEN or not REPO):
     raise ValueError("Missing env vars: GITHUB_TOKEN, GITHUB_REPO")
 
-# Set defaults for testing if not provided
-BASE_URL = f"https://api.github.com/repos/{REPO or 'test/repo'}"
-HEADERS = {
-    "Accept": "application/vnd.github.v3+json",
-    "Authorization": f"token {GITHUB_TOKEN or 'test-token'}"
-}
 REQUEST_TIMEOUT = 30  # seconds
 
 
+def get_base_url():
+    """Get the base URL for GitHub API calls."""
+    repo = os.getenv("GITHUB_REPO") or "test/repo"
+    return f"https://api.github.com/repos/{repo}"
+
+
+def get_headers():
+    """Get headers for GitHub API calls."""
+    token = os.getenv("GITHUB_TOKEN") or "test-token"
+    return {
+        "Accept": "application/vnd.github.v3+json",
+        "Authorization": f"token {token}"
+    }
+
+
 def fetch_milestones():
-    """
-    Fetch all milestones from the GitHub repository.
-
-    Returns:
-        list: List of milestone dictionaries from GitHub API.
-
-    Raises:
-        SystemExit: If API request fails.
-    """
-    milestone_url = f"{BASE_URL}/milestones?state=all"
-    response = requests.get(milestone_url, headers=HEADERS,
+    """Fetch all milestones from the GitHub repository."""
+    milestone_url = f"{get_base_url()}/milestones?state=all"
+    response = requests.get(milestone_url, headers=get_headers(),
                             timeout=REQUEST_TIMEOUT)
     if response.status_code != 200:
         print("Failed to fetch milestones:", response.json())
@@ -125,11 +126,11 @@ def deploy_issues(issues, milestone_id):
         issues (list): List of issue dictionaries.
         milestone_id (int or None): Milestone ID to assign to issues.
     """
-    api_url = f"{BASE_URL}/issues"
+    api_url = f"{get_base_url()}/issues"
     for issue in issues:
         if milestone_id:
             issue["milestone"] = milestone_id
-        response = requests.post(api_url, json=issue, headers=HEADERS,
+        response = requests.post(api_url, json=issue, headers=get_headers(),
                                  timeout=REQUEST_TIMEOUT)
         title = issue.get('title', 'No title')
         status = response.status_code
