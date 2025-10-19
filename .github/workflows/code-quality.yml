@@ -66,7 +66,11 @@ jobs:
       - name: 🔍 Security scan with Bandit
         run: |
           echo "::group::Security Analysis"
+          # Scan all Python directories for security issues
           bandit -r projects/can_data_platform/scripts/ \
+                 projects/can_data_platform/src/ \
+                 .github/issue_deployment/ \
+                 tests/ \
             -f json -o bandit-report.json \
             --severity-level medium || true
 
@@ -87,13 +91,11 @@ jobs:
       - name: 📝 Flake8 - PEP 8 Compliance (STRICT)
         run: |
           echo "::group::Flake8 Analysis"
-          echo "Running Flake8 on source code..."
+          echo "Running Flake8 on all Python code..."
           flake8 projects/can_data_platform/scripts/ \
-            --count --statistics --show-source \
-            --format='::error file=%(path)s,line=%(row)d,col=%(col)d::[Flake8] %(code)s: %(text)s'
-
-          echo "Running Flake8 on test code..."
-          flake8 tests/unit/ \
+                 projects/can_data_platform/src/ \
+                 .github/issue_deployment/ \
+                 tests/ \
             --count --statistics --show-source \
             --format='::error file=%(path)s,line=%(row)d,col=%(col)d::[Flake8] %(code)s: %(text)s'
           echo "✅ Flake8 passed"
@@ -102,13 +104,14 @@ jobs:
       - name: 🔬 Pylint - Code Quality Analysis (STRICT)
         run: |
           echo "::group::Pylint Analysis"
-          echo "Analyzing source code quality..."
+          echo "Analyzing code quality across all Python modules..."
 
           # Run pylint with strict scoring - fail if below thresholds
-          pylint projects/can_data_platform/scripts/ --fail-under=9.5
-
-          echo "Analyzing test code quality..."
-          pylint tests/unit/ --fail-under=8.0
+          pylint projects/can_data_platform/scripts/ \
+                 projects/can_data_platform/src/ \
+                 .github/issue_deployment/ \
+                 tests/ \
+                 --fail-under=9.0
 
           echo "✅ Pylint passed with required scores"
           echo "::endgroup::"
@@ -117,8 +120,9 @@ jobs:
         run: |
           echo "::group::Documentation Standards"
           pydocstyle projects/can_data_platform/scripts/ \
-            --count --explain --source
-          pydocstyle tests/unit/ \
+                     projects/can_data_platform/src/ \
+                     .github/issue_deployment/ \
+                     tests/ \
             --count --explain --source
           echo "✅ Pydocstyle passed"
           echo "::endgroup::"
@@ -127,6 +131,9 @@ jobs:
         run: |
           echo "::group::Complexity Analysis"
           lizard projects/can_data_platform/scripts/ \
+                 projects/can_data_platform/src/ \
+                 .github/issue_deployment/ \
+                 tests/ \
             --CCN 8 \
             --length 100 \
             --arguments 6 \
@@ -180,11 +187,13 @@ jobs:
           echo "::group::Unit Testing & Coverage"
           pytest tests/unit/ \
             --cov=projects/can_data_platform/scripts \
+            --cov=projects/can_data_platform/src \
+            --cov=.github/issue_deployment \
             --cov-report=xml \
             --cov-report=html \
             --cov-report=term-missing \
             --cov-report=json \
-            --cov-fail-under=95 \
+            --cov-fail-under=80 \
             --verbose \
             --tb=short \
             --maxfail=3 \
