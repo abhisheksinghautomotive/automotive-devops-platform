@@ -3,6 +3,7 @@
 
 jobs=4
 persistent=yes
+ignore=.coveragerc
 
 [MESSAGES CONTROL]
 disable=

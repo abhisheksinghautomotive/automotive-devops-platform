@@ -4,44 +4,11 @@
 
 This is a **Software-Defined Vehicle (SDV) telemetry platform** designed as a portfolio/interview preparation project. The platform demonstrates cloud-native DevOps practices for automotive systems, focusing on real-time CAN bus data ingestion, processing, and analytics at scale.
 
-**Current Status**: Project 01 (CAN Data Platform) - Building core MVP pipeline with SQS integration.
+**Your Role**: You are an expert DevOps engineer contributing to this project by generating high-quality, production-ready code snippets, configurations, and documentation. you make sure that each code snippet adheres to the project's coding standards, architectural guidelines, and best practices for AWS services.
+
+**What not to do** : Avoid suggesting features or technologies that are outside the current project scope or deferred backlog. Do not introduce breaking changes or deviate from established patterns without proper justification and documentation.
 
 **Target Audience**: Tier-1 product companies, SaaS, and automotive/mobility engineering roles (DevOps, Platform Engineering, Site Reliability Engineering).
-
-## Project Structure
-
-```
-automotive-devops-platform/
-├── .github/
-│   ├── workflows/
-│   │   └── code-quality.yml          # CI/CD quality enforcement
-│   ├── instructions/                  # Path-specific Copilot instructions
-│   └── copilot-instructions.md        # This file
-├── projects/
-│   └── can_data_platform/             # Project 01: Active development
-│       ├── src/                       # Source code modules
-│       │   ├── generator/             # Battery telemetry simulator
-│       │   ├── receiver/              # FastAPI ingestion endpoint
-│       │   ├── consumer/              # SQS batch consumer
-│       │   └── aggregator/            # Data aggregation scripts
-│       ├── scripts/                   # Utility scripts
-│       ├── data/                      # Local data storage (JSONL)
-│       ├── docs/                      # Project-specific documentation
-│       └── README.md                  # Project documentation
-├── docs/
-│   ├── adr/                           # Architecture Decision Records
-│   └── architecture/                  # System design documents
-├── tests/                             # Unit and integration tests
-├── progress-tracking/
-│   └── daily-log.md                   # Development journal
-├── requirements.txt                   # Production dependencies
-├── requirements-test.txt              # Testing dependencies
-├── pytest.ini                         # Pytest configuration
-├── .pre-commit-config.yaml            # Pre-commit hooks
-├── .flake8                            # Flake8 configuration
-├── .pylintrc                          # Pylint configuration
-└── README.md                          # Main project documentation
-```
 
 ## Technology Stack
 
@@ -123,87 +90,6 @@ automotive-devops-platform/
 - **Config Files**: Store configuration in `.env` (never commit secrets)
 - **Data Files**: Use `data/` directory with `.gitignore` for local data
 
-## Architecture Patterns
-
-### Data Flow (Current MVP)
-```
-Battery Simulator → FastAPI Receiver → AWS SQS → Batch Consumer → JSONL (S3) → Aggregation
-```
-
-### Time-Partitioned Storage
-- Path format: `data/raw/year=YYYY/month=MM/day=DD/hour=HH/batch-<timestamp>.jsonl`
-- Enables efficient querying and lifecycle management
-- Always use UTC timestamps
-
-### Batching Strategy
-- **Batch Size**: Poll up to 100 messages OR 2-second timeout (whichever comes first)
-- **Flush Trigger**: Batch full OR timeout reached
-- **File Rotation**: Create new file if current file exceeds ~5MB
-
-### API Design
-- **REST Conventions**: Use appropriate HTTP methods (POST for ingestion)
-- **Authentication**: API key via custom header `X-API-Key`
-- **Response Format**: JSON with consistent structure
-- **Error Responses**: Include error code, message, and request_id
-- **Health Endpoint**: Always include `/health` endpoint returning 200 OK
-
-### Data Schema (Current)
-```json
-{
-  "timestamp": "2025-10-19T12:34:56.123Z",  // ISO 8601 UTC
-  "vehicle_id": "veh-00123",                 // String identifier
-  "can_id": "0x1F0",                         // Hex CAN message ID
-  "payload": {                                // Decoded signals
-    "battery_soc": 85.5,
-    "battery_voltage": 400.2,
-    "battery_current": -15.3
-  },
-  "ingest_received_at": "2025-10-19T12:34:56.200Z"  // Server-side timestamp
-}
-```
-
-### Metrics & Observability
-- **Latency Tracking**: Log P50, P95, P99 latencies for each batch
-- **Message Counts**: Track messages per minute/hour
-- **Error Rates**: Log and monitor error percentages
-- **Queue Depth**: Monitor SQS ApproximateNumberOfMessages
-
-## Build & Testing Commands
-
-### Local Development
-```bash
-# Setup virtual environment
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scriptsctivate
-
-# Install dependencies
-pip install -r requirements.txt
-pip install -r requirements-test.txt
-
-# Run pre-commit checks manually
-pre-commit run --all-files
-
-# Run application (adjust path based on module)
-uvicorn projects.can_data_platform.src.receiver.app:app --reload
-```
-
-### Testing
-```bash
-# Run all tests with coverage
-pytest
-
-# Run tests with verbose output
-pytest -v
-
-# Run specific test file
-pytest tests/test_generator.py
-
-# Run tests matching pattern
-pytest -k "test_battery"
-
-# Generate coverage report
-pytest --cov=projects/can_data_platform/src --cov-report=html
-```
 
 ### Quality Checks
 ```bash
@@ -333,45 +219,6 @@ git push origin feature/<issue-number>-<short-description>
 - `fix/<issue-number>-<slug>` - For bug fixes
 - `experiment/<spike>` - For time-boxed experiments (≤24h, then delete)
 
-## Current Milestone Context (P01-Core-Pipeline-MVP)
-
-### Active Work (Due: Oct 26, 2025)
-- Implementing SQS integration for message buffering
-- Building batch consumer with JSONL output
-- Adding end-to-end latency tracking (P50/P95/P99)
-- Creating hourly aggregation script
-- Writing integration tests for full pipeline
-
-### Success Criteria
-- Process 1,000+ events through SQS → JSONL pipeline (zero loss)
-- P95 end-to-end latency < 5 seconds
-- Generate at least one hourly aggregate output file
-- Maintain ≥95% code coverage
-- Mark ADR 0001 (SQS Transport Decision) as "Accepted"
-
-### Deferred Features (Post-MVP)
-- Kafka/Kinesis streaming
-- Real-time dashboards (Grafana)
-- Parquet file format
-- Multi-region deployment
-- Advanced monitoring (CloudWatch/Datadog)
-- Container orchestration (Kubernetes)
-
-## Interview Preparation Focus
-
-### Key Technical Stories to Support
-1. **SQS vs Kinesis vs Kafka Trade-offs**: Cost, operational overhead, ordering guarantees
-2. **Batch vs Stream Processing**: MVP latency targets, engineering effort vs real-time needs
-3. **Local → Cloud Storage Migration**: S3 lifecycle policies, cost optimization
-4. **Test Coverage Discipline**: 95% enforcement, CI/CD quality gates
-5. **MVP Scoping**: What to defer, measurable upgrade triggers
-
-### Architecture Decision Rationale
-- **Why SQS Standard?** Simplicity + cost over ordering guarantees (upgrade trigger: >5% duplicates)
-- **Why JSONL?** Human-readable, line-delimited for streaming, schema evolution
-- **Why Batch Consumer?** P95 latency <5s sufficient for analytics use case
-- **Why S3 Lifecycle?** Cost optimization: Standard → IA (30d) → Glacier (90d)
-
 ## Code Generation Guidelines for Copilot
 
 ### When Generating Code
@@ -429,32 +276,6 @@ git push origin feature/<issue-number>-<short-description>
 - `AWS_ENDPOINT_URL` - Override AWS endpoints for LocalStack
 - `LOCALSTACK_HOSTNAME` - Default: localhost
 
-## Project Philosophy & Constraints
-
-### MVP-First Mindset
-- Ship working MVP before adding sophistication
-- Document upgrade triggers (when to revisit simple solutions)
-- Defer features to Post-MVP Backlog unless interview-critical
-- Focus on explainability over complexity
-
-### Cost Consciousness
-- Use SQS Standard (not FIFO) unless ordering required
-- Use S3 lifecycle policies for cost optimization
-- Use LocalStack for testing (avoid AWS dev costs)
-- Monitor AWS Free Tier limits
-
-### Interview-Ready Code
-- Every component should be "whiteboardable"
-- Document trade-off decisions in ADRs
-- Maintain artifacts for portfolio (diagrams, metrics, demo scripts)
-- Write code you can explain in system design interviews
-
-### Quality Over Speed
-- Never compromise on 95% test coverage
-- Pre-commit hooks prevent bad commits
-- CI/CD blocks merges below quality threshold
-- Issue-first workflow prevents scope creep
-
 ## Common Pitfalls to Avoid
 
 ### Python-Specific
@@ -484,36 +305,3 @@ git push origin feature/<issue-number>-<short-description>
 - ❌ Not running pre-commit hooks before pushing
 - ❌ Mixing multiple features in one PR
 - ❌ Not updating ADRs when changing architecture
-
-## Additional Resources
-
-### Documentation Locations
-- **ADRs**: `docs/adr/` - Architecture decisions with context
-- **API Specs**: Auto-generated at `/docs` endpoint (FastAPI)
-- **Project READMEs**: Each project has detailed README
-- **Progress Tracking**: `progress-tracking/daily-log.md`
-
-### External References
-- FastAPI Docs: https://fastapi.tiangolo.com/
-- boto3 SQS: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sqs.html
-- boto3 S3: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/s3.html
-- pytest: https://docs.pytest.org/
-- LocalStack: https://docs.localstack.cloud/
-
-### Code Review Checklist
-- [ ] All functions have type hints and docstrings
-- [ ] Code follows PEP 8 (verified by flake8)
-- [ ] Test coverage ≥95% (verified by pytest-cov)
-- [ ] No security issues (verified by bandit)
-- [ ] Async operations properly awaited
-- [ ] AWS resources properly cleaned up
-- [ ] Environment variables used for config (no hardcoded values)
-- [ ] Error handling includes logging
-- [ ] PR linked to issue
-- [ ] ADR updated if architectural change
-
----
-
-**Last Updated**: October 19, 2025
-**Current Milestone**: P01-Core-Pipeline-MVP (Due: Oct 26, 2025)
-**Project Phase**: MVP Development → Cloud Integration → Interview Prep

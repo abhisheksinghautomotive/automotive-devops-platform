@@ -8,18 +8,27 @@ script including API interactions, user input handling, and file operations.
 import json
 import os
 import sys
+from pathlib import Path
 from unittest.mock import Mock, mock_open, patch
 
 import pytest
 import requests
 
-# Add the script directory to Python path for imports
+
+def setup_project_path():
+    """Add project root to sys.path for importing modules."""
+    project_root = Path(__file__).parent.parent.parent.parent
+    if str(project_root) not in sys.path:
+        sys.path.insert(0, str(project_root))
+
+
+# Setup path before importing project modules
+setup_project_path()
+
+# Import the issue_deployer module
 sys.path.insert(
-    0,
-    os.path.join(os.path.dirname(__file__), "../../.github/issue_deployment"),
+    0, str(Path(__file__).parent.parent.parent.parent / ".github" / "issue_deployment")
 )
-
-
 import issue_deployer  # type: ignore # noqa: E402
 
 
