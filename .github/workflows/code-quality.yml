@@ -150,7 +150,9 @@ jobs:
           echo "🔒 Checking workflow security practices..."
 
           # Check for pinned action versions (security best practice)
-          if grep -r "uses:.*@main\|uses:.*@master" .github/workflows/; then
+          unpinned_actions=$(grep -r "uses:.*@main\|uses:.*@master" .github/workflows/ | \
+            grep -v "if grep" | grep -v "unpinned_actions" || true)
+          if [ -n "$unpinned_actions" ]; then
             echo "⚠️  Found unpinned action versions - security risk!"
             echo "Please pin actions to specific versions or SHA commits"
             exit 1
