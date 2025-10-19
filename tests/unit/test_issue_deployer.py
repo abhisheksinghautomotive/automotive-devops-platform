@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__),
                                 '../../.github/issue_deployment'))
 
 
-import issue_deployer  # noqa: E402
+import issue_deployer  # type: ignore # noqa: E402
 
 
 class TestFetchMilestones:

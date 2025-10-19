@@ -9,19 +9,26 @@ import os
 import sys
 
 import requests
-from dotenv import load_dotenv
 
-load_dotenv()
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    # dotenv is optional, environment variables can be set directly
+    pass
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 REPO = os.getenv("GITHUB_REPO")
 
-if not GITHUB_TOKEN or not REPO:
+# Only validate environment variables if this module is run directly
+# This allows for testing without requiring environment variables
+if __name__ == "__main__" and (not GITHUB_TOKEN or not REPO):
     raise ValueError("Missing env vars: GITHUB_TOKEN, GITHUB_REPO")
 
-BASE_URL = f"https://api.github.com/repos/{REPO}"
+# Set defaults for testing if not provided
+BASE_URL = f"https://api.github.com/repos/{REPO or 'test/repo'}"
 HEADERS = {
     "Accept": "application/vnd.github.v3+json",
-    "Authorization": f"token {GITHUB_TOKEN}"
+    "Authorization": f"token {GITHUB_TOKEN or 'test-token'}"
 }
 REQUEST_TIMEOUT = 30  # seconds
 
