@@ -2,7 +2,7 @@
 # Flake8 configuration
 
 # Maximum line length
-max-line-length = 79
+max-line-length = 88
 
 # Maximum cyclomatic complexity
 max-complexity = 10

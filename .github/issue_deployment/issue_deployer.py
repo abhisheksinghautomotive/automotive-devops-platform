@@ -4,6 +4,7 @@ GitHub Issues Deployment Script.
 This module provides functionality to deploy GitHub issues in batch from JSON
 files with support for milestone assignment and repository management.
 """
+
 import json
 import os
 import sys
@@ -12,6 +13,7 @@ import requests
 
 try:
     from dotenv import load_dotenv
+
     load_dotenv()
 except ImportError:
     # dotenv is optional, environment variables can be set directly
@@ -38,15 +40,16 @@ def get_headers():
     token = os.getenv("GITHUB_TOKEN") or "test-token"
     return {
         "Accept": "application/vnd.github.v3+json",
-        "Authorization": f"token {token}"
+        "Authorization": f"token {token}",
     }
 
 
 def fetch_milestones():
     """Fetch all milestones from the GitHub repository."""
     milestone_url = f"{get_base_url()}/milestones?state=all"
-    response = requests.get(milestone_url, headers=get_headers(),
-                            timeout=REQUEST_TIMEOUT)
+    response = requests.get(
+        milestone_url, headers=get_headers(), timeout=REQUEST_TIMEOUT
+    )
     if response.status_code != 200:
         print("Failed to fetch milestones:", response.json())
         sys.exit(1)
@@ -62,8 +65,10 @@ def display_milestones(milestones):
     """
     print("\nAvailable Milestones in this repo:")
     for milestone in milestones:
-        print(f"[{milestone['number']}]: {milestone['title']} "
-              f"(open issues: {milestone['open_issues']})")
+        print(
+            f"[{milestone['number']}]: {milestone['title']} "
+            f"(open issues: {milestone['open_issues']})"
+        )
 
 
 def load_issues_from_json(json_file_path):
@@ -96,8 +101,9 @@ def get_milestone_assignment():
     Returns:
         int or None: Milestone ID if provided, None otherwise.
     """
-    prompt = ("Enter milestone number to assign (see above list) "
-              "or press Enter to skip: ")
+    prompt = (
+        "Enter milestone number to assign (see above list) " "or press Enter to skip: "
+    )
     milestone_input = input(prompt)
     return int(milestone_input) if milestone_input.isdigit() else None
 
@@ -112,8 +118,10 @@ def confirm_deployment(milestone_id):
     Returns:
         bool: True if user confirms, False otherwise.
     """
-    prompt = (f"Are you sure you want to assign ALL ISSUES to milestone "
-              f"[{milestone_id}]? Type YES to continue: ")
+    prompt = (
+        f"Are you sure you want to assign ALL ISSUES to milestone "
+        f"[{milestone_id}]? Type YES to continue: "
+    )
     proceed = input(prompt)
     return proceed.strip().upper() == "YES"
 
@@ -130,9 +138,10 @@ def deploy_issues(issues, milestone_id):
     for issue in issues:
         if milestone_id:
             issue["milestone"] = milestone_id
-        response = requests.post(api_url, json=issue, headers=get_headers(),
-                                 timeout=REQUEST_TIMEOUT)
-        title = issue.get('title', 'No title')
+        response = requests.post(
+            api_url, json=issue, headers=get_headers(), timeout=REQUEST_TIMEOUT
+        )
+        title = issue.get("title", "No title")
         status = response.status_code
         result = response.json()
         print(f"{title}: {status} | {result}")
@@ -154,7 +163,7 @@ def main():
 
     # Display batch information
     print(f"\nJSON Batch file: {json_input_file}")
-    print(f'Milestone for batch (as written in json): {milestone_name}')
+    print(f"Milestone for batch (as written in json): {milestone_name}")
 
     # Get milestone assignment
     milestone_id = get_milestone_assignment()

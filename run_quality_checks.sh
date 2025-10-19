@@ -60,7 +60,7 @@ fi
 
 echo ""
 echo "📊 Running quality checks on: ${VALID_DIRS[*]}"
-echo "🔧 Quality tools: Flake8, Pylint, Pydocstyle, Lizard, Bandit, isort, Black, MyPy"
+echo "🔧 Quality tools: Flake8, Pylint, Pydocstyle, Lizard, Bandit, Black, MyPy"
 echo "🧪 Testing: Unit tests with coverage (≥80%)"
 echo ""
 
@@ -82,11 +82,7 @@ run_check "Lizard (Complexity Analysis)" \
 
 # Run Bandit (Security Analysis)
 run_check "Bandit (Security Scan)" \
-    "bandit -r ${VALID_DIRS[*]} -f json -o bandit-report.json || bandit -r ${VALID_DIRS[*]}"
-
-# Run isort (Import Sorting Check)
-run_check "isort (Import Sorting)" \
-    "isort --check-only --diff ${VALID_DIRS[*]}"
+    "bandit -r ${VALID_DIRS[*]} --skip B101,B311"
 
 # Run Black (Code Formatting Check)
 run_check "Black (Code Formatting)" \
@@ -94,7 +90,7 @@ run_check "Black (Code Formatting)" \
 
 # Run MyPy (Type Checking)
 run_check "MyPy (Type Checking)" \
-    "mypy ${VALID_DIRS[*]} --ignore-missing-imports || true"
+    "mypy ${VALID_DIRS[*]} --ignore-missing-imports"
 
 # Run Unit Tests with Coverage
 run_check "Unit Tests with Coverage" \

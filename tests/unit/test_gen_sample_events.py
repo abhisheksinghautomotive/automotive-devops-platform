@@ -6,7 +6,8 @@ for the battery cell event generation functionality.
 
 import json
 import unittest
-from unittest.mock import patch, mock_open, MagicMock
+from unittest.mock import MagicMock, mock_open, patch
+
 from projects.can_data_platform.scripts.gen_sample_events import (
     generate_events,
     main,
@@ -46,8 +47,7 @@ class TestGenerateEvents(unittest.TestCase):
         """Test generate_events with custom offset range."""
         num_events = 20
         offset_range = (-100, 100)
-        events = generate_events(
-            num_events, num_modules=4, offset_range=offset_range)
+        events = generate_events(num_events, num_modules=4, offset_range=offset_range)
         self.assertEqual(len(events), num_events)
         for event in events:
             for offset in event["module_offsets"]:
@@ -59,9 +59,14 @@ class TestGenerateEvents(unittest.TestCase):
         events = generate_events(5)
         for event in events:
             required_fields = [
-                "Cell1Voltage", "Cell2Voltage", "Cell3Voltage",
-                "Cell4Voltage", "min_voltage", "max_voltage",
-                "avg_voltage", "module_offsets"
+                "Cell1Voltage",
+                "Cell2Voltage",
+                "Cell3Voltage",
+                "Cell4Voltage",
+                "min_voltage",
+                "max_voltage",
+                "avg_voltage",
+                "module_offsets",
             ]
             for field in required_fields:
                 self.assertIn(field, event)
@@ -76,8 +81,10 @@ class TestGenerateEvents(unittest.TestCase):
         events = generate_events(10)
         for event in events:
             voltages = [
-                event["Cell1Voltage"], event["Cell2Voltage"],
-                event["Cell3Voltage"], event["Cell4Voltage"]
+                event["Cell1Voltage"],
+                event["Cell2Voltage"],
+                event["Cell3Voltage"],
+                event["Cell4Voltage"],
             ]
             self.assertEqual(event["min_voltage"], min(voltages))
             self.assertEqual(event["max_voltage"], max(voltages))
@@ -115,29 +122,39 @@ class TestGenerateEvents(unittest.TestCase):
         events = generate_events(50)
         for event in events:
             voltages = [
-                event["Cell1Voltage"], event["Cell2Voltage"],
-                event["Cell3Voltage"], event["Cell4Voltage"]
+                event["Cell1Voltage"],
+                event["Cell2Voltage"],
+                event["Cell3Voltage"],
+                event["Cell4Voltage"],
             ]
             for voltage in voltages:
                 self.assertGreaterEqual(voltage, 3360)
                 self.assertLessEqual(voltage, 4190)
 
-    @patch('projects.can_data_platform.scripts.gen_sample_events.random.randint')  # pylint: disable=line-too-long
-    def test_generate_events_with_fixed_random(
-
-            self, mock_randint):
+    @patch(
+        "projects.can_data_platform.scripts.gen_sample_events.random.randint"
+    )  # pylint: disable=line-too-long
+    def test_generate_events_with_fixed_random(self, mock_randint):
         """Test generate_events with deterministic random values."""
         # Provide enough mock values: 4 for module offsets + 8 for 2 events * 4
         # modules each
         mock_randint.side_effect = [
-            10, 20, -10, 30,  # Module offsets for 4 modules
-            3800, 3850, 3900, 3950,  # Base voltages for event 1
-            3820, 3870, 3920, 3970   # Base voltages for event 2
+            10,
+            20,
+            -10,
+            30,  # Module offsets for 4 modules
+            3800,
+            3850,
+            3900,
+            3950,  # Base voltages for event 1
+            3820,
+            3870,
+            3920,
+            3970,  # Base voltages for event 2
         ]
         events = generate_events(2, num_modules=4)
         self.assertEqual(len(events), 2)
-        self.assertEqual(
-            events[0]["module_offsets"], events[1]["module_offsets"])
+        self.assertEqual(events[0]["module_offsets"], events[1]["module_offsets"])
 
     def test_generate_events_single_module(self):
         """Test with num_modules=1."""
@@ -164,14 +181,14 @@ class TestGenerateEvents(unittest.TestCase):
 class TestMain(unittest.TestCase):
     """Test suite for main CLI function with maximum coverage."""
 
-    @patch('projects.can_data_platform.scripts.gen_sample_events.argparse.ArgumentParser.parse_args')  # pylint: disable=line-too-long
-    @patch('builtins.open', new_callable=mock_open)
-    @patch('builtins.print')
+    @patch(
+        "projects.can_data_platform.scripts.gen_sample_events.argparse.ArgumentParser.parse_args"
+    )  # pylint: disable=line-too-long
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("builtins.print")
     def test_main_default_arguments(self, mock_print, mock_file, mock_args):
         """Test main function with default arguments."""
-        mock_args.return_value = MagicMock(
-            events=10,
-            output='test_output.jsonl')
+        mock_args.return_value = MagicMock(events=10, output="test_output.jsonl")
         main()
         mock_file.assert_called_once()
         mock_print.assert_called_once()
@@ -179,64 +196,71 @@ class TestMain(unittest.TestCase):
         self.assertIn("Wrote", call_args)
         self.assertIn("events to", call_args)
 
-    @patch('projects.can_data_platform.scripts.gen_sample_events.argparse.ArgumentParser.parse_args')  # pylint: disable=line-too-long
-    @patch('builtins.open', new_callable=mock_open)
-    @patch('builtins.print')
+    @patch(
+        "projects.can_data_platform.scripts.gen_sample_events.argparse.ArgumentParser.parse_args"
+    )  # pylint: disable=line-too-long
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("builtins.print")
     def test_main_custom_arguments(self, _, mock_file, mock_args):
         """Test main function with custom arguments."""
-        mock_args.return_value = MagicMock(
-            events=50,
-            output='custom_output.jsonl')
+        mock_args.return_value = MagicMock(events=50, output="custom_output.jsonl")
         main()
-        mock_file.assert_called_once_with(
-            'custom_output.jsonl', 'w', encoding='utf-8')
+        mock_file.assert_called_once_with("custom_output.jsonl", "w", encoding="utf-8")
 
-    @patch('projects.can_data_platform.scripts.gen_sample_events.argparse.ArgumentParser.parse_args')  # pylint: disable=line-too-long
-    @patch('builtins.open', new_callable=mock_open)
+    @patch(
+        "projects.can_data_platform.scripts.gen_sample_events.argparse.ArgumentParser.parse_args"
+    )  # pylint: disable=line-too-long
+    @patch("builtins.open", new_callable=mock_open)
     def test_main_jsonl_format(self, mock_file, mock_args):
         """Test that main writes valid JSONL format."""
-        mock_args.return_value = MagicMock(events=3, output='test.jsonl')
+        mock_args.return_value = MagicMock(events=3, output="test.jsonl")
         main()
         write_calls = mock_file().write.call_args_list
         self.assertEqual(len(write_calls), 3)
         for call in write_calls:
             written_data = call[0][0]
-            self.assertTrue(written_data.endswith('\n'))
-            json_data = written_data.rstrip('\n')
+            self.assertTrue(written_data.endswith("\n"))
+            json_data = written_data.rstrip("\n")
             parsed = json.loads(json_data)
             self.assertIsInstance(parsed, dict)
 
-    @patch('projects.can_data_platform.scripts.gen_sample_events.argparse.ArgumentParser.parse_args')  # pylint: disable=line-too-long
-    @patch('builtins.open', new_callable=mock_open)
-    @patch('builtins.print')
+    @patch(
+        "projects.can_data_platform.scripts.gen_sample_events.argparse.ArgumentParser.parse_args"
+    )  # pylint: disable=line-too-long
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("builtins.print")
     def test_main_zero_events(self, _, mock_file, mock_args):
         """Test main with zero events."""
-        mock_args.return_value = MagicMock(events=0, output='empty.jsonl')
+        mock_args.return_value = MagicMock(events=0, output="empty.jsonl")
         main()
         mock_file.assert_called_once()
         write_calls = mock_file().write.call_args_list
         self.assertEqual(len(write_calls), 0)
 
-    @patch('projects.can_data_platform.scripts.gen_sample_events.argparse.ArgumentParser.parse_args')  # pylint: disable=line-too-long
-    @patch('builtins.open', new_callable=mock_open)
-    @patch('builtins.print')
+    @patch(
+        "projects.can_data_platform.scripts.gen_sample_events.argparse.ArgumentParser.parse_args"
+    )  # pylint: disable=line-too-long
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("builtins.print")
     def test_main_single_event(self, _, mock_file, mock_args):
         """Test main with single event."""
-        mock_args.return_value = MagicMock(events=1, output='single.jsonl')
+        mock_args.return_value = MagicMock(events=1, output="single.jsonl")
         main()
         write_calls = mock_file().write.call_args_list
         self.assertEqual(len(write_calls), 1)
 
-    @patch('projects.can_data_platform.scripts.gen_sample_events.argparse.ArgumentParser.parse_args')  # pylint: disable=line-too-long
-    @patch('builtins.open', new_callable=mock_open)
-    @patch('builtins.print')
+    @patch(
+        "projects.can_data_platform.scripts.gen_sample_events.argparse.ArgumentParser.parse_args"
+    )  # pylint: disable=line-too-long
+    @patch("builtins.open", new_callable=mock_open)
+    @patch("builtins.print")
     def test_main_many_events(self, _, mock_file, mock_args):
         """Test main with many events."""
-        mock_args.return_value = MagicMock(events=100, output='many.jsonl')
+        mock_args.return_value = MagicMock(events=100, output="many.jsonl")
         main()
         write_calls = mock_file().write.call_args_list
         self.assertEqual(len(write_calls), 100)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

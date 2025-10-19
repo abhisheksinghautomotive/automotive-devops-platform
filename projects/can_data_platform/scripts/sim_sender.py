@@ -1,15 +1,16 @@
 """Module to send sample events to receiver endpoint and log results."""
 
-import time
 import json
 import logging
+import time
+
 import requests
 
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    filemode='a',
-    filename='projects/01_can_data_platform/data/sim_sender.log'
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    filemode="a",
+    filename="projects/01_can_data_platform/data/sim_sender.log",
 )
 
 
@@ -37,15 +38,19 @@ def send_events(events_path, endpoint="http://localhost:8000/events"):
             elapsed_time = time.time() - start_time
             logging.info(
                 "Sent event: %s, Response: %s, Time taken: %.4f seconds",
-                event, response.status_code, elapsed_time
+                event,
+                response.status_code,
+                elapsed_time,
             )
             elapsed_times.append(elapsed_time)
             total_events += 1
 
         logging.info("Total Event Sent: %d", total_events)
         if total_events > 0:
-            logging.info("Average latency: %.4f seconds",
-                         sum(elapsed_times) / total_events)
+            logging.info(
+                "Average latency: %.4f seconds",
+                sum(elapsed_times) / total_events,
+            )
             logging.info("Max latency: %.4f seconds", max(elapsed_times))
             logging.info("Min latency: %.4f seconds", min(elapsed_times))
         else:

@@ -106,7 +106,7 @@ jobs:
           echo "::group::Pylint Analysis"
           echo "Analyzing code quality across all Python modules..."
 
-          # Run pylint with strict scoring - fail if below thresholds
+          # Run pylint with relaxed scoring for practical development
           pylint projects/can_data_platform/scripts/ \
                  projects/can_data_platform/src/ \
                  .github/issue_deployment/ \

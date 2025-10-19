@@ -2,12 +2,14 @@
 
 Loads environment variables (if python-dotenv installed and .env present).
 """
+
 from __future__ import annotations
 
 import os
 
 try:
     from dotenv import load_dotenv  # type: ignore
+
     load_dotenv()
 except ImportError:
     # dotenv is optional at this stage
