@@ -146,7 +146,7 @@ jobs:
               exit 1
             }
 
-          # 2. GitHub Actions Security Best Practices  
+          # 2. GitHub Actions Security Best Practices
           echo "🔒 Checking workflow security practices..."
 
           # Check for pinned action versions (security best practice)
