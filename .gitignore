@@ -78,7 +78,6 @@ htmlcov/
 .ipynb_checkpoints
 
 # Generated files
-*.pdf
 *.log
 
 # Poetry
