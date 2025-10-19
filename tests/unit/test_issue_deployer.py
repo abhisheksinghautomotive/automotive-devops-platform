@@ -335,12 +335,18 @@ class TestMainFunction:
         """Test main function with missing arguments."""
         with patch.object(sys, 'argv', ['script.py']):
             with patch('builtins.print') as mock_print:
-                with pytest.raises(SystemExit) as exc_info:
-                    issue_deployer.main()
+                with patch.object(issue_deployer, 'fetch_milestones') as mock_fetch:
+                    # Set up the mock to return some milestones
+                    mock_fetch.return_value = [
+                        {'number': 1, 'title': 'Test Milestone', 'open_issues': 0}
+                    ]
+                    
+                    with pytest.raises(SystemExit) as exc_info:
+                        issue_deployer.main()
 
-                assert exc_info.value.code == 1
-                mock_print.assert_called_with(
-                    'Usage: python issue_deployer.py path/to/issues.json')
+                    assert exc_info.value.code == 1
+                    mock_print.assert_called_with(
+                        'Usage: python issue_deployer.py path/to/issues.json')
 
     def test_main_user_abort(self):
         """Test main function when user aborts deployment."""
