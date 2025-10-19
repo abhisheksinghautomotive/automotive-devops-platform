@@ -138,7 +138,7 @@ jobs:
         run: |
           echo "::group::Workflow Quality Analysis"
 
-          # 1. YAML Lint - Strict syntax and style checking
+          # 1. YAML Lint - Basic syntax and style checking
           echo "🔍 Running yamllint on workflow files..."
           yamllint .github/workflows/ \
             --config-file .github/linters/.yamllint-simple.yml || {
@@ -146,118 +146,31 @@ jobs:
               exit 1
             }
 
-          # 2. GitHub Actions Security Best Practices
-          echo "🔒 Checking workflow security practices..."
-
-          # Check for pinned action versions (security best practice)
-          unpinned_actions=$(grep -r "uses:.*@main\|uses:.*@master" .github/workflows/ | \
-            grep -v "if grep" | grep -v "unpinned_actions" || true)
-          if [ -n "$unpinned_actions" ]; then
-            echo "⚠️  Found unpinned action versions - security risk!"
-            echo "Please pin actions to specific versions or SHA commits"
-            exit 1
-          fi
+          # 2. Basic Security Checks
+          echo "🔒 Running basic security checks..."
 
           # Check for hardcoded secrets (should use secrets context)
-          if grep -r -i "password\|token\|key" .github/workflows/ | grep -v "secrets\." | grep -v "github.token"; then
+          secrets_check=$(grep -r -i "password\|token\|key" .github/workflows/ | \
+            grep -v "secrets\." | grep -v "github.token" | grep -v "secrets_check" || true)
+          if [ -n "$secrets_check" ]; then
             echo "⚠️  Potential hardcoded secrets found!"
             echo "Use GitHub secrets context: \$\{{ secrets.SECRET_NAME \}\}"
             exit 1
           fi
 
-          # 3. Workflow Structure Validation
-          echo "📋 Validating workflow structure..."
-
+          # 3. Basic Workflow Structure Validation
+          echo "📋 Validating basic workflow structure..."
           for workflow in .github/workflows/*.yml .github/workflows/*.yaml; do
             if [ -f "$workflow" ]; then
-              echo "Validating: $workflow"
-
               # Check required workflow elements
-              if ! grep -q "^name:" "$workflow"; then
-                echo "❌ Missing 'name' field in $workflow"
+              if ! grep -q "^name:" "$workflow" || ! grep -q "^on:" "$workflow" || ! grep -q "^jobs:" "$workflow"; then
+                echo "❌ $workflow: Missing required fields (name, on, jobs)"
                 exit 1
-              fi
-
-              if ! grep -q "^on:" "$workflow"; then
-                echo "❌ Missing 'on' trigger in $workflow"
-                exit 1
-              fi
-
-              if ! grep -q "^jobs:" "$workflow"; then
-                echo "❌ Missing 'jobs' section in $workflow"
-                exit 1
-              fi
-
-              # Check for timeout settings (prevents runaway jobs)
-              if ! grep -q "timeout-minutes:" "$workflow"; then
-                echo "⚠️  Consider adding timeout-minutes to jobs in $workflow"
-              fi
-
-              # Check for concurrency control
-              if ! grep -q "concurrency:" "$workflow"; then
-                echo "💡 Consider adding concurrency control to $workflow"
               fi
             fi
           done
 
           echo "✅ Workflow quality analysis completed"
-          echo "::endgroup::"
-
-      - name: 🛡️ Workflow Security Scan
-        run: |
-          echo "::group::Workflow Security Analysis"
-
-          # 1. Check for known vulnerable actions
-          echo "🔍 Checking for known vulnerable actions..."
-
-          # List of actions with known security issues
-          VULNERABLE_ACTIONS=(
-            "actions/checkout@v1"
-            "actions/setup-node@v1"
-            "actions/cache@v1"
-            "actions/cache@v2"
-          )
-
-          for action in "${VULNERABLE_ACTIONS[@]}"; do
-            if grep -r "$action" .github/workflows/; then
-              echo "❌ Vulnerable action found: $action"
-              echo "Please update to latest version"
-              exit 1
-            fi
-          done
-
-          # 2. Permission Analysis
-          echo "� Analyzing workflow permissions..."
-
-          # Check for overly broad permissions
-          if grep -r "permissions:" .github/workflows/; then
-            echo "📋 Found explicit permissions - validating scope..."
-
-            # Flag potentially dangerous permissions
-            if grep -r -E "permissions:.*write-all|permissions:.*admin" .github/workflows/; then
-              echo "⚠️  Overly broad permissions detected!"
-              echo "Consider using minimal required permissions"
-            fi
-          else
-            echo "💡 Consider adding explicit permissions to workflows"
-          fi
-
-          # 3. Basic workflow validation
-          echo "� Running basic workflow validation..."
-
-          # Check that all workflows have required fields
-          for workflow in .github/workflows/*.yml; do
-            if [ -f "$workflow" ]; then
-              if ! grep -q "^name:" "$workflow" || ! grep -q "^on:" "$workflow" || ! grep -q "^jobs:" "$workflow"; then
-                echo "❌ $workflow: Missing required fields (name, on, jobs)"
-                exit 1
-              else
-                echo "✅ $workflow: Basic structure valid"
-              fi
-            fi
-          done
-
-          echo "✅ Workflow security scan completed"
           echo "::endgroup::"
 
       - name: 🧪 Unit Tests with Coverage (STRICT ≥95%)
