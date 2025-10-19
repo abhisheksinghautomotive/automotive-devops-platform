@@ -1,0 +1,35 @@
+{
+  "milestone_name": "P01-Cloud-Storage-S3",
+  "issues": [
+    {
+      "title": "Write ADR 0002 - Storage Strategy (Local JSONL → S3)",
+      "body": "Document architectural decision to migrate from local filesystem storage to AWS S3 with lifecycle policies.\n\n**Deliverables**:\n- ADR 0002 in `docs/adr/0002-storage-strategy.md`\n- Context: MVP uses local storage, need scalable cloud solution\n- Decision: AWS S3 with lifecycle policies (Standard → IA → Glacier)\n- Options considered: Local, S3, S3 Intelligent-Tiering, EFS\n- Trade-offs documented: durability, cost, latency, scalability\n- Implementation plan with S3 paths and lifecycle rules\n\n**Exit Criteria**:\n- [ ] ADR 0002 committed following standard template\n- [ ] Documents S3 path structure: `s3://bucket/raw/year=YYYY/month=MM/day=DD/hour=HH/`\n- [ ] Lifecycle policy defined: Standard (7d) → IA (30d) → Glacier (90d)\n- [ ] Upgrade triggers specified (latency, cost, query frequency)\n- [ ] Status = \"Proposed\" (will be Accepted after implementation)",
+      "labels": ["adr", "architecture", "docs", "s3", "size:m", "priority:p0", "proj:can-data"]
+    },
+    {
+      "title": "Set Up S3 Bucket with Lifecycle Policies",
+      "body": "Create AWS S3 bucket with proper configuration for telemetry batch storage and cost optimization.\n\n**Deliverables**:\n- S3 bucket `automotive-telemetry-dev` created\n- Versioning enabled (optional, for safety)\n- Lifecycle policy configured: Standard → IA (30d) → Glacier (90d)\n- IAM policy with least-privilege access (PutObject, GetObject, ListBucket)\n- Bucket name added to `.env` file\n- Setup documented in `docs/aws-setup-guide.md`\n\n**Exit Criteria**:\n- [ ] Bucket accessible via AWS CLI: `aws s3 ls s3://automotive-telemetry-dev/`\n- [ ] Lifecycle policy visible in S3 console\n- [ ] `.env.example` updated with S3_BUCKET_NAME template\n- [ ] IAM policy JSON documented in setup guide",
+      "labels": ["aws", "s3", "infrastructure", "size:s", "priority:p0", "proj:can-data"]
+    },
+    {
+      "title": "Modify Batch Consumer to Upload to S3",
+      "body": "Update `batch_consumer.py` to upload JSONL batches to S3 after writing locally, with retry logic and optional local cleanup.\n\n**Deliverables**:\n- Add S3 upload after JSONL write using boto3\n- Implement retry logic (3 attempts, exponential backoff)\n- Configurable: keep local copy or delete after S3 confirmation\n- Log upload metrics: duration, success/failure, S3 path\n- Unit tests with mocked S3 responses\n- Maintain 95%+ test coverage\n\n**Exit Criteria**:\n- [ ] Consumer uploads batches to S3 with path: `raw/year=YYYY/.../batch-{ts}.jsonl`\n- [ ] Logs show: \"Uploaded to s3://bucket/path in 0.15s\"\n- [ ] S3 upload failures trigger retry with exponential backoff\n- [ ] Unit tests mock S3 client and verify upload calls\n- [ ] Config option: `KEEP_LOCAL_COPY=true/false` in `.env`",
+      "labels": ["feature", "s3", "consumer", "size:m", "priority:p0", "proj:can-data"]
+    },
+    {
+      "title": "Add S3 Integration Tests with LocalStack",
+      "body": "Create integration tests for S3 upload functionality using LocalStack to avoid AWS costs during CI/CD.\n\n**Deliverables**:\n- Set up LocalStack in CI/CD for S3 testing\n- Test successful upload to mock S3\n- Test retry logic on simulated failures\n- Test concurrent uploads (multiple batches)\n- Verify S3 object metadata (ContentType, timestamps)\n- Integration test runs in GitHub Actions\n\n**Exit Criteria**:\n- [ ] LocalStack container runs in CI/CD pipeline\n- [ ] Integration test uploads batch to LocalStack S3\n- [ ] Test verifies object exists with correct path and metadata\n- [ ] Test validates retry behavior on network failures\n- [ ] GitHub Actions workflow passes with S3 integration tests",
+      "labels": ["testing", "s3", "integration", "size:m", "priority:p1", "proj:can-data"]
+    },
+    {
+      "title": "Update Aggregation Script to Read from S3",
+      "body": "Modify `aggregate_counts.py` to read JSONL batches from S3 instead of local filesystem, with parallel downloads.\n\n**Deliverables**:\n- List S3 objects for given date/hour prefix\n- Download batches in parallel using ThreadPoolExecutor\n- Optional: cache downloaded files locally for performance\n- Handle S3 pagination for large result sets (>1000 objects)\n- Maintain existing aggregation logic (no changes to counting)\n- Unit tests with mocked S3 list/download operations\n\n**Exit Criteria**:\n- [ ] Can run: `python aggregate_counts.py --date 2025-10-20 --hour 14 --source s3`\n- [ ] Lists all S3 objects matching prefix: `raw/year=2025/month=10/day=20/hour=14/`\n- [ ] Downloads and processes all batches correctly\n- [ ] Aggregation output matches local filesystem version\n- [ ] Unit tests verify S3 list and download logic",
+      "labels": ["analytics", "s3", "aggregation", "size:m", "priority:p1", "proj:can-data"]
+    },
+    {
+      "title": "Accept ADR 0002 - S3 Storage Decision",
+      "body": "Update ADR 0002 status from \"Proposed\" to \"Accepted\" after successful S3 integration and validation.\n\n**Deliverables**:\n- Change status in `docs/adr/0002-storage-strategy.md`\n- Add \"Date Accepted\" field\n- Add \"Outcomes Observed\" section with metrics\n- Document S3 upload latency (P95), success rate, costs\n- Update upgrade triggers status table\n\n**Exit Criteria**:\n- [ ] ADR 0002 status = \"Accepted\"\n- [ ] Includes observed metrics: upload latency P95, success rate, monthly cost estimate\n- [ ] Documents actual lifecycle policy configured\n- [ ] Upgrade triggers table shows current vs thresholds\n- [ ] Example: \"P95 upload latency: 150ms, 100% success rate, cost: $2.50/month\"",
+      "labels": ["adr", "docs", "s3", "size:s", "priority:p0", "proj:can-data"]
+    }
+  ]
+}

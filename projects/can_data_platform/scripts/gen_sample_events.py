@@ -1,8 +1,8 @@
 """Module to generate sample battery cell events with module-to-module."""
 
-import random
-import json
 import argparse
+import json
+import random
 
 
 def generate_events(num_events, num_modules=4, offset_range=(-40, 40)):
@@ -17,8 +17,7 @@ def generate_events(num_events, num_modules=4, offset_range=(-40, 40)):
         list: List of event dictionaries.
     """
     # Create a fixed random offset for each module, applied across all events.
-    module_offsets = [random.randint(*offset_range)
-                      for _ in range(num_modules)]
+    module_offsets = [random.randint(*offset_range) for _ in range(num_modules)]
     events = []
     for _ in range(num_events):
         module_voltages = []
@@ -35,7 +34,7 @@ def generate_events(num_events, num_modules=4, offset_range=(-40, 40)):
             "min_voltage": min(module_voltages),
             "max_voltage": max(module_voltages),
             "avg_voltage": round(sum(module_voltages) / num_modules),
-            "module_offsets": list(module_offsets)  # for audit/debug
+            "module_offsets": list(module_offsets),  # for audit/debug
         }
         events.append(event)
     return events
@@ -50,8 +49,10 @@ def main():
         "--events", type=int, default=10, help="Number of sample events"
     )
     parser.add_argument(
-        "--output", type=str, default="../../docs/sample_events_mvp.jsonl",
-        help="Output JSONL file path"
+        "--output",
+        type=str,
+        default="../../docs/sample_events_mvp.jsonl",
+        help="Output JSONL file path",
     )
     args = parser.parse_args()
 

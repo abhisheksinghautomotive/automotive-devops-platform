@@ -1,0 +1,134 @@
+# GitHub Actions Security Configuration
+# This file defines security policies and best practices for workflows
+
+# Action Version Security Policy
+action_security:
+  # Approved action versions (security vetted)
+  approved_actions:
+    - "actions/checkout@v4"
+    - "actions/setup-python@v5"
+    - "actions/upload-artifact@v4"
+    - "actions/download-artifact@v4"
+    - "actions/cache@v3"
+    - "github/super-linter@latest"
+    - "py-cov-action/python-coverage-comment-action@v3"
+  
+  # Deprecated/vulnerable actions to avoid
+  vulnerable_actions:
+    - "actions/checkout@v1"        # Vulnerable to command injection
+    - "actions/checkout@v2"        # Outdated, security patches missing
+    - "actions/setup-node@v1"      # Known security issues
+    - "actions/cache@v1"           # Vulnerable to cache poisoning
+    - "actions/cache@v2"           # Outdated security patches
+    - "actions/upload-artifact@v1" # Insecure artifact handling
+    - "actions/upload-artifact@v2" # Outdated
+    - "actions/upload-artifact@v3" # Potential security issues
+
+# Permission Policies
+permissions:
+  # Minimal permissions principle
+  default_permissions: "read"
+  
+  # Maximum allowed permissions by job type
+  job_permissions:
+    code_analysis:
+      contents: "read"
+      security-events: "write"  # For uploading SARIF files
+      pull-requests: "write"    # For PR comments
+    
+    release:
+      contents: "write"
+      packages: "write"
+      releases: "write"
+    
+    testing:
+      contents: "read"
+      checks: "write"          # For test result reporting
+      pull-requests: "write"   # For coverage comments
+
+# Environment Security
+environment_security:
+  # Required environment protections
+  production_environments:
+    - "production"
+    - "staging"
+    - "release"
+  
+  # Secrets management
+  secret_patterns:
+    # Patterns that should never appear in workflows
+    forbidden_patterns:
+      - "password"
+      - "secret_key"
+      - "api_key"
+      - "private_key"
+      - "access_token"
+    
+    # Required secret context usage
+    required_secrets_context: true
+
+# Workflow Security Standards
+workflow_standards:
+  # Required security measures
+  required_elements:
+    - "timeout-minutes"         # Prevent runaway jobs
+    - "concurrency"            # Prevent resource conflicts
+    - "if: github.event_name"  # Conditional execution controls
+  
+  # Recommended security enhancements
+  recommended_elements:
+    - "environment"            # Environment protection rules
+    - "permissions"            # Explicit permission scoping
+    - "needs"                  # Job dependency management
+  
+  # Security validation rules
+  validation_rules:
+    max_timeout_minutes: 60    # Maximum job timeout
+    require_pinned_versions: true
+    require_sha_pinning: false # Can use semantic versions
+    allow_self_hosted_runners: false
+    require_environment_approval: true  # For production deployments
+
+# Dependency Security
+dependency_security:
+  # Package sources security
+  allowed_package_sources:
+    - "pypi.org"
+    - "npmjs.com"
+    - "github.com"
+  
+  # Security scanning requirements
+  required_scans:
+    - "bandit"           # Python security linting
+    - "safety"           # Python dependency vulnerability scanning
+    - "yamllint"         # YAML syntax and security
+    - "actionlint"       # GitHub Actions specific linting
+  
+  # Vulnerability thresholds
+  vulnerability_thresholds:
+    critical: 0          # No critical vulnerabilities allowed
+    high: 0              # No high severity vulnerabilities
+    medium: 5            # Maximum 5 medium severity issues
+    low: 10              # Maximum 10 low severity issues
+
+# Audit and Compliance
+audit:
+  # Required audit trails
+  logging_requirements:
+    - "job_start_time"
+    - "job_end_time"
+    - "job_duration"
+    - "artifacts_created"
+    - "secrets_accessed"
+  
+  # Compliance frameworks
+  compliance_standards:
+    - "SOC2"             # Service Organization Control 2
+    - "ISO27001"         # Information Security Management
+    - "NIST"             # National Institute of Standards
+  
+  # Retention policies
+  retention:
+    workflow_logs: "90 days"
+    artifacts: "30 days"
+    security_reports: "1 year"

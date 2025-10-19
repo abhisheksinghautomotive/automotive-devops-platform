@@ -7,13 +7,14 @@ Run the server with:
 
 import datetime
 import logging
+
 import fastapi
 
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    filemode='a',
-    filename='projects/01_can_data_platform/data/sim_receive.log'
+    format="%(asctime)s - %(levelname)s - %(message)s",
+    filemode="a",
+    filename="projects/01_can_data_platform/data/sim_receive.log",
 )
 
 app = fastapi.FastAPI()

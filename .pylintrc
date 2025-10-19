@@ -10,6 +10,14 @@ disable=
     R0903,
     W0212,
     C0103,
+    C0301,
+    W1404,
+    wrong-import-position,
+    import-outside-toplevel,
+    import-error,
+    too-many-arguments,
+    too-many-locals,
+    unused-argument
 
 [REPORTS]
 output-format=text
