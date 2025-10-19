@@ -132,7 +132,7 @@ Team Req.    Approval Flow      Security Check   Provisioning   Resources    Cos
 
 ### Cross-Functional Collaboration:
 - **Security Teams**: Integrate security requirements into infrastructure automation
-- **Finance Teams**: Implement cost allocation and budgeting frameworks  
+- **Finance Teams**: Implement cost allocation and budgeting frameworks
 - **Development Teams**: Enable self-service infrastructure with proper guardrails
 
 ---

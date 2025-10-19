@@ -31,8 +31,8 @@ NS_ :
     BU_BO_REL_
     SG_MUL_VAL_
 
-BS_: 
-BU_: 
+BS_:
+BU_:
 BO_ 258 CARSIDE_CONTROD: 8 Vector__XXX
    SG_ Protocol : 0|8@1+ (1,0) [0|0] "" Vector__XXX
    SG_ TargetVoltage : 8|16@1+ (1,0) [0|0] "" Vector__XXX

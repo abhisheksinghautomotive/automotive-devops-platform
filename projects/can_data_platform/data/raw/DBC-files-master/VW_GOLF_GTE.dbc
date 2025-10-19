@@ -31,8 +31,8 @@ NS_ :
     BU_BO_REL_
     SG_MUL_VAL_
 
-BS_: 
-BU_: HV_Battery_HybridCan 
+BS_:
+BU_: HV_Battery_HybridCan
 BO_ 151 BMS_Monitoring: 0 HV_Battery_HybridCan
    SG_ BMS_EMRG_COOLING : 63|1@1+ (1,0) [0|0] "" Vector__XXX
    SG_ BMS_STATUS_VOLTAGE_APPLIED : 61|2@1+ (1,0) [0|0] "" Vector__XXX

@@ -52,5 +52,5 @@ Finalizing a minimal signal schema ensures a lean MVP, by using only well-define
 
 ---
 
-_Time Spent: 30 mins  
+_Time Spent: 30 mins
 _Blocked Days: None_

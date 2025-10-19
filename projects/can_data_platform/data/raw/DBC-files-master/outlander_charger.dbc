@@ -31,8 +31,8 @@ NS_ :
     BU_BO_REL_
     SG_MUL_VAL_
 
-BS_: 
-BU_: 
+BS_:
+BU_:
 BO_ 887 dc_dc_status: 8 Vector__XXX
    SG_ temp_2 : 47|8@0+ (1,-40) [-40|215] "deg" Vector__XXX
    SG_ temp_1 : 39|8@0+ (1,-40) [-40|215] "deg" Vector__XXX

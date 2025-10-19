@@ -31,8 +31,8 @@ NS_ :
     BU_BO_REL_
     SG_MUL_VAL_
 
-BS_: 
-BU_: 
+BS_:
+BU_:
 BO_ 853 SimpBMS_SOC: 8 Vector__XXX
    SG_ SOH : 16|16@1+ (1,0) [0|0] "%" Vector__XXX
    SG_ SOC : 0|16@1+ (1,0) [0|0] "%" Vector__XXX

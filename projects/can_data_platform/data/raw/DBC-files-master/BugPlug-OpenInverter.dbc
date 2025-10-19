@@ -31,8 +31,8 @@ NS_ :
     BU_BO_REL_
     SG_MUL_VAL_
 
-BS_: 
-BU_: 
+BS_:
+BU_:
 BO_ 1 CAN_IO: 8 Vector__XXX
    SG_ Cruise : 12|1@1+ (1,0) [0|0] "" Vector__XXX
    SG_ Start : 13|1@1+ (1,0) [0|0] "" Vector__XXX
