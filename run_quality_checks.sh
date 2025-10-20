@@ -105,7 +105,7 @@ run_check "MyPy (Type Checking)" \
 
 # Run Unit Tests with Coverage
 run_check "Unit Tests with Coverage" \
-    "pytest tests/unit/ --cov=projects/can_data_platform/scripts --cov=projects/can_data_platform/src --cov=.github/issue_deployment --cov-report=term-missing --cov-report=html --cov-report=xml --cov-report=json --cov-fail-under=80"
+    "pytest tests/ --cov=projects/can_data_platform/scripts --cov=projects/can_data_platform/src --cov=.github/issue_deployment --cov-report=term-missing --cov-report=html --cov-report=xml --cov-report=json --cov-fail-under=80"
 
 echo ""
 echo "=================================================="

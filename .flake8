@@ -20,6 +20,7 @@ exclude =
     dist,
     .pytest_cache,
     .coverage,
+    .coveragerc,
     htmlcov
 
 # Error codes to ignore
