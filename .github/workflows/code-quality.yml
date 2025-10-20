@@ -333,13 +333,20 @@ jobs:
 
           # Check test directory structure
           echo "Checking test organization..."
-          test -d tests/unit && echo "✅ Unit tests directory exists" || exit 1
-          # Support new tests layout under tests/can_data_platform/unit
-          test -f tests/conftest.py && echo "✅ Shared fixtures exist (tests/conftest.py)" || true
-          test -f tests/__init__.py && echo "✅ Test package root (tests/__init__.py)" || true
-          test -d tests/can_data_platform/unit && echo "✅ Unit tests directory exists (tests/can_data_platform/unit)" || exit 1
-          test -f tests/can_data_platform/unit/conftest.py && echo "✅ Shared fixtures exist (tests/can_data_platform/unit/conftest.py)" || true
-          test -f tests/can_data_platform/unit/__init__.py && echo "✅ Test package structure correct (tests/can_data_platform/unit/__init__.py)" || true
+          test -d "tests/unit" && echo "✅ Legacy unit tests dir exists" || exit 1
+          test -d "tests/can_data_platform/unit" && \
+            echo "✅ Unit tests directory exists (new)" || exit 1
+
+          # Check for key configuration files
+          echo "Checking for key configuration files..."
+          test -f "tests/conftest.py" && \
+            echo "✅ Shared fixtures exist (tests/conftest.py)" || true
+          test -f "tests/__init__.py" && \
+            echo "✅ Test package root (tests/__init__.py)" || true
+          test -f "tests/can_data_platform/unit/conftest.py" && \
+            echo "✅ Shared fixtures exist (new)" || true
+          test -f "tests/can_data_platform/unit/__init__.py" && \
+            echo "✅ Test package structure correct (new)" || true
 
           # Check for test naming conventions
           echo "Validating test naming conventions..."
