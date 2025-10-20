@@ -333,9 +333,8 @@ jobs:
 
           # Check test directory structure
           echo "Checking test organization..."
-          test -d "tests/unit" && echo "✅ Legacy unit tests dir exists" || exit 1
           test -d "tests/can_data_platform/unit" && \
-            echo "✅ Unit tests directory exists (new)" || exit 1
+            echo "✅ Unit tests directory exists" || exit 1
 
           # Check for important configuration files
           echo "Checking for important configuration files..."
