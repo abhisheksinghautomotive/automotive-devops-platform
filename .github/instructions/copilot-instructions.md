@@ -8,45 +8,19 @@ This is a **Software-Defined Vehicle (SDV) telemetry platform** designed as a po
 
 **What not to do** : Avoid suggesting features or technologies that are outside the current project scope or deferred backlog. Do not introduce breaking changes or deviate from established patterns without proper justification and documentation.
 
-**Target Audience**: Tier-1 product companies, SaaS, and automotive/mobility engineering roles (DevOps, Platform Engineering, Site Reliability Engineering).
 
-## Technology Stack
-
-### Core Technologies
-- **Language**: Python 3.9+
-- **Web Framework**: FastAPI (async REST API)
-- **Message Queue**: AWS SQS (Standard Queue)
-- **Storage**:
-  - Local: JSONL files (time-partitioned)
-  - Cloud: AWS S3 (with lifecycle policies - in progress)
-- **Data Processing**: Batch processing with asyncio
 
 ### Development & Quality Tools
 - **Testing**: pytest, pytest-cov, pytest-asyncio
-- **Code Quality**: flake8, pylint, bandit (security)
-- **Pre-commit Hooks**: black, isort, flake8, bandit
+- **Code Quality**: flake8, pylint, bandit, pydocstyle, Lizard, mypy
 - **CI/CD**: GitHub Actions
 - **Coverage Requirement**: ≥95% enforced in CI/CD
-
-### AWS Services (Current & Planned)
-- **SQS**: Message buffering and decoupling
-- **S3**: Long-term data storage with lifecycle policies
-- **IAM**: Least-privilege access control
-- **LocalStack**: Local AWS emulation for testing
-
-### Future Stack (Deferred)
-- Docker/Docker Compose
-- Kubernetes (EKS)
-- Terraform (IaC)
-- Grafana/Prometheus (Observability)
-- Jenkins/GitHub Actions (Advanced CI/CD)
 
 ## Coding Standards & Conventions
 
 ### Python Style
 - **PEP 8 Compliance**: Enforced via flake8
 - **Line Length**: 100 characters maximum
-- **Import Ordering**: isort (standard → third-party → local)
 - **String Formatting**: f-strings preferred
 - **Type Hints**: Required for all function signatures
 - **Docstrings**: Google-style docstrings for modules, classes, and functions
@@ -92,29 +66,9 @@ This is a **Software-Defined Vehicle (SDV) telemetry platform** designed as a po
 
 
 ### Quality Checks
-```bash
+```python
 # Run all quality checks (custom script)
-./run_quality_checks.sh
-
-# Individual tools
-flake8 projects/can_data_platform/src
-pylint projects/can_data_platform/src
-bandit -r projects/can_data_platform/src
-```
-
-### Git Workflow
-```bash
-# Create feature branch (always linked to issue)
-git checkout -b feature/<issue-number>-<short-description>
-
-# Commit with conventional commits format
-git commit -m "feat: add SQS batch consumer with latency tracking (#71)"
-git commit -m "fix: resolve SQS message deletion race condition (#72)"
-git commit -m "docs: update ADR 0001 with SQS decision (#75)"
-
-# Pre-commit hooks run automatically on commit
-# Push and create PR
-git push origin feature/<issue-number>-<short-description>
+python run_quality_checks.py
 ```
 
 ## AWS-Specific Guidelines
@@ -145,15 +99,11 @@ git push origin feature/<issue-number>-<short-description>
 - **Triggers**: Push to main, Pull Requests
 - **Jobs**:
   1. Install dependencies
-  2. Run flake8 (linting)
-  3. Run pylint (static analysis)
-  4. Run bandit (security scanning)
-  5. Run pytest with coverage
+  2. Run flake8, pylint, bandit, pydocstyle, Lizard, mypy
   6. Fail if coverage < 95%
 
 ### Pre-commit Hooks (Local)
 - black (code formatting)
-- isort (import sorting)
 - flake8 (style checking)
 - bandit (security scanning)
 - trailing-whitespace, end-of-file-fixer
@@ -204,6 +154,7 @@ git push origin feature/<issue-number>-<short-description>
 3. **Doc Before Code**: Write pseudocode/design doc for new conceptual areas
 4. **ADR for Decisions**: Any foundational technical choice requires ADR
 5. **Daily Reflection**: Log progress, blockers, next actions
+6. **Cost optimization**: Consider AWS costs in design choices
 
 ### Issue Labels
 - `priority:p0` - Critical path, blocks milestone

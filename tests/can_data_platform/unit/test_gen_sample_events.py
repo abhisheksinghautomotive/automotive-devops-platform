@@ -6,11 +6,16 @@ for the battery cell event generation functionality.
 
 import json
 import unittest
+import tempfile
 from unittest.mock import MagicMock, mock_open, patch
+
+from botocore.exceptions import BotoCoreError, ClientError
 
 from projects.can_data_platform.scripts.gen_sample_events import (
     generate_events,
     main,
+    publish_to_sqs,
+    write_events_to_file,
 )
 
 
@@ -25,6 +30,7 @@ class TestGenerateEvents(unittest.TestCase):
         self.assertIsInstance(events, list)
         for event in events:
             self.assertIsInstance(event, dict)
+            # With default 4 modules, we should have Cell1-Cell4Voltage
             self.assertIn("Cell1Voltage", event)
             self.assertIn("Cell2Voltage", event)
             self.assertIn("Cell3Voltage", event)
@@ -56,21 +62,24 @@ class TestGenerateEvents(unittest.TestCase):
 
     def test_event_structure_validation(self):
         """Test that generated events have correct structure."""
-        events = generate_events(5)
+        events = generate_events(5, num_modules=4)
         for event in events:
-            required_fields = [
-                "Cell1Voltage",
-                "Cell2Voltage",
-                "Cell3Voltage",
-                "Cell4Voltage",
+            # Check for core fields that should always exist
+            core_fields = [
                 "min_voltage",
                 "max_voltage",
                 "avg_voltage",
                 "module_offsets",
             ]
-            for field in required_fields:
+            for field in core_fields:
                 self.assertIn(field, event)
-            self.assertIsInstance(event["Cell1Voltage"], int)
+
+            # Check for dynamic Cell{N}Voltage fields
+            for i in range(4):  # Default 4 modules
+                cell_field = f"Cell{i+1}Voltage"
+                self.assertIn(cell_field, event)
+                self.assertIsInstance(event[cell_field], int)
+
             self.assertIsInstance(event["min_voltage"], int)
             self.assertIsInstance(event["max_voltage"], int)
             self.assertIsInstance(event["avg_voltage"], int)
@@ -78,13 +87,11 @@ class TestGenerateEvents(unittest.TestCase):
 
     def test_min_max_avg_calculations(self):
         """Test correctness of min, max, and avg voltage."""
-        events = generate_events(10)
+        events = generate_events(10, num_modules=4)
         for event in events:
+            # Extract voltages from Cell{N}Voltage fields dynamically
             voltages = [
-                event["Cell1Voltage"],
-                event["Cell2Voltage"],
-                event["Cell3Voltage"],
-                event["Cell4Voltage"],
+                event[f"Cell{i+1}Voltage"] for i in range(len(event["module_offsets"]))
             ]
             self.assertEqual(event["min_voltage"], min(voltages))
             self.assertEqual(event["max_voltage"], max(voltages))
@@ -119,13 +126,11 @@ class TestGenerateEvents(unittest.TestCase):
 
     def test_voltage_range_validity(self):
         """Test that generated voltages are within expected range."""
-        events = generate_events(50)
+        events = generate_events(50, num_modules=4)
         for event in events:
+            # Extract voltages from Cell{N}Voltage fields dynamically
             voltages = [
-                event["Cell1Voltage"],
-                event["Cell2Voltage"],
-                event["Cell3Voltage"],
-                event["Cell4Voltage"],
+                event[f"Cell{i+1}Voltage"] for i in range(len(event["module_offsets"]))
             ]
             for voltage in voltages:
                 self.assertGreaterEqual(voltage, 3360)
@@ -177,6 +182,18 @@ class TestGenerateEvents(unittest.TestCase):
         for event in events:
             self.assertEqual(len(event["module_offsets"]), 16)
 
+    def test_generate_events_dynamic_cells(self):
+        """Test cell voltage fields are generated dynamically per module count."""
+        num_modules = 6
+        num_events = 3
+        events = generate_events(num_events, num_modules=num_modules)
+        for event in events:
+            for i in range(num_modules):
+                self.assertIn(f"Cell{i+1}Voltage", event)
+            # confirm exactly one field per module
+            cell_fields = [k for k in event if k.startswith("Cell")]
+            self.assertEqual(len(cell_fields), num_modules)
+
 
 class TestMain(unittest.TestCase):
     """Test suite for main CLI function with maximum coverage."""
@@ -188,7 +205,9 @@ class TestMain(unittest.TestCase):
     @patch("builtins.print")
     def test_main_default_arguments(self, mock_print, mock_file, mock_args):
         """Test main function with default arguments."""
-        mock_args.return_value = MagicMock(events=10, output="test_output.jsonl")
+        mock_args.return_value = MagicMock(
+            events=10, output="test_output.jsonl", mode="file"
+        )
         main()
         mock_file.assert_called_once()
         mock_print.assert_called_once()
@@ -203,7 +222,9 @@ class TestMain(unittest.TestCase):
     @patch("builtins.print")
     def test_main_custom_arguments(self, _, mock_file, mock_args):
         """Test main function with custom arguments."""
-        mock_args.return_value = MagicMock(events=50, output="custom_output.jsonl")
+        mock_args.return_value = MagicMock(
+            events=50, output="custom_output.jsonl", mode="file"
+        )
         main()
         mock_file.assert_called_once_with("custom_output.jsonl", "w", encoding="utf-8")
 
@@ -213,12 +234,12 @@ class TestMain(unittest.TestCase):
     @patch("builtins.open", new_callable=mock_open)
     def test_main_jsonl_format(self, mock_file, mock_args):
         """Test that main writes valid JSONL format."""
-        mock_args.return_value = MagicMock(events=3, output="test.jsonl")
+        mock_args.return_value = MagicMock(events=3, output="test.jsonl", mode="file")
         main()
         write_calls = mock_file().write.call_args_list
         self.assertEqual(len(write_calls), 3)
-        for call in write_calls:
-            written_data = call[0][0]
+        for _call in write_calls:
+            written_data = _call[0][0]
             self.assertTrue(written_data.endswith("\n"))
             json_data = written_data.rstrip("\n")
             parsed = json.loads(json_data)
@@ -231,7 +252,7 @@ class TestMain(unittest.TestCase):
     @patch("builtins.print")
     def test_main_zero_events(self, _, mock_file, mock_args):
         """Test main with zero events."""
-        mock_args.return_value = MagicMock(events=0, output="empty.jsonl")
+        mock_args.return_value = MagicMock(events=0, output="empty.jsonl", mode="file")
         main()
         mock_file.assert_called_once()
         write_calls = mock_file().write.call_args_list
@@ -244,7 +265,7 @@ class TestMain(unittest.TestCase):
     @patch("builtins.print")
     def test_main_single_event(self, _, mock_file, mock_args):
         """Test main with single event."""
-        mock_args.return_value = MagicMock(events=1, output="single.jsonl")
+        mock_args.return_value = MagicMock(events=1, output="single.jsonl", mode="file")
         main()
         write_calls = mock_file().write.call_args_list
         self.assertEqual(len(write_calls), 1)
@@ -256,10 +277,120 @@ class TestMain(unittest.TestCase):
     @patch("builtins.print")
     def test_main_many_events(self, _, mock_file, mock_args):
         """Test main with many events."""
-        mock_args.return_value = MagicMock(events=100, output="many.jsonl")
+        mock_args.return_value = MagicMock(events=100, output="many.jsonl", mode="file")
         main()
         write_calls = mock_file().write.call_args_list
         self.assertEqual(len(write_calls), 100)
+
+    @patch("projects.can_data_platform.scripts.gen_sample_events.os.getenv")
+    @patch("projects.can_data_platform.scripts.gen_sample_events.publish_to_sqs")
+    @patch(
+        "projects.can_data_platform.scripts.gen_sample_events.argparse.ArgumentParser.parse_args"
+    )  # pylint: disable=line-too-long
+    def test_main_sqs_mode(self, mock_args, mock_publish, mock_getenv):
+        """Test main function with SQS mode."""
+        mock_args.return_value = MagicMock(events=5, output="test.jsonl", mode="sqs")
+        mock_getenv.return_value = (
+            "https://sqs.us-east-1.amazonaws.com/123456789/test-queue"
+        )
+        main()
+        mock_publish.assert_called_once()
+        # Verify that publish_to_sqs was called with correct arguments
+        call_args = mock_publish.call_args
+        events_arg = call_args[0][0]  # First positional argument (events)
+        queue_url_arg = call_args[0][1]  # Second positional argument (queue_url)
+        self.assertEqual(len(events_arg), 5)
+        self.assertEqual(
+            queue_url_arg, "https://sqs.us-east-1.amazonaws.com/123456789/test-queue"
+        )
+
+    @patch("projects.can_data_platform.scripts.gen_sample_events.os.getenv")
+    @patch(
+        "projects.can_data_platform.scripts.gen_sample_events.argparse.ArgumentParser.parse_args"
+    )  # pylint: disable=line-too-long
+    def test_main_sqs_mode_missing_url(self, mock_args, mock_getenv):
+        """Test main function with SQS mode but missing SQS_QUEUE_URL."""
+        mock_args.return_value = MagicMock(events=5, output="test.jsonl", mode="sqs")
+        mock_getenv.return_value = None  # No SQS_QUEUE_URL set
+        with self.assertRaises(ValueError) as context:
+            main()
+        self.assertIn("SQS_QUEUE_URL not found", str(context.exception))
+
+    @patch("projects.can_data_platform.scripts.gen_sample_events.os.getenv")
+    @patch("projects.can_data_platform.scripts.gen_sample_events.publish_to_sqs")
+    @patch("builtins.open", new_callable=mock_open)
+    @patch(
+        "projects.can_data_platform.scripts.gen_sample_events.argparse.ArgumentParser.parse_args"
+    )  # pylint: disable=line-too-long
+    def test_main_both_mode(self, mock_args, mock_file, mock_publish, mock_getenv):
+        """Test main function with 'both' mode (file + SQS)."""
+        mock_args.return_value = MagicMock(events=3, output="test.jsonl", mode="both")
+        mock_getenv.return_value = (
+            "https://sqs.us-east-1.amazonaws.com/123456789/test-queue"
+        )
+        main()
+        # Verify file writing occurred
+        mock_file.assert_called_once()
+        # Verify SQS publishing occurred
+        mock_publish.assert_called_once()
+
+
+class TestSQSPublishingAndFileOutput(unittest.TestCase):
+    """Test suite for SQS publishing and file output functionality."""
+
+    @patch("projects.can_data_platform.scripts.gen_sample_events.boto3.client")
+    def test_publish_to_sqs_success(self, mock_client):
+        """Test publish_to_sqs sends all events successfully."""
+        mock_sqs = MagicMock()
+        mock_client.return_value = mock_sqs
+        events = [{"foo": "bar"}, {"baz": 1}]
+        publish_to_sqs(events, "fake_url", max_retries=2)
+        self.assertEqual(mock_sqs.send_message.call_count, len(events))
+        for call_args in mock_sqs.send_message.call_args_list:
+            sent_args = call_args[1]  # kwargs
+            self.assertEqual(sent_args["QueueUrl"], "fake_url")
+
+    @patch("projects.can_data_platform.scripts.gen_sample_events.boto3.client")
+    @patch(
+        "projects.can_data_platform.scripts.gen_sample_events.time.sleep",
+        return_value=None,
+    )
+    def test_publish_to_sqs_retry_on_exception(self, mock_sleep, mock_client):
+        """Test publish_to_sqs retries on BotoCoreError/ClientError."""
+        mock_sqs = MagicMock()
+        # First attempt fails, second succeeds
+        mock_sqs.send_message.side_effect = [BotoCoreError(), {"MessageId": "ok"}]
+        mock_client.return_value = mock_sqs
+        events = [{"foo": "bar"}]
+        publish_to_sqs(events, "fake_url", max_retries=2)
+        self.assertEqual(mock_sqs.send_message.call_count, 2)
+
+    @patch("projects.can_data_platform.scripts.gen_sample_events.boto3.client")
+    @patch(
+        "projects.can_data_platform.scripts.gen_sample_events.time.sleep",
+        return_value=None,
+    )
+    def test_publish_to_sqs_all_failures_logs_error(self, mock_sleep, mock_client):
+        """Test that errors are logged on total failure to publish."""
+        mock_sqs = MagicMock()
+        # Always raises error
+        mock_sqs.send_message.side_effect = ClientError({'Error': {}}, 'SendMessage')
+        mock_client.return_value = mock_sqs
+        events = [{"fail": True}]
+        with self.assertLogs("gen_sample_events", level="ERROR") as cm:
+            publish_to_sqs(events, "fake_url", max_retries=2)
+        # Confirm log about permanent failure
+        self.assertTrue(any("Publish permanently failed" in r for r in cm.output))
+
+    def test_write_events_to_file_creates_jsonl(self):
+        """Test that write_events_to_file writes correct JSON lines."""
+        events = [{"a": 1}, {"b": 2}]
+        with tempfile.TemporaryDirectory() as tmpdir:
+            output_path = f"{tmpdir}/test.jsonl"
+            write_events_to_file(events, output_path)
+            with open(output_path, encoding="utf-8") as f:
+                lines = [json.loads(line) for line in f]
+        self.assertEqual(lines, events)
 
 
 if __name__ == "__main__":

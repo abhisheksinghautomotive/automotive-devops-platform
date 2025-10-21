@@ -1,1 +1,1 @@
-# Projects package initialization
+"""Projects package initialization."""

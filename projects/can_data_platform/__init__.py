@@ -1,1 +1,1 @@
-# CAN Data Platform package initialization
+"""CAN Data Platform package initialization."""

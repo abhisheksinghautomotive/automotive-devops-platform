@@ -3,6 +3,8 @@
 Fetches message counts and queue attributes for cost awareness.
 """
 
+# pylint: disable=duplicate-code
+
 import os
 import sys
 from pathlib import Path
