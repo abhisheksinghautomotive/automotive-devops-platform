@@ -56,9 +56,11 @@ def main() -> None:
     args = parser.parse_args()
 
     # 1. Build config from arguments
-    config = SQSQueueConfig(
-        queue_name=args.queue_name, region=args.region, encrypt=args.encrypt
-    )
+    config_kwargs = {'queue_name': args.queue_name, 'encrypt': args.encrypt}
+    if args.region is not None:
+        config_kwargs['region'] = args.region
+
+    config = SQSQueueConfig(**config_kwargs)
     manager = SQSQueueManager(config, profile=args.profile)
 
     # 2. Create the queue and print info
@@ -67,17 +69,33 @@ def main() -> None:
 
     # 3. Generate policies if requested
     if args.output_iam:
-        queue_arn = manager.sqs.get_queue_attributes(
-            QueueUrl=queue_url, AttributeNames=['QueueArn']
-        )['Attributes']['QueueArn']
+        try:
+            queue_arn_response = manager.sqs.get_queue_attributes(  # type: ignore
+                QueueUrl=queue_url, AttributeNames=['QueueArn']
+            )
+            queue_arn: str = str(  # type: ignore
+                queue_arn_response['Attributes']['QueueArn']  # type: ignore
+            )
+        except (KeyError, ValueError) as e:
+            print(f"Error getting queue ARN: {e}")
+            return
 
-        with open('sqs-producer-policy.json', 'w', encoding='utf-8') as f:
+        # Create policies in the data directory
+        data_dir = Path(__file__).parent.parent / "data"
+        data_dir.mkdir(exist_ok=True)
+
+        producer_policy_path = data_dir / 'sqs-producer-policy.json'
+        consumer_policy_path = data_dir / 'sqs-consumer-policy.json'
+
+        with open(producer_policy_path, 'w', encoding='utf-8') as f:
             json.dump(sqs_producer_policy(queue_arn), f, indent=2)
 
-        with open('sqs-consumer-policy.json', 'w', encoding='utf-8') as f:
+        with open(consumer_policy_path, 'w', encoding='utf-8') as f:
             json.dump(sqs_consumer_policy(queue_arn), f, indent=2)
 
-        print("IAM policies written for producer/consumer.")
+        print(f"IAM policies written to {data_dir}:")
+        print(f"  - {producer_policy_path}")
+        print(f"  - {consumer_policy_path}")
 
 
 if __name__ == "__main__":

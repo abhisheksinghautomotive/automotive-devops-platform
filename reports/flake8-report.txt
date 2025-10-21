@@ -1,0 +1,26 @@
+tests/can_data_platform/unit/test_batch_sqs_consumer.py:362:1: W293 blank line contains whitespace
+        
+^
+tests/can_data_platform/unit/test_batch_sqs_consumer.py:366:1: W293 blank line contains whitespace
+        
+^
+tests/can_data_platform/unit/test_setup_sqs.py:175:1: W293 blank line contains whitespace
+        
+^
+tests/can_data_platform/unit/test_setup_sqs.py:290:1: W293 blank line contains whitespace
+        
+^
+4     W293 blank line contains whitespace
+tests/can_data_platform/unit/test_batch_sqs_consumer.py:362:1: W293 blank line contains whitespace
+        
+^
+tests/can_data_platform/unit/test_batch_sqs_consumer.py:366:1: W293 blank line contains whitespace
+        
+^
+tests/can_data_platform/unit/test_setup_sqs.py:175:1: W293 blank line contains whitespace
+        
+^
+tests/can_data_platform/unit/test_setup_sqs.py:290:1: W293 blank line contains whitespace
+        
+^
+4     W293 blank line contains whitespace
