@@ -57,9 +57,7 @@ class TestSetupSQSArgumentParsing(unittest.TestCase):
         sys.argv = ['setup_sqs.py', '--queue-name', 'test-queue']
         main()
 
-        mock_config.assert_called_once_with(
-            queue_name='test-queue', encrypt=False
-        )
+        mock_config.assert_called_once_with(queue_name='test-queue', encrypt=False)
 
     @patch('projects.can_data_platform.scripts.setup_sqs.SQSQueueManager')
     @patch('projects.can_data_platform.scripts.setup_sqs.SQSQueueConfig')
@@ -126,9 +124,7 @@ class TestSetupSQSQueueCreation(unittest.TestCase):
             sys.argv = ['setup_sqs.py', '--queue-name', 'test-queue', '--encrypt']
             main()
 
-        mock_config.assert_called_once_with(
-            queue_name='test-queue', encrypt=True
-        )
+        mock_config.assert_called_once_with(queue_name='test-queue', encrypt=True)
 
     @patch('projects.can_data_platform.scripts.setup_sqs.SQSQueueManager')
     @patch('projects.can_data_platform.scripts.setup_sqs.SQSQueueConfig')

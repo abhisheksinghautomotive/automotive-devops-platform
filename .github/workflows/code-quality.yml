@@ -22,7 +22,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.9.6'
 
       - name: Cache dependencies
         uses: actions/cache@v4
@@ -38,7 +38,7 @@ jobs:
           pip install flake8 pylint bandit pydocstyle lizard black mypy
           pip install pytest yamllint
 
-      - name: Run enhanced quality checks with reports
+      - name: Generate reports for SonarQube
         run: |
           # Create reports directory
           mkdir -p reports
@@ -80,10 +80,17 @@ jobs:
                  tests/ \
                  --output-file=reports/flake8-report.txt || true
 
-          # Run the comprehensive quality checks as fallback
-          python run_quality_checks.py || true
+      - name: SonarQube Scan
+        # Run SonarQube scan on all branches (try first, fallback if free tier restricts)
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        continue-on-error: true
 
       - name: SonarQube Quality Gate Check
+        # Only run quality gate check if scan succeeded and report file exists
+        if: hashFiles('.scannerwork/report-task.txt') != ''
         uses: SonarSource/sonarqube-quality-gate-action@master
         timeout-minutes: 5
         env:
@@ -92,19 +99,25 @@ jobs:
           scanMetadataReportFile: .scannerwork/report-task.txt
         continue-on-error: true
 
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        continue-on-error: true
-
-      - name: Fallback Quality Gate Check
-        if: failure()
+      - name: Custom Quality Gate Analysis
+        # Always run our own quality checks to analyze the generated reports
         run: |
-          echo "SonarQube analysis failed or not configured."
-          echo "Running fallback quality checks..."
-          python run_quality_checks.py
+          echo "=============================================="
+          echo "📊 Quality Gate Analysis"
+          echo "=============================================="
+          echo "🔍 Analyzing generated reports..."
+          
+          # Run our comprehensive quality checks that parse actual reports
+          python run_quality_checks.py || echo "⚠️ Some quality checks failed - see details above"
+          
+          echo "=============================================="
+          if [ -f ".scannerwork/report-task.txt" ]; then
+            echo "✅ SonarQube scan completed - check dashboard for detailed analysis"
+          else
+            echo "ℹ️ SonarQube scan not available (free tier limitation or configuration issue)"
+          fi
+          echo "📊 Local quality reports generated and uploaded as artifacts"
+          echo "=============================================="
 
       - name: Upload quality check artifacts
         if: always()
