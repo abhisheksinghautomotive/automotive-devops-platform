@@ -43,7 +43,7 @@ jobs:
           # Create reports directory
           mkdir -p reports
 
-          # Run pytest with XML output for SonarQube
+          # CRITICAL: Unit tests with coverage - MUST pass
           pytest tests/ \
             --cov=projects/can_data_platform/scripts \
             --cov=projects/can_data_platform/src \
@@ -53,35 +53,44 @@ jobs:
             --cov-report=xml:coverage.xml \
             --cov-report=json:coverage.json \
             --cov-fail-under=95 \
-            --junit-xml=test-results.xml || true
+            --junit-xml=test-results.xml
 
-          # Run Pylint with output for SonarQube
+          # NON-CRITICAL: Pylint with output for SonarQube - can fail
           pylint projects/can_data_platform/scripts/ \
                  projects/can_data_platform/src/ \
                  .github/issue_deployment/ \
                  tests/ \
                  --output-format=text \
                  --reports=no \
-                 --score=no > reports/pylint-report.txt || true
+                 --score=no > reports/pylint-report.txt || \
+                 echo "⚠️ Pylint issues found - check reports"
 
-          # Run Bandit with JSON output for SonarQube
+          # NON-CRITICAL: Bandit security scan - can fail
           bandit -r projects/can_data_platform/scripts/ \
                     projects/can_data_platform/src/ \
                     .github/issue_deployment/ \
                     tests/ \
                  --skip B101,B311 \
                  --format json \
-                 --output bandit-report.json || true
+                 --output bandit-report.json || \
+                 echo "⚠️ Security issues found - check reports"
 
-          # Run Flake8 with output for SonarQube
+          # NON-CRITICAL: Flake8 style check - can fail
           flake8 projects/can_data_platform/scripts/ \
                  projects/can_data_platform/src/ \
                  .github/issue_deployment/ \
                  tests/ \
-                 --output-file=reports/flake8-report.txt || true
+                 --output-file=reports/flake8-report.txt || \
+                 echo "⚠️ Style issues found - check reports"
+
+      - name: Critical YAML validation
+        # CRITICAL: Workflow files must be valid - MUST pass
+        run: |
+          yamllint .github/workflows/*.yml
 
       - name: SonarQube Scan
-        # Run SonarQube scan on all branches (try first, fallback if free tier restricts)
+        # Run SonarQube scan on all branches
+        # (try first, fallback if free tier restricts)
         uses: sonarsource/sonarqube-scan-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -106,17 +115,20 @@ jobs:
           echo "📊 Quality Gate Analysis"
           echo "=============================================="
           echo "🔍 Analyzing generated reports..."
-          
-          # Run our comprehensive quality checks that parse actual reports
-          python run_quality_checks.py || echo "⚠️ Some quality checks failed - see details above"
-          
+
+          # CRITICAL: Run comprehensive quality checks - MUST pass
+          python run_quality_checks.py
+
           echo "=============================================="
           if [ -f ".scannerwork/report-task.txt" ]; then
-            echo "✅ SonarQube scan completed - check dashboard for detailed analysis"
+            echo "✅ SonarQube scan completed - check dashboard for" \
+                 "detailed analysis"
           else
-            echo "ℹ️ SonarQube scan not available (free tier limitation or configuration issue)"
+            echo "ℹ️ SonarQube scan not available (free tier limitation" \
+                 "or configuration issue)"
           fi
-          echo "📊 Local quality reports generated and uploaded as artifacts"
+          echo "📊 Local quality reports generated and uploaded as" \
+               "artifacts"
           echo "=============================================="
 
       - name: Upload quality check artifacts
