@@ -10,10 +10,10 @@ import random
 import time
 import os
 import logging
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Tuple
 from dotenv import load_dotenv
-import boto3
-from botocore.exceptions import BotoCoreError, ClientError
+import boto3  # type: ignore
+from botocore.exceptions import BotoCoreError, ClientError  # type: ignore
 
 load_dotenv()
 logger = logging.getLogger("gen_sample_events")
@@ -21,7 +21,7 @@ logger.setLevel(logging.INFO)
 
 
 def generate_events(
-    num_events: int, num_modules: int = 4, offset_range: tuple = (-40, 40)
+    num_events: int, num_modules: int = 4, offset_range: Tuple[int, int] = (-40, 40)
 ) -> List[Dict[str, Any]]:
     """Generate sample battery events with module-to-module voltage variance."""
     module_offsets: List[int] = [
@@ -55,7 +55,9 @@ def publish_to_sqs(
     events: List[Dict[str, Any]], queue_url: str, max_retries: int = 3
 ) -> None:
     """Publish events to SQS with retry and metrics logging."""
-    sqs = boto3.client("sqs", region_name=os.getenv("AWS_REGION", "us-east-1"))
+    sqs = boto3.client(  # type: ignore
+        "sqs", region_name=os.getenv("AWS_REGION", "us-east-1")
+    )
     successes = 0
     failures = 0
     for event in events:
@@ -63,7 +65,9 @@ def publish_to_sqs(
         attempt = 0
         while attempt < max_retries:
             try:
-                sqs.send_message(QueueUrl=queue_url, MessageBody=payload)
+                sqs.send_message(  # type: ignore
+                    QueueUrl=queue_url, MessageBody=payload
+                )
                 successes += 1
                 break
             except (BotoCoreError, ClientError) as e:
@@ -85,13 +89,23 @@ def publish_to_sqs(
 
 def write_events_to_file(events: List[Dict[str, Any]], output_path: str) -> None:
     """Write events to a JSONL file."""
+    # Delete existing file if it exists to start fresh
+    if os.path.exists(output_path):
+        os.remove(output_path)
+        print(f"🗑️  Deleted existing file: {output_path}")
+
+    # Ensure directory exists
+    dir_path = os.path.dirname(output_path)
+    if dir_path:  # Only create directory if path contains a directory
+        os.makedirs(dir_path, exist_ok=True)
+
     with open(output_path, "w", encoding="utf-8") as f:
         for event in events:
             f.write(json.dumps(event) + "\n")
-    print(f"Wrote {len(events)} events to {output_path}")
+    print(f"✅ Wrote {len(events)} events to {output_path}")
 
 
-def main():
+def main() -> None:
     """Generate battery cell events and publish them to file/SQS.
 
     This is the CLI entry point used by the scripts in this package.

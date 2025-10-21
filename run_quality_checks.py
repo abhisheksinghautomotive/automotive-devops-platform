@@ -25,11 +25,26 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 QUALITY_TOOLS = [
-    {"name": "Flake8 (PEP8)", "cmd": "flake8 {dirs}"},
-    {"name": "Pylint", "cmd": "pylint {dirs}"},
+    {
+        "name": "Flake8 (PEP8)",
+        "cmd": "flake8 {dirs} --output-file=reports/flake8-report.txt",
+    },
+    {
+        "name": "Pylint",
+        "cmd": (
+            "pylint {dirs} --output-format=text --reports=no --score=no "
+            "> reports/pylint-report.txt"
+        ),
+    },
     {"name": "Pydocstyle", "cmd": "pydocstyle {dirs}"},
     {"name": "Lizard (Complexity)", "cmd": "lizard {dirs}"},
-    {"name": "Bandit (Security)", "cmd": "bandit -r {dirs} --skip B101,B311"},
+    {
+        "name": "Bandit (Security)",
+        "cmd": (
+            "bandit -r {dirs} --skip B101,B311 --format json "
+            "--output bandit-report.json"
+        ),
+    },
     {"name": "Black (Format)", "cmd": "black --check --diff {dirs}"},
     {"name": "MyPy (Typechecking)", "cmd": "mypy {dirs} --ignore-missing-imports"},
     {
@@ -38,14 +53,14 @@ QUALITY_TOOLS = [
             "pytest tests/ --cov=projects/can_data_platform/scripts "
             "--cov=projects/can_data_platform/src --cov=.github/issue_deployment "
             "--cov-report=term-missing --cov-report=html --cov-report=xml "
-            "--cov-report=json --cov-fail-under=95"
+            "--cov-report=json --cov-fail-under=95 --junit-xml=test-results.xml"
         ),
     },
     {"name": "Yamllint (Workflows)", "cmd": "yamllint .github/workflows/*.yml"},
     {
         "name": "Secret Scan (Workflows)",
         "cmd": (
-            "grep -Ei '(secret|token|password|KEY=)' " ".github/workflows/*.yml || true"
+            "grep -Ei '(secret|token|password|KEY=)' .github/workflows/*.yml || true"
         ),
     },
 ]
@@ -102,35 +117,36 @@ def run_quality_check(name, cmd):
         return False, e.stdout, e.stderr
 
 
-def main():
-    """Execute all quality checks for the automotive devops platform."""
-    logging.info("=" * 50)
-    logging.info(" Automotive DevOps Platform - Quality Checks (Python)")
-    logging.info(" Running ALL repo checks locally or in CI/CD")
-    logging.info("=" * 50)
-    venv_dir = (
-        '.venv' if os.path.isdir('.venv') else 'venv' if os.path.isdir('venv') else None
-    )
+def activate_virtual_environment():
+    """Activate virtual environment if present."""
+    if os.path.isdir('.venv'):
+        venv_dir = '.venv'
+    elif os.path.isdir('venv'):
+        venv_dir = 'venv'
+    else:
+        venv_dir = None
+
     if venv_dir:
         activate = os.path.join(venv_dir, 'bin', 'activate_this.py')
         if os.path.exists(activate):
             import runpy
-
             runpy.run_path(activate, run_name="__main__")
         logging.info("Activated virtual environment: %s", venv_dir)
-    valid_dirs = find_valid_dirs(PYTHON_DIRS)
-    if not valid_dirs:
-        logging.error("No Python files found in expected directories.")
-        sys.exit(1)
-    logging.info("Quality checks will be run on directories:")
-    for d in valid_dirs:
-        logging.info(" - %s", d)
+
+
+def run_all_quality_checks(valid_dirs):
+    """Run all quality checks and return failures list."""
     all_failures = []
     for tool in QUALITY_TOOLS:
         cmd = tool["cmd"].format(dirs=" ".join(valid_dirs))
         passed, out, err = run_quality_check(tool["name"], cmd)
         if not passed:
             all_failures.append((tool["name"], out, err))
+    return all_failures
+
+
+def report_results(all_failures):
+    """Report final results and exit with appropriate code."""
     logging.info("\n%s", "=" * 50)
     if not all_failures:
         logging.info("✓ All quality checks passed!\n%s", "=" * 50)
@@ -146,6 +162,31 @@ def main():
             )
         logging.error("=" * 50)
         sys.exit(1)
+
+
+def main():
+    """Execute all quality checks for the automotive devops platform."""
+    logging.info("=" * 50)
+    logging.info(" Automotive DevOps Platform - Quality Checks (Python)")
+    logging.info(" Running ALL repo checks locally or in CI/CD")
+    logging.info("=" * 50)
+
+    # Create reports directory for SonarQube-compatible output
+    os.makedirs('reports', exist_ok=True)
+
+    activate_virtual_environment()
+
+    valid_dirs = find_valid_dirs(PYTHON_DIRS)
+    if not valid_dirs:
+        logging.error("No Python files found in expected directories.")
+        sys.exit(1)
+
+    logging.info("Quality checks will be run on directories:")
+    for d in valid_dirs:
+        logging.info(" - %s", d)
+
+    all_failures = run_all_quality_checks(valid_dirs)
+    report_results(all_failures)
 
 
 if __name__ == "__main__":
