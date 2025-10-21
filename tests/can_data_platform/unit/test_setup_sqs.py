@@ -127,7 +127,7 @@ class TestSetupSQSQueueCreation(unittest.TestCase):
             main()
 
         mock_config.assert_called_once_with(
-            queue_name='test-queue', region=None, encrypt=True
+            queue_name='test-queue', encrypt=True
         )
 
     @patch('projects.can_data_platform.scripts.setup_sqs.SQSQueueManager')

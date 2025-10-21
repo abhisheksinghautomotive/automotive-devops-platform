@@ -56,9 +56,14 @@ def main() -> None:
     args = parser.parse_args()
 
     # 1. Build config from arguments
-    config = SQSQueueConfig(
-        queue_name=args.queue_name, region=args.region, encrypt=args.encrypt
-    )
+    config_kwargs = {
+        'queue_name': args.queue_name,
+        'encrypt': args.encrypt
+    }
+    if args.region is not None:
+        config_kwargs['region'] = args.region
+    
+    config = SQSQueueConfig(**config_kwargs)
     manager = SQSQueueManager(config, profile=args.profile)
 
     # 2. Create the queue and print info
