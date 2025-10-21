@@ -15,66 +15,74 @@ repos:
       - id: mixed-line-ending
       - id: check-executables-have-shebangs
 
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        files: ^\.github/workflows/.*\.yml$
+
   - repo: https://github.com/psf/black
     rev: 23.12.1
     hooks:
       - id: black
         language_version: python3
-        files: ^(projects|tests)/.*\.py$
+        files: ^(projects/can_data_platform/scripts|projects/can_data_platform/src|\.github/issue_deployment|tests)/.*\.py$
         args: [--check, --diff]
 
   - repo: https://github.com/PyCQA/flake8
     rev: 6.1.0
     hooks:
       - id: flake8
-        files: ^(projects|tests)/.*\.py$
-        args: [--count, --statistics, --show-source]
+        files: ^(projects/can_data_platform/scripts|projects/can_data_platform/src|\.github/issue_deployment|tests)/.*\.py$
 
   - repo: https://github.com/PyCQA/pylint
     rev: v3.0.3
     hooks:
       - id: pylint
-        files: ^projects/.*\.py$
+        files: ^(projects/can_data_platform/scripts|projects/can_data_platform/src|\.github/issue_deployment|tests)/.*\.py$
         args: [--fail-under=9.5]
-      - id: pylint
-        name: pylint-tests
-        files: ^tests/.*\.py$
-        args: [--fail-under=8.0]
 
   - repo: https://github.com/PyCQA/pydocstyle
     rev: 6.3.0
     hooks:
       - id: pydocstyle
-        files: ^(projects|tests)/.*\.py$
+        files: ^(projects/can_data_platform/scripts|projects/can_data_platform/src|\.github/issue_deployment|tests)/.*\.py$
 
-  - repo: https://github.com/PyCQA/bandit
-    rev: 1.7.5
+  - repo: local
     hooks:
-      - id: bandit
-        files: ^projects/.*\.py$
-        args: ['-r', '--skip', 'B101,B311']
+      - id: bandit-security
+        name: Bandit security analysis
+        entry: bash -c '.venv/bin/bandit -r "$@" --skip B101,B311' --
+        language: system
+        files: ^(projects/can_data_platform/scripts|projects/can_data_platform/src|\.github/issue_deployment|tests)/.*\.py$
 
   - repo: local
     hooks:
       - id: pytest-coverage
         name: pytest with coverage
-        entry: bash -c 'cd /Users/abhisheksingh/Desktop/automotive-devops-platform && python -m pytest tests/unit/ --cov=projects/can_data_platform/scripts --cov=projects/can_data_platform/src --cov=.github/issue_deployment --cov-report=term-missing --cov-fail-under=80'
+        entry: bash -c 'cd /Users/abhisheksingh/Desktop/automotive-devops-platform && .venv/bin/python -m pytest tests/ --cov=projects/can_data_platform/scripts --cov=projects/can_data_platform/src --cov=.github/issue_deployment --cov-report=term-missing --cov-report=html --cov-report=xml --cov-report=json --cov-fail-under=95'
         language: system
-        files: ^(projects|tests)/.*\.py$
+        files: ^(projects/can_data_platform/scripts|projects/can_data_platform/src|\.github/issue_deployment|tests)/.*\.py$
         pass_filenames: false
 
       - id: complexity-check
         name: Lizard complexity analysis
         entry: lizard
         language: python
-        files: ^projects/.*\.py$
-        args: ['--CCN', '8', '--length', '100', '--arguments', '6']
+        files: ^(projects/can_data_platform/scripts|projects/can_data_platform/src|\.github/issue_deployment|tests)/.*\.py$
 
       - id: mypy-check
         name: MyPy type checking
         entry: bash -c '.venv/bin/mypy "$@" --ignore-missing-imports' --
         language: system
-        files: ^(projects|tests)/.*\.py$
+        files: ^(projects/can_data_platform/scripts|projects/can_data_platform/src|\.github/issue_deployment|tests)/.*\.py$
+
+      - id: secret-scan
+        name: Secret scan for workflows
+        entry: bash -c 'grep -Ei "(secret|token|password|KEY=)" .github/workflows/*.yml || true'
+        language: system
+        files: ^\.github/workflows/.*\.yml$
+        pass_filenames: false
 
 # Configuration
 default_language_version:

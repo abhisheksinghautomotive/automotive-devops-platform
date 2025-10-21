@@ -1,373 +1,39 @@
-name: Code Quality Gate & Coverage Enforcement
+---
+name: Code Quality Checks
 
-on:
+"on":
+  push:
   pull_request:
     branches: [main]
-    paths:
-      - 'projects/**'
-      - 'tests/**'
-      - 'requirements*.txt'
-      - '.github/workflows/**'
-  push:
-    branches: [main]
-    paths:
-      - 'projects/**'
-      - 'tests/**'
-      - 'requirements*.txt'
-
-# Ensure only one workflow runs at a time per PR
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   code-quality-gate:
-    name: Quality Gate & Testing
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-
-    strategy:
-      fail-fast: true
-      matrix:
-        python-version: ["3.9", "3.10", "3.11"]
-
     steps:
-      - name: 🔍 Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # Full history for better analysis
 
-      - name: 🐍 Set up Python ${{ matrix.python-version }}
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
-          cache: 'pip'
-          cache-dependency-path: |
-            requirements-test.txt
-            projects/*/requirements.txt
+          python-version: '3.11'
 
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip wheel setuptools
           pip install -r requirements-test.txt
-          if [ -f projects/can_data_platform/requirements.txt ]; then
-            pip install -r projects/can_data_platform/requirements.txt
-          fi
-          # Install additional security and quality tools
-          pip install bandit safety bc
+          pip install flake8 pylint bandit pydocstyle lizard black mypy
+          pip install pytest yamllint
 
-          # Install workflow quality tools
-          sudo apt-get update && sudo apt-get install -y yamllint
+      - name: Run all-in-one quality checks
+        run: python run_quality_checks.py
 
-          # Note: Temporarily skip actionlint due to installation complexity in CI
-          # YAML validation will still occur via yamllint
-
-      - name: 🔍 Security scan with Bandit
-        run: |
-          echo "::group::Security Analysis"
-          # Scan all Python directories for security issues
-          bandit -r projects/can_data_platform/scripts/ \
-                 projects/can_data_platform/src/ \
-                 .github/issue_deployment/ \
-                 tests/ \
-            -f json -o bandit-report.json \
-            --severity-level medium || true
-
-          # Check if critical security issues found
-          if [ -f bandit-report.json ]; then
-            HIGH_ISSUES=$(python -c "
-              import json
-              data=json.load(open('bandit-report.json'))
-              print(len([r for r in data.get('results', []) if r.get('issue_severity') == 'HIGH']))
-            " 2>/dev/null || echo "0")
-            if [ "$HIGH_ISSUES" -gt 0 ]; then
-              echo "❌ HIGH severity security issues found: $HIGH_ISSUES"
-              exit 1
-            fi
-          fi
-          echo "::endgroup::"
-
-      - name: 📝 Flake8 - PEP 8 Compliance (STRICT)
-        run: |
-          echo "::group::Flake8 Analysis"
-          echo "Running Flake8 on all Python code..."
-          flake8 projects/can_data_platform/scripts/ \
-                 projects/can_data_platform/src/ \
-                 .github/issue_deployment/ \
-                 tests/ \
-            --count --statistics --show-source \
-            --format='::error file=%(path)s,line=%(row)d,col=%(col)d::[Flake8] %(code)s: %(text)s'
-          echo "✅ Flake8 passed"
-          echo "::endgroup::"
-
-      - name: 🔬 Pylint - Code Quality Analysis (STRICT)
-        run: |
-          echo "::group::Pylint Analysis"
-          echo "Analyzing code quality across all Python modules..."
-
-          # Run pylint with relaxed scoring for practical development
-          pylint projects/can_data_platform/scripts/ \
-                 projects/can_data_platform/src/ \
-                 .github/issue_deployment/ \
-                 tests/ \
-                 --fail-under=9.0
-
-          echo "✅ Pylint passed with required scores"
-          echo "::endgroup::"
-
-      - name: 📚 Pydocstyle - Documentation Standards
-        run: |
-          echo "::group::Documentation Standards"
-          pydocstyle projects/can_data_platform/scripts/ \
-                     projects/can_data_platform/src/ \
-                     .github/issue_deployment/ \
-                     tests/ \
-            --count --explain --source
-          echo "✅ Pydocstyle passed"
-          echo "::endgroup::"
-
-      - name: 🧮 Lizard - Complexity Analysis (STRICT)
-        run: |
-          echo "::group::Complexity Analysis"
-          lizard projects/can_data_platform/scripts/ \
-                 projects/can_data_platform/src/ \
-                 .github/issue_deployment/ \
-                 tests/ \
-            --CCN 8 \
-            --length 100 \
-            --arguments 6 \
-            --warnings_only
-          echo "✅ Complexity analysis passed"
-          echo "::endgroup::"
-
-      - name: 📋 YAML Workflow Quality Gate
-        run: |
-          echo "::group::Workflow Quality Analysis"
-
-          # 1. YAML Lint - Basic syntax and style checking
-          echo "🔍 Running yamllint on workflow files..."
-          yamllint .github/workflows/ \
-            --config-file .github/linters/.yamllint-simple.yml || {
-              echo "❌ YAML syntax/style violations found"
-              exit 1
-            }
-
-          # 2. Basic Security Checks
-          echo "🔒 Running basic security checks..."
-
-          # Check for hardcoded secrets (should use secrets context)
-          secrets_check=$(grep -r -i "password\|token\|key" .github/workflows/ | \
-            grep -v "secrets\." | grep -v "github.token" | grep -v "secrets_check" || true)
-          if [ -n "$secrets_check" ]; then
-            echo "⚠️  Potential hardcoded secrets found!"
-            echo "Use GitHub secrets context: \$\{{ secrets.SECRET_NAME \}\}"
-            exit 1
-          fi
-
-          # 3. Basic Workflow Structure Validation
-          echo "📋 Validating basic workflow structure..."
-          for workflow in .github/workflows/*.yml .github/workflows/*.yaml; do
-            if [ -f "$workflow" ]; then
-              # Check required workflow elements
-              if ! grep -q "^name:" "$workflow" || ! grep -q "^on:" "$workflow" || ! grep -q "^jobs:" "$workflow"; then
-                echo "❌ $workflow: Missing required fields (name, on, jobs)"
-                exit 1
-              fi
-            fi
-          done
-
-          echo "✅ Workflow quality analysis completed"
-          echo "::endgroup::"
-
-      - name: 🧪 Unit Tests with Coverage (STRICT ≥95%)
-        env:
-          PYTHONPATH: ${{ github.workspace }}
-        run: |
-          echo "::group::Unit Testing & Coverage"
-          pytest tests/ \
-            --cov=projects/can_data_platform/scripts \
-            --cov=projects/can_data_platform/src \
-            --cov=.github/issue_deployment \
-            --cov-report=xml \
-            --cov-report=html \
-            --cov-report=term-missing \
-            --cov-report=json \
-            --cov-fail-under=80 \
-            --verbose \
-            --tb=short \
-            --maxfail=3 \
-            --durations=10 \
-            --strict-markers \
-            --junit-xml=pytest-results.xml
-          echo "✅ All tests passed with ≥95% coverage"
-          echo "::endgroup::"
-
-      - name: 📊 Coverage Analysis & Validation
-        run: |
-          echo "::group::Coverage Validation"
-          # Extract coverage percentage from coverage.json
-          COVERAGE=$(python -c "
-          import json
-          with open('coverage.json') as f:
-              data = json.load(f)
-              print(f'{data[\"totals\"][\"percent_covered\"]:.2f}')
-          ")
-
-          echo "Current Coverage: ${COVERAGE}%"
-
-          # Strict coverage validation
-          if (( $(echo "$COVERAGE < 95.0" | bc -l) )); then
-            echo "❌ Coverage $COVERAGE% is below required 95%"
-            exit 1
-          fi
-
-          echo "✅ Coverage validation passed: ${COVERAGE}%"
-          echo "COVERAGE_PERCENT=${COVERAGE}" >> $GITHUB_ENV
-          echo "::endgroup::"
-
-      - name: 📈 Upload Test Results
-        uses: actions/upload-artifact@v4
+      - name: Upload quality check logs and coverage
         if: always()
+        uses: actions/upload-artifact@v4
         with:
-          name: test-results-python${{ matrix.python-version }}
+          name: code-quality-artifacts
           path: |
-            pytest-results.xml
+            quality_checks.log
+            htmlcov/
             coverage.xml
             coverage.json
-            htmlcov/
-            bandit-report.json
-          retention-days: 30
-
-      - name: 📊 Coverage Report Comment (PR Only)
-        if: github.event_name == 'pull_request'
-        uses: py-cov-action/python-coverage-comment-action@v3
-        with:
-          GITHUB_TOKEN: ${{ github.token }}
-          MINIMUM_GREEN: 95
-          MINIMUM_ORANGE: 90
-
-      - name: 🏷️ Generate Coverage Badge (Main Branch)
-        if: github.ref == 'refs/heads/main' && matrix.python-version == '3.11'
-        run: |
-          pip install coverage-badge
-          coverage-badge -o coverage.svg -f
-          echo "Coverage badge generated with ${COVERAGE_PERCENT}% coverage"
-
-      - name: 📤 Upload Coverage Badge
-        if: github.ref == 'refs/heads/main' && matrix.python-version == '3.11'
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-badge
-          path: coverage.svg
-          retention-days: 90
-
-  quality-gate-summary:
-    name: Quality Gate Summary
-    runs-on: ubuntu-latest
-    needs: code-quality-gate
-    if: always()
-
-    steps:
-      - name: 📋 Quality Gate Results
-        run: |
-          echo "## 🎯 Code Quality Gate Results" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### 📊 Quality Metrics Status" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| Quality Check | Requirement | Status |" >> $GITHUB_STEP_SUMMARY
-          echo "|---------------|-------------|--------|" >> $GITHUB_STEP_SUMMARY
-
-          # Check job results
-          if [[ "${{ needs.code-quality-gate.result }}" == "success" ]]; then
-            echo "| 🔍 Security Scan | No HIGH severity issues | ✅ **PASSED** |" >> $GITHUB_STEP_SUMMARY
-            echo "| 📝 Flake8 (PEP 8) | Zero violations | ✅ **PASSED** |" >> $GITHUB_STEP_SUMMARY
-            echo "| 🔬 Pylint | Score ≥9.5 (src) ≥8.0 (tests) | ✅ **PASSED** |" >> $GITHUB_STEP_SUMMARY
-            echo "| 📚 Pydocstyle | All docstrings compliant | ✅ **PASSED** |" >> $GITHUB_STEP_SUMMARY
-            echo "| 🧮 Lizard Complexity | CCN ≤8, Length ≤100 | ✅ **PASSED** |" >> $GITHUB_STEP_SUMMARY
-            echo "| 📋 YAML Workflows | yamllint validation | ✅ **PASSED** |" >> $GITHUB_STEP_SUMMARY
-            echo "| 🛡️ Workflow Security | No vulnerabilities | ✅ **PASSED** |" >> $GITHUB_STEP_SUMMARY
-            echo "| 🧪 Unit Tests | All tests pass | ✅ **PASSED** |" >> $GITHUB_STEP_SUMMARY
-            echo "| 📊 Test Coverage | ≥95% line coverage | ✅ **PASSED** |" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "### 🚀 **ALL QUALITY GATES PASSED!**" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "✅ Code is ready for merge into main branch" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "| Quality Gates | Various requirements | ❌ **FAILED** |" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "### ❌ **QUALITY GATE FAILURE**" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "🚫 **PR cannot be merged until all quality checks pass**" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "Please fix the failing checks and push your changes." >> $GITHUB_STEP_SUMMARY
-          fi
-
-      - name: ❌ Fail if Quality Gates Failed
-        if: needs.code-quality-gate.result != 'success'
-        run: |
-          echo "Quality gate checks failed. PR cannot be merged."
-          exit 1
-
-  integration-test-readiness:
-    name: Integration Test Readiness
-    runs-on: ubuntu-latest
-    needs: code-quality-gate
-    if: success()
-
-    steps:
-      - name: 🔍 Checkout code
-        uses: actions/checkout@v4
-
-      - name: 🐍 Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: 📦 Install dependencies
-        run: |
-          pip install -r requirements-test.txt
-
-      - name: ✅ Verify Test Structure & Standards
-        run: |
-          echo "::group::Test Structure Validation"
-
-          # Check test directory structure
-          echo "Checking test organization..."
-          test -d "tests/can_data_platform/unit" && \
-            echo "✅ Unit tests directory exists" || exit 1
-
-          # Check for important configuration files
-          echo "Checking for important configuration files..."
-          test -f "tests/conftest.py" && \
-            echo "✅ Shared fixtures exist (tests/conftest.py)" || true
-          test -f "tests/__init__.py" && \
-            echo "✅ Test package root (tests/__init__.py)" || true
-          test -f "tests/can_data_platform/unit/conftest.py" && \
-            echo "✅ Shared fixtures exist (new)" || true
-          test -f "tests/can_data_platform/unit/__init__.py" && \
-            echo "✅ Test package structure correct (new)" || true
-
-          # Check for test naming conventions
-          echo "Validating test naming conventions..."
-          # Enumerate a few unit tests in the new layout
-          find tests/can_data_platform/unit -name "test_*.py" | head -5 | while read file; do
-            echo "✅ Found test file: $file"
-          done
-
-          # Verify all source modules have corresponding tests
-          echo "Checking test coverage completeness..."
-          for src_file in projects/can_data_platform/scripts/*.py; do
-            if [ "$(basename "$src_file")" != "__init__.py" ]; then
-              # Map script to test file under tests/can_data_platform/unit
-              test_file="tests/can_data_platform/unit/test_$(basename "$src_file")"
-              if [ -f "$test_file" ]; then
-                echo "✅ Test exists for $(basename "$src_file")"
-              else
-                echo "⚠️  Missing test for $(basename "$src_file")"
-              fi
-            fi
-          done
-
-          echo "✅ Test structure validation complete"
-          echo "🚀 Ready for integration testing phase!"
-          echo "::endgroup::"

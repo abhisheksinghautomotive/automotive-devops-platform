@@ -1,4 +1,5 @@
 # tests/can_data_platform/integration/test_sqs_connectivity.py
+# pylint: disable=duplicate-code
 
 """
 Integration test for AWS SQS telemetry queue connectivity.
@@ -20,7 +21,7 @@ import pytest
 from dotenv import load_dotenv
 
 
-def setup_project_path():
+def setup_project_path() -> None:  # pylint: disable=duplicate-code
     """Add project root to Python path for module imports."""
     project_root = Path(__file__).parent.parent.parent.parent
     if str(project_root) not in sys.path:
@@ -28,7 +29,7 @@ def setup_project_path():
 
 
 # Setup path before importing project modules
-setup_project_path()
+setup_project_path()  # pylint: disable=duplicate-code
 
 from projects.can_data_platform.src.sqs.config import SQSQueueConfig  # noqa: E402
 from projects.can_data_platform.src.sqs.manager import SQSQueueManager  # noqa: E402
