@@ -44,7 +44,7 @@ class TestSetupSQSArgumentParsing(unittest.TestCase):
         with self.assertRaises(SystemExit):
             main()
 
-    @patch.dict(os.environ, {'SQS_QUEUE_NAME': 'test-queue'})
+    @patch.dict(os.environ, {'SQS_QUEUE_NAME': 'test-queue'}, clear=True)
     @patch('projects.can_data_platform.scripts.setup_sqs.SQSQueueManager')
     @patch('projects.can_data_platform.scripts.setup_sqs.SQSQueueConfig')
     def test_queue_name_from_environment(self, mock_config, mock_manager):
@@ -58,7 +58,7 @@ class TestSetupSQSArgumentParsing(unittest.TestCase):
         main()
 
         mock_config.assert_called_once_with(
-            queue_name='test-queue', region='us-east-1', encrypt=False
+            queue_name='test-queue', encrypt=False
         )
 
     @patch('projects.can_data_platform.scripts.setup_sqs.SQSQueueManager')
