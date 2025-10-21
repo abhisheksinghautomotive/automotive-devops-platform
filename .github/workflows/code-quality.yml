@@ -83,8 +83,8 @@ jobs:
           # Run the comprehensive quality checks as fallback
           python run_quality_checks.py || true
 
-      - name: SonarQube Quality Analysis
-        uses: sonarqube-quality-gate-action@master
+      - name: SonarQube Quality Gate Check
+        uses: SonarSource/sonarqube-quality-gate-action@master
         timeout-minutes: 5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
