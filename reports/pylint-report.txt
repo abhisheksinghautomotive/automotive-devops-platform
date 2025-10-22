@@ -1,0 +1,63 @@
+************* Module projects.can_data_platform.scripts.e2e_telemetry
+projects/can_data_platform/scripts/e2e_telemetry.py:69:15: W0718: Catching too general exception Exception (broad-exception-caught)
+projects/can_data_platform/scripts/e2e_telemetry.py:149:15: W0718: Catching too general exception Exception (broad-exception-caught)
+projects/can_data_platform/scripts/e2e_telemetry.py:145:17: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
+projects/can_data_platform/scripts/e2e_telemetry.py:192:15: W0718: Catching too general exception Exception (broad-exception-caught)
+projects/can_data_platform/scripts/e2e_telemetry.py:182:23: W0718: Catching too general exception Exception (broad-exception-caught)
+projects/can_data_platform/scripts/e2e_telemetry.py:255:15: W0718: Catching too general exception Exception (broad-exception-caught)
+projects/can_data_platform/scripts/e2e_telemetry.py:317:15: W0718: Catching too general exception Exception (broad-exception-caught)
+projects/can_data_platform/scripts/e2e_telemetry.py:300:17: W1514: Using open without explicitly specifying an encoding (unspecified-encoding)
+projects/can_data_platform/scripts/e2e_telemetry.py:382:23: W0718: Catching too general exception Exception (broad-exception-caught)
+projects/can_data_platform/scripts/e2e_telemetry.py:395:15: W0718: Catching too general exception Exception (broad-exception-caught)
+projects/can_data_platform/scripts/e2e_telemetry.py:429:15: W0718: Catching too general exception Exception (broad-exception-caught)
+projects/can_data_platform/scripts/e2e_telemetry.py:611:15: W0718: Catching too general exception Exception (broad-exception-caught)
+projects/can_data_platform/scripts/e2e_telemetry.py:459:4: R0915: Too many statements (78/50) (too-many-statements)
+projects/can_data_platform/scripts/e2e_telemetry.py:707:19: W0718: Catching too general exception Exception (broad-exception-caught)
+projects/can_data_platform/scripts/e2e_telemetry.py:693:31: W0718: Catching too general exception Exception (broad-exception-caught)
+projects/can_data_platform/scripts/e2e_telemetry.py:791:15: W0718: Catching too general exception Exception (broad-exception-caught)
+projects/can_data_platform/scripts/e2e_telemetry.py:881:11: W0718: Catching too general exception Exception (broad-exception-caught)
+************* Module projects.can_data_platform.src.metrics.latency_tracker
+projects/can_data_platform/src/metrics/latency_tracker.py:16:0: R0902: Too many instance attributes (10/7) (too-many-instance-attributes)
+************* Module projects.can_data_platform.src.config.consumer_config
+projects/can_data_platform/src/config/consumer_config.py:11:0: R0902: Too many instance attributes (11/7) (too-many-instance-attributes)
+************* Module projects.can_data_platform.src.config.manager
+projects/can_data_platform/src/config/manager.py:11:0: R0902: Too many instance attributes (8/7) (too-many-instance-attributes)
+************* Module projects.can_data_platform.src.consumers.sqs_consumer
+projects/can_data_platform/src/consumers/sqs_consumer.py:18:0: R0902: Too many instance attributes (9/7) (too-many-instance-attributes)
+************* Module projects.can_data_platform.src.consumers.concurrent_sqs_consumer
+projects/can_data_platform/src/consumers/concurrent_sqs_consumer.py:19:0: R0902: Too many instance attributes (13/7) (too-many-instance-attributes)
+************* Module projects.can_data_platform.src.factories.processor_factory
+projects/can_data_platform/src/factories/processor_factory.py:24:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+************* Module projects.can_data_platform.src.apps.consumer_app
+projects/can_data_platform/src/apps/consumer_app.py:15:0: R0902: Too many instance attributes (9/7) (too-many-instance-attributes)
+************* Module can_data_platform.unit.test_sqs_usage_report
+tests/can_data_platform/unit/test_sqs_usage_report.py:17:0: R0402: Use 'from projects.can_data_platform.scripts import sqs_usage_report' instead (consider-using-from-import)
+************* Module can_data_platform.unit.test_e2e_telemetry
+tests/can_data_platform/unit/test_e2e_telemetry.py:20:0: R0402: Use 'from projects.can_data_platform.scripts import e2e_telemetry' instead (consider-using-from-import)
+************* Module can_data_platform.integration.test_sqs_connectivity
+tests/can_data_platform/integration/test_sqs_connectivity.py:1:0: R0801: Similar lines in 2 files
+==projects.can_data_platform.src.metrics.interfaces:[16:60]
+==projects.can_data_platform.src.tracking.progress:[14:37]
+        raise NotImplementedError
+
+    @abstractmethod
+    def update(self, n: int = 1) -> None:
+        """Update progress by n units."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def set_postfix(self, postfix: Dict[str, Any]) -> None:
+        """Set postfix information."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def write(self, message: str) -> None:
+        """Write a message without disrupting progress."""
+        raise NotImplementedError
+
+    @abstractmethod
+    def close(self) -> None:
+        """Close the progress tracker."""
+        raise NotImplementedError
+
+ (duplicate-code)

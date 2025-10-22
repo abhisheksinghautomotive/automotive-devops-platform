@@ -24,3 +24,2641 @@ tests/can_data_platform/unit/test_setup_sqs.py:290:1: W293 blank line contains w
         
 ^
 4     W293 blank line contains whitespace
+projects/can_data_platform/scripts/concurrent_consumer_demo.py:20:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/concurrent_consumer_demo.py:32:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/concurrent_consumer_demo.py:35:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/concurrent_consumer_demo.py:91:24: W292 no newline at end of file
+    asyncio.run(main())                       ^
+projects/can_data_platform/scripts/gen_sample_events.py:68:1: W293 blank line contains whitespace
+    """Create and configure the telemetry application using Dependency Injection.
+    
+    Args:
+        config: TelemetryConfig instance
+        
+    Returns:
+        Configured TelemetryApp instance
+    """
+^
+projects/can_data_platform/scripts/gen_sample_events.py:71:1: W293 blank line contains whitespace
+    """Create and configure the telemetry application using Dependency Injection.
+    
+    Args:
+        config: TelemetryConfig instance
+        
+    Returns:
+        Configured TelemetryApp instance
+    """
+^
+projects/can_data_platform/scripts/gen_sample_events.py:81:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/gen_sample_events.py:84:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/gen_sample_events.py:92:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/gen_sample_events.py:95:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/gen_sample_events.py:108:1: W293 blank line contains whitespace
+    """Main entry point for high-throughput telemetry event generation and publishing.
+    
+    Handles command-line arguments, configuration loading, and orchestrates
+    event generation and publishing to file and/or SQS with optimal performance.
+    """
+^
+projects/can_data_platform/scripts/gen_sample_events.py:131:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/gen_sample_events.py:138:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/gen_sample_events.py:148:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/gen_sample_events.py:155:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/gen_sample_events.py:161:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/gen_sample_events.py:167:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/gen_sample_events.py:173:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/gen_sample_events.py:175:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/gen_sample_events.py:180:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/gen_sample_events.py:184:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/gen_sample_events.py:191:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/gen_sample_events.py:194:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/gen_sample_events.py:201:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/gen_sample_events.py:204:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/gen_sample_events.py:208:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/__init__.py:7:1: W391 blank line at end of file
+
+^
+projects/can_data_platform/src/app/telemetry_app.py:109:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/app/telemetry_app.py:112:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/app/telemetry_app.py:114:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/app/telemetry_app.py:118:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/app/telemetry_app.py:120:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/app/telemetry_app.py:130:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/app/telemetry_app.py:136:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/app/telemetry_app.py:144:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/app/telemetry_app.py:151:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/app/telemetry_app.py:157:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/app/telemetry_app.py:165:1: W293 blank line contains whitespace
+        """Run the telemetry application.
+        
+        Args:
+            num_events: Number of events to generate
+            mode: Output mode ('file', 'sqs', or 'both')
+            output_path: Output file path (for file mode)
+            
+        Returns:
+            Execution statistics
+        """
+^
+projects/can_data_platform/src/app/telemetry_app.py:170:1: W293 blank line contains whitespace
+        """Run the telemetry application.
+        
+        Args:
+            num_events: Number of events to generate
+            mode: Output mode ('file', 'sqs', or 'both')
+            output_path: Output file path (for file mode)
+            
+        Returns:
+            Execution statistics
+        """
+^
+projects/can_data_platform/src/app/telemetry_app.py:176:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/app/telemetry_app.py:178:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/app/telemetry_app.py:183:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/app/telemetry_app.py:189:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/app/telemetry_app.py:194:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/app/telemetry_app.py:197:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/app/telemetry_app.py:200:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/app/telemetry_app.py:202:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/app/telemetry_app.py:204:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/app/telemetry_app.py:208:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/__init__.py:1:36: W292 no newline at end of file
+"""Consumer applications module."""                                   ^
+projects/can_data_platform/src/apps/consumer_app.py:8:1: F401 'typing.Optional' imported but unused
+from typing import Optional
+^
+projects/can_data_platform/src/apps/consumer_app.py:11:1: F401 '..consumers.sqs_consumer.SQSBatchConsumer' imported but unused
+from ..consumers.sqs_consumer import SQSBatchConsumer
+^
+projects/can_data_platform/src/apps/consumer_app.py:19:1: W293 blank line contains whitespace
+    """Consumer application orchestrator.
+    
+    Follows Dependency Inversion Principle by depending on abstractions.
+    Orchestrates the entire consumer pipeline with proper dependency injection.
+    """
+^
+projects/can_data_platform/src/apps/consumer_app.py:23:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/apps/consumer_app.py:26:1: W293 blank line contains whitespace
+        """Initialize consumer application.
+        
+        Args:
+            config: Consumer configuration
+        """
+^
+projects/can_data_platform/src/apps/consumer_app.py:33:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:43:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:47:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:55:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:59:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:68:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:72:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/apps/consumer_app.py:75:1: W293 blank line contains whitespace
+        """Set up logging configuration.
+        
+        Returns:
+            Configured logger instance
+        """
+^
+projects/can_data_platform/src/apps/consumer_app.py:82:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:86:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:91:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:96:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:102:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:104:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/apps/consumer_app.py:107:1: W293 blank line contains whitespace
+        """Handle shutdown signals gracefully.
+        
+        Args:
+            signum: Signal number
+            frame: Current stack frame
+        """
+^
+projects/can_data_platform/src/apps/consumer_app.py:114:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/apps/consumer_app.py:115:5: C901 'ConsumerApp.run' is too complex (16)
+    def run(self) -> None:
+    ^
+projects/can_data_platform/src/apps/consumer_app.py:122:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:124:89: E501 line too long (99 > 88 characters)
+            self.logger.info(f"Latency tracking enabled, output: {self.config.latency_output_dir}")
+                                                                                        ^
+projects/can_data_platform/src/apps/consumer_app.py:127:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:129:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:135:1: W293 blank line contains whitespace
+                    
+^
+projects/can_data_platform/src/apps/consumer_app.py:143:1: W293 blank line contains whitespace
+                    
+^
+projects/can_data_platform/src/apps/consumer_app.py:147:1: W293 blank line contains whitespace
+                        
+^
+projects/can_data_platform/src/apps/consumer_app.py:150:89: E501 line too long (91 > 88 characters)
+                            f"{result.errors} errors, {result.messages_deleted} deleted | "
+                                                                                        ^
+projects/can_data_platform/src/apps/consumer_app.py:151:89: E501 line too long (90 > 88 characters)
+                            f"Total: {self.total_stats['messages_processed']} processed, "
+                                                                                        ^
+projects/can_data_platform/src/apps/consumer_app.py:157:1: W293 blank line contains whitespace
+                        
+^
+projects/can_data_platform/src/apps/consumer_app.py:160:89: E501 line too long (96 > 88 characters)
+                        elif self.consecutive_empty_batches >= self.max_empty_before_suggestion:
+                                                                                        ^
+projects/can_data_platform/src/apps/consumer_app.py:162:89: E501 line too long (109 > 88 characters)
+                                f"No messages found for {self.consecutive_empty_batches} consecutive polls. "
+                                                                                        ^
+projects/can_data_platform/src/apps/consumer_app.py:163:89: E501 line too long (97 > 88 characters)
+                                f"Queue appears to be empty. Consider shutting down with Ctrl+C."
+                                                                                        ^
+projects/can_data_platform/src/apps/consumer_app.py:165:1: W293 blank line contains whitespace
+                    
+^
+projects/can_data_platform/src/apps/consumer_app.py:168:89: E501 line too long (93 > 88 characters)
+                        self.logger.warning(f"Encountered {result.errors} processing errors")
+                                                                                        ^
+projects/can_data_platform/src/apps/consumer_app.py:169:1: W293 blank line contains whitespace
+                    
+^
+projects/can_data_platform/src/apps/consumer_app.py:171:89: E501 line too long (100 > 88 characters)
+                        self.logger.warning(f"Encountered {result.deletion_errors} deletion errors")
+                                                                                        ^
+projects/can_data_platform/src/apps/consumer_app.py:172:1: W293 blank line contains whitespace
+                    
+^
+projects/can_data_platform/src/apps/consumer_app.py:177:1: W293 blank line contains whitespace
+                    
+^
+projects/can_data_platform/src/apps/consumer_app.py:181:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/apps/consumer_app.py:187:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:190:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:194:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:197:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/apps/consumer_app.py:201:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:208:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:214:1: W293 blank line contains whitespace
+    """Create command-line argument parser.
+    
+    Returns:
+        Configured argument parser
+    """
+^
+projects/can_data_platform/src/apps/consumer_app.py:222:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/apps/consumer_app.py:228:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/apps/consumer_app.py:234:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/apps/consumer_app.py:240:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/apps/consumer_app.py:246:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/apps/consumer_app.py:252:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/apps/consumer_app.py:260:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/apps/consumer_app.py:264:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/apps/consumer_app.py:268:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/apps/consumer_app.py:275:11: W292 no newline at end of file
+    main()          ^
+projects/can_data_platform/src/config/consumer_config.py:13:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/config/consumer_config.py:20:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/config/consumer_config.py:25:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/config/consumer_config.py:29:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/config/consumer_config.py:32:1: W293 blank line contains whitespace
+        """Validate configuration values.
+        
+        Raises:
+            ValueError: If configuration values are invalid
+        """
+^
+projects/can_data_platform/src/config/consumer_config.py:38:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/consumer_config.py:41:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/consumer_config.py:44:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/consumer_config.py:47:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/consumer_config.py:50:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/consumer_config.py:57:1: W293 blank line contains whitespace
+    """Configuration manager for consumer application.
+    
+    Follows Single Responsibility Principle by focusing only on configuration loading.
+    """
+^
+projects/can_data_platform/src/config/consumer_config.py:60:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/config/consumer_config.py:70:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/config/consumer_config.py:73:1: W293 blank line contains whitespace
+        """Initialize configuration manager.
+        
+        Args:
+            load_env: Whether to load environment variables from .env file
+        """
+^
+projects/can_data_platform/src/config/consumer_config.py:79:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/config/consumer_config.py:82:1: W293 blank line contains whitespace
+        """Load consumer configuration from environment variables with overrides.
+        
+        Args:
+            **overrides: Configuration overrides
+            
+        Returns:
+            ConsumerConfig instance
+            
+        Raises:
+            ValueError: If configuration validation fails
+        """
+^
+projects/can_data_platform/src/config/consumer_config.py:85:1: W293 blank line contains whitespace
+        """Load consumer configuration from environment variables with overrides.
+        
+        Args:
+            **overrides: Configuration overrides
+            
+        Returns:
+            ConsumerConfig instance
+            
+        Raises:
+            ValueError: If configuration validation fails
+        """
+^
+projects/can_data_platform/src/config/consumer_config.py:88:1: W293 blank line contains whitespace
+        """Load consumer configuration from environment variables with overrides.
+        
+        Args:
+            **overrides: Configuration overrides
+            
+        Returns:
+            ConsumerConfig instance
+            
+        Raises:
+            ValueError: If configuration validation fails
+        """
+^
+projects/can_data_platform/src/config/consumer_config.py:112:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/config/consumer_config.py:126:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/config/consumer_config.py:135:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/consumer_config.py:138:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/consumer_config.py:140:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/config/consumer_config.py:144:1: W293 blank line contains whitespace
+        """Create configuration from command-line arguments.
+        
+        Args:
+            args: argparse.Namespace object
+            
+        Returns:
+            ConsumerConfig instance
+        """
+^
+projects/can_data_platform/src/config/consumer_config.py:147:1: W293 blank line contains whitespace
+        """Create configuration from command-line arguments.
+        
+        Args:
+            args: argparse.Namespace object
+            
+        Returns:
+            ConsumerConfig instance
+        """
+^
+projects/can_data_platform/src/config/consumer_config.py:152:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/consumer_config.py:154:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/consumer_config.py:158:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/consumer_config.py:161:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/consumer_config.py:164:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/consumer_config.py:167:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/consumer_config.py:170:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/manager.py:13:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/config/manager.py:19:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/config/manager.py:24:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/config/manager.py:27:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/config/manager.py:32:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/manager.py:35:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/manager.py:38:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/manager.py:45:1: W293 blank line contains whitespace
+    """Configuration manager following Single Responsibility Principle.
+    
+    Handles loading and validating configuration from environment variables.
+    """
+^
+projects/can_data_platform/src/config/manager.py:48:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/config/manager.py:56:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/config/manager.py:59:1: W293 blank line contains whitespace
+        """Initialize configuration manager.
+        
+        Args:
+            load_env: Whether to load environment variables from .env file
+        """
+^
+projects/can_data_platform/src/config/manager.py:65:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/config/manager.py:68:1: W293 blank line contains whitespace
+        """Load configuration from environment variables with optional overrides.
+        
+        Args:
+            **overrides: Configuration overrides
+            
+        Returns:
+            TelemetryConfig instance
+            
+        Raises:
+            ValueError: If configuration validation fails
+        """
+^
+projects/can_data_platform/src/config/manager.py:71:1: W293 blank line contains whitespace
+        """Load configuration from environment variables with optional overrides.
+        
+        Args:
+            **overrides: Configuration overrides
+            
+        Returns:
+            TelemetryConfig instance
+            
+        Raises:
+            ValueError: If configuration validation fails
+        """
+^
+projects/can_data_platform/src/config/manager.py:74:1: W293 blank line contains whitespace
+        """Load configuration from environment variables with optional overrides.
+        
+        Args:
+            **overrides: Configuration overrides
+            
+        Returns:
+            TelemetryConfig instance
+            
+        Raises:
+            ValueError: If configuration validation fails
+        """
+^
+projects/can_data_platform/src/config/manager.py:94:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/config/manager.py:105:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/config/manager.py:115:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/manager.py:118:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/manager.py:120:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/config/manager.py:124:1: W293 blank line contains whitespace
+        """Create configuration from command-line arguments.
+        
+        Args:
+            args: argparse.Namespace object
+            
+        Returns:
+            TelemetryConfig instance
+        """
+^
+projects/can_data_platform/src/config/manager.py:127:1: W293 blank line contains whitespace
+        """Create configuration from command-line arguments.
+        
+        Args:
+            args: argparse.Namespace object
+            
+        Returns:
+            TelemetryConfig instance
+        """
+^
+projects/can_data_platform/src/config/manager.py:132:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/manager.py:136:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/manager.py:139:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/manager.py:142:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/consumers/__init__.py:6:75: W292 no newline at end of file
+__all__ = ["ConsumerInterface", "BatchConsumerResult", "SQSBatchConsumer"]                                                                          ^
+projects/can_data_platform/src/consumers/interfaces.py:10:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/consumers/interfaces.py:17:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/consumers/interfaces.py:24:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/consumers/interfaces.py:40:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/consumers/interfaces.py:44:1: W293 blank line contains whitespace
+        """Consume and process a batch of messages.
+        
+        Returns:
+            BatchConsumerResult with processing statistics
+        """
+^
+projects/can_data_platform/src/consumers/interfaces.py:49:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/consumers/interfaces.py:53:1: W293 blank line contains whitespace
+        """Check if the consumer is in a healthy state.
+        
+        Returns:
+            True if consumer is healthy, False otherwise
+        """
+^
+projects/can_data_platform/src/consumers/interfaces.py:58:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/consumers/interfaces.py:62:34: W292 no newline at end of file
+        raise NotImplementedError                                 ^
+projects/can_data_platform/src/consumers/sqs_consumer.py:20:1: W293 blank line contains whitespace
+    """SQS batch consumer following Single Responsibility Principle.
+    
+    Handles SQS message consumption, processing, and deletion with proper error handling.
+    """
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:21:89: E501 line too long (89 > 88 characters)
+    """SQS batch consumer following Single Responsibility Principle.
+    
+    Handles SQS message consumption, processing, and deletion with proper error handling.
+    """
+                                                                    
+    
+              ^
+projects/can_data_platform/src/consumers/sqs_consumer.py:23:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:35:1: W293 blank line contains whitespace
+        """Initialize SQS batch consumer.
+        
+        Args:
+            queue_url: SQS queue URL
+            message_processor: Message processor implementation
+            latency_tracker: Latency tracker implementation
+            region_name: AWS region name
+            batch_size: Maximum messages per batch (1-10)
+            max_wait_time: Long polling wait time in seconds
+            max_retries: Maximum retry attempts for operations
+        """
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:47:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:54:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:58:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:61:1: W293 blank line contains whitespace
+        """Consume and process a batch of messages from SQS.
+        
+        Returns:
+            BatchConsumerResult with processing statistics
+        """
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:66:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:73:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:77:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:82:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:87:89: E501 line too long (93 > 88 characters)
+            self.latency_tracker.record_batch_write_latency(processing_start, processing_end)
+                                                                                        ^
+projects/can_data_platform/src/consumers/sqs_consumer.py:88:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:90:89: E501 line too long (92 > 88 characters)
+            deletion_result = self._delete_successful_messages(messages, processing_results)
+                                                                                        ^
+projects/can_data_platform/src/consumers/sqs_consumer.py:93:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:99:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:101:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:110:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:115:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:117:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:122:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:134:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:137:1: W293 blank line contains whitespace
+        """Process a list of SQS messages.
+        
+        Args:
+            messages: List of SQS message dictionaries
+            
+        Returns:
+            List of processing results
+        """
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:140:1: W293 blank line contains whitespace
+        """Process a list of SQS messages.
+        
+        Args:
+            messages: List of SQS message dictionaries
+            
+        Returns:
+            List of processing results
+        """
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:146:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:152:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:158:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:161:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:167:1: W293 blank line contains whitespace
+                    
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:173:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:175:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:177:14: W291 trailing whitespace
+        self, 
+             ^
+projects/can_data_platform/src/consumers/sqs_consumer.py:178:40: W291 trailing whitespace
+        messages: List[Dict[str, Any]], 
+                                       ^
+projects/can_data_platform/src/consumers/sqs_consumer.py:182:1: W293 blank line contains whitespace
+        """Delete messages that were processed successfully.
+        
+        Args:
+            messages: Original SQS messages
+            processing_results: Processing results for each message
+            
+        Returns:
+            Dictionary with 'deleted' and 'errors' counts
+        """
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:186:1: W293 blank line contains whitespace
+        """Delete messages that were processed successfully.
+        
+        Args:
+            messages: Original SQS messages
+            processing_results: Processing results for each message
+            
+        Returns:
+            Dictionary with 'deleted' and 'errors' counts
+        """
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:192:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:199:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:202:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:205:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:206:89: E501 line too long (100 > 88 characters)
+    def _delete_messages_with_retry(self, deletion_entries: List[Dict[str, str]]) -> Dict[str, int]:
+                                                                                        ^
+projects/can_data_platform/src/consumers/sqs_consumer.py:208:1: W293 blank line contains whitespace
+        """Delete messages with retry logic.
+        
+        Args:
+            deletion_entries: List of message deletion entries
+            
+        Returns:
+            Dictionary with 'deleted' and 'errors' counts
+        """
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:211:1: W293 blank line contains whitespace
+        """Delete messages with retry logic.
+        
+        Args:
+            deletion_entries: List of message deletion entries
+            
+        Returns:
+            Dictionary with 'deleted' and 'errors' counts
+        """
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:221:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:224:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:235:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:239:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:241:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:255:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:258:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:261:1: W293 blank line contains whitespace
+        """Check if the consumer is in a healthy state.
+        
+        Returns:
+            True if consumer is healthy (< 5 consecutive failures), False otherwise
+        """
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:266:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:269:1: W293 blank line contains whitespace
+        """Alias for is_healthy method to match expected interface.
+        
+        Returns:
+            True if consumer is healthy, False otherwise
+        """
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:274:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:283:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:291:1: W293 blank line contains whitespace
+        """Create an SQS batch consumer with specified processor.
+        
+        Args:
+            queue_url: SQS queue URL
+            message_processor: Message processor implementation
+            **kwargs: Additional consumer configuration
+            
+        Returns:
+            Configured SQSBatchConsumer instance
+        """
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:296:1: W293 blank line contains whitespace
+        """Create an SQS batch consumer with specified processor.
+        
+        Args:
+            queue_url: SQS queue URL
+            message_processor: Message processor implementation
+            **kwargs: Additional consumer configuration
+            
+        Returns:
+            Configured SQSBatchConsumer instance
+        """
+^
+projects/can_data_platform/src/consumers/sqs_consumer.py:304:10: W292 no newline at end of file
+        )         ^
+projects/can_data_platform/src/events/generator.py:12:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/events/generator.py:21:1: W293 blank line contains whitespace
+    """Concrete implementation of battery telemetry event generator.
+    
+    Follows Single Responsibility Principle by focusing only on event generation.
+    """
+^
+projects/can_data_platform/src/events/generator.py:24:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/events/generator.py:32:1: W293 blank line contains whitespace
+        """Initialize the battery event generator.
+        
+        Args:
+            num_modules: Number of battery modules/cells
+            voltage_range: Min/max base voltage range in mV
+            offset_range: Module offset variance range in mV
+        """
+^
+projects/can_data_platform/src/events/generator.py:41:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/events/generator.py:46:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/events/generator.py:49:1: W293 blank line contains whitespace
+        """Generate battery telemetry events with realistic voltage variations.
+        
+        Args:
+            num_events: Number of events to generate
+            
+        Returns:
+            List of TelemetryEvent objects
+        """
+^
+projects/can_data_platform/src/events/generator.py:52:1: W293 blank line contains whitespace
+        """Generate battery telemetry events with realistic voltage variations.
+        
+        Args:
+            num_events: Number of events to generate
+            
+        Returns:
+            List of TelemetryEvent objects
+        """
+^
+projects/can_data_platform/src/events/generator.py:57:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/events/generator.py:62:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/events/generator.py:64:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/events/generator.py:68:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/events/generator.py:72:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/events/generator.py:79:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/events/generator.py:86:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/events/generator.py:95:1: W391 blank line at end of file
+
+^
+projects/can_data_platform/src/events/models.py:12:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/events/models.py:16:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/events/models.py:26:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/events/models.py:32:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/events/models.py:45:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/events/models.py:54:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/events/models.py:58:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/events/models.py:69:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/events/models.py:71:1: W391 blank line at end of file
+
+^
+projects/can_data_platform/src/factories/__init__.py:7:85: W292 no newline at end of file
+__all__ = ["SQSConsumerFactory", "LatencyTrackerFactory", "MessageProcessorFactory"]                                                                                    ^
+projects/can_data_platform/src/factories/consumer_factory.py:3:1: F401 'boto3' imported but unused
+import boto3
+^
+projects/can_data_platform/src/factories/consumer_factory.py:4:1: F401 'typing.Optional' imported but unused
+from typing import Optional
+^
+projects/can_data_platform/src/factories/consumer_factory.py:13:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/factories/consumer_factory.py:24:1: W293 blank line contains whitespace
+        """Create an SQS batch consumer instance.
+        
+        Args:
+            queue_url: SQS queue URL
+            aws_region: AWS region
+            message_processor: Message processor instance
+            latency_tracker: Latency tracker instance
+            batch_size: Number of messages to process per batch
+            max_retries: Maximum number of retry attempts
+            
+        Returns:
+            ConsumerInterface instance
+        """
+^
+projects/can_data_platform/src/factories/consumer_factory.py:32:1: W293 blank line contains whitespace
+        """Create an SQS batch consumer instance.
+        
+        Args:
+            queue_url: SQS queue URL
+            aws_region: AWS region
+            message_processor: Message processor instance
+            latency_tracker: Latency tracker instance
+            batch_size: Number of messages to process per batch
+            max_retries: Maximum number of retry attempts
+            
+        Returns:
+            ConsumerInterface instance
+        """
+^
+projects/can_data_platform/src/factories/consumer_factory.py:43:10: W292 no newline at end of file
+        )         ^
+projects/can_data_platform/src/factories/latency_factory.py:10:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/factories/latency_factory.py:19:1: W293 blank line contains whitespace
+        """Create a latency tracker instance.
+        
+        Args:
+            enabled: Whether to enable latency tracking
+            output_dir: Directory for latency metrics output
+            flush_every: Number of measurements before flushing
+            sla_threshold_seconds: SLA threshold in seconds
+            
+        Returns:
+            LatencyTrackerInterface instance
+        """
+^
+projects/can_data_platform/src/factories/latency_factory.py:25:1: W293 blank line contains whitespace
+        """Create a latency tracker instance.
+        
+        Args:
+            enabled: Whether to enable latency tracking
+            output_dir: Directory for latency metrics output
+            flush_every: Number of measurements before flushing
+            sla_threshold_seconds: SLA threshold in seconds
+            
+        Returns:
+            LatencyTrackerInterface instance
+        """
+^
+projects/can_data_platform/src/factories/latency_factory.py:31:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/factories/latency_factory.py:36:10: W292 no newline at end of file
+        )         ^
+projects/can_data_platform/src/factories/processor_factory.py:3:1: F401 'typing.Dict' imported but unused
+from typing import Dict, Any
+^
+projects/can_data_platform/src/factories/processor_factory.py:3:1: F401 'typing.Any' imported but unused
+from typing import Dict, Any
+^
+projects/can_data_platform/src/factories/processor_factory.py:10:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/factories/processor_factory.py:14:1: W293 blank line contains whitespace
+        """Create a message processor instance.
+        
+        Args:
+            processor_type: Type of processor to create
+            **kwargs: Additional arguments for processor configuration
+            
+        Returns:
+            MessageProcessor instance
+            
+        Raises:
+            ValueError: If processor type is not supported
+        """
+^
+projects/can_data_platform/src/factories/processor_factory.py:18:1: W293 blank line contains whitespace
+        """Create a message processor instance.
+        
+        Args:
+            processor_type: Type of processor to create
+            **kwargs: Additional arguments for processor configuration
+            
+        Returns:
+            MessageProcessor instance
+            
+        Raises:
+            ValueError: If processor type is not supported
+        """
+^
+projects/can_data_platform/src/factories/processor_factory.py:21:1: W293 blank line contains whitespace
+        """Create a message processor instance.
+        
+        Args:
+            processor_type: Type of processor to create
+            **kwargs: Additional arguments for processor configuration
+            
+        Returns:
+            MessageProcessor instance
+            
+        Raises:
+            ValueError: If processor type is not supported
+        """
+^
+projects/can_data_platform/src/factories/processor_factory.py:28:78: W292 no newline at end of file
+            raise ValueError(f"Unsupported processor type: {processor_type}")                                                                             ^
+projects/can_data_platform/src/file_operations/file_writer.py:15:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/file_operations/file_writer.py:19:1: W293 blank line contains whitespace
+        """Write events to file.
+        
+        Args:
+            events: List of event dictionaries
+            output_path: Path to output file
+        """
+^
+projects/can_data_platform/src/file_operations/file_writer.py:29:1: W293 blank line contains whitespace
+    """JSONL file writer with atomic operations.
+    
+    Follows Single Responsibility Principle by focusing only on file writing.
+    """
+^
+projects/can_data_platform/src/file_operations/file_writer.py:32:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/file_operations/file_writer.py:35:1: W293 blank line contains whitespace
+        """Write events to JSONL file with atomic operation.
+        
+        Args:
+            events: List of event dictionaries
+            output_path: Path to output JSONL file
+            
+        Raises:
+            OSError: If file operations fail
+            IOError: If file writing fails
+        """
+^
+projects/can_data_platform/src/file_operations/file_writer.py:39:1: W293 blank line contains whitespace
+        """Write events to JSONL file with atomic operation.
+        
+        Args:
+            events: List of event dictionaries
+            output_path: Path to output JSONL file
+            
+        Raises:
+            OSError: If file operations fail
+            IOError: If file writing fails
+        """
+^
+projects/can_data_platform/src/file_operations/file_writer.py:45:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/file_operations/file_writer.py:48:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/file_operations/file_writer.py:51:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/file_operations/file_writer.py:55:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/file_operations/file_writer.py:57:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/file_operations/file_writer.py:62:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/file_operations/file_writer.py:69:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/file_operations/file_writer.py:75:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/file_operations/file_writer.py:87:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/interfaces.py:8:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/interfaces.py:12:1: W293 blank line contains whitespace
+        """Record SQS polling latency.
+        
+        Args:
+            start_time: Start timestamp
+            end_time: End timestamp
+        """
+^
+projects/can_data_platform/src/metrics/interfaces.py:18:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/interfaces.py:22:1: W293 blank line contains whitespace
+        """Record batch processing latency.
+        
+        Args:
+            start_time: Start timestamp
+            end_time: End timestamp
+        """
+^
+projects/can_data_platform/src/metrics/interfaces.py:28:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/interfaces.py:30:89: E501 line too long (91 > 88 characters)
+    def record_e2e_latency(self, event_timestamp: float, process_timestamp: float) -> None:
+                                                                                        ^
+projects/can_data_platform/src/metrics/interfaces.py:32:1: W293 blank line contains whitespace
+        """Record end-to-end latency from event generation to processing.
+        
+        Args:
+            event_timestamp: Original event timestamp
+            process_timestamp: Processing timestamp
+        """
+^
+projects/can_data_platform/src/metrics/interfaces.py:38:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/interfaces.py:43:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/interfaces.py:47:34: W292 no newline at end of file
+        raise NotImplementedError                                 ^
+projects/can_data_platform/src/metrics/latency_tracker.py:6:1: F401 'time' imported but unused
+import time
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:19:1: W293 blank line contains whitespace
+    """Tracks SQS, batch processing, and end-to-end latencies following SRP.
+    
+    Collects latency metrics and periodically flushes percentiles to JSONL files.
+    Provides alerting for SLA violations.
+    """
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:23:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:31:1: W293 blank line contains whitespace
+        """Initialize latency tracker.
+        
+        Args:
+            flush_every: Number of events before flushing metrics
+            output_dir: Directory for metrics output (default: data/metrics)
+            sla_threshold_seconds: E2E latency SLA threshold for alerts
+        """
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:39:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:44:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:48:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:54:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:56:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:61:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:67:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:73:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:74:89: E501 line too long (91 > 88 characters)
+    def record_e2e_latency(self, event_timestamp: float, process_timestamp: float) -> None:
+                                                                                        ^
+projects/can_data_platform/src/metrics/latency_tracker.py:79:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:84:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:87:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:91:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:97:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:103:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:105:89: E501 line too long (93 > 88 characters)
+            "batch_write_p50_ms": self._calculate_percentile(self.batch_write_latencies, 50),
+                                                                                        ^
+projects/can_data_platform/src/metrics/latency_tracker.py:106:89: E501 line too long (93 > 88 characters)
+            "batch_write_p95_ms": self._calculate_percentile(self.batch_write_latencies, 95),
+                                                                                        ^
+projects/can_data_platform/src/metrics/latency_tracker.py:107:89: E501 line too long (93 > 88 characters)
+            "batch_write_p99_ms": self._calculate_percentile(self.batch_write_latencies, 99),
+                                                                                        ^
+projects/can_data_platform/src/metrics/latency_tracker.py:109:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:116:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:142:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:147:1: W293 blank line contains whitespace
+        """Calculate percentile for a list of values.
+        
+        Args:
+            values: List of numeric values
+            percentile: Percentile to calculate (0-100)
+            
+        Returns:
+            Calculated percentile or None if no values
+        """
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:151:1: W293 blank line contains whitespace
+        """Calculate percentile for a list of values.
+        
+        Args:
+            values: List of numeric values
+            percentile: Percentile to calculate (0-100)
+            
+        Returns:
+            Calculated percentile or None if no values
+        """
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:157:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:161:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:165:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:169:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:174:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:177:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:179:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:182:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:186:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:194:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:200:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:203:1: W293 blank line contains whitespace
+        """Get current statistics without flushing.
+        
+        Returns:
+            Dictionary with current metric counts and basic stats
+        """
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:217:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:230:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:234:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:238:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:244:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:248:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:252:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:260:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:268:1: W293 blank line contains whitespace
+        """Create a standard latency tracker.
+        
+        Args:
+            flush_every: Events between flushes
+            output_dir: Output directory for metrics
+            sla_threshold_seconds: SLA threshold for alerts
+            
+        Returns:
+            Configured LatencyTracker instance
+        """
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:273:1: W293 blank line contains whitespace
+        """Create a standard latency tracker.
+        
+        Args:
+            flush_every: Events between flushes
+            output_dir: Output directory for metrics
+            sla_threshold_seconds: SLA threshold for alerts
+            
+        Returns:
+            Configured LatencyTracker instance
+        """
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:282:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:286:36: W292 no newline at end of file
+        return NoOpLatencyTracker()                                   ^
+projects/can_data_platform/src/processors/interfaces.py:17:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/interfaces.py:22:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/interfaces.py:25:13: W291 trailing whitespace
+        cls, 
+            ^
+projects/can_data_platform/src/processors/interfaces.py:35:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/interfaces.py:46:89: E501 line too long (94 > 88 characters)
+    """Abstract interface for message processors following Interface Segregation Principle."""
+                                                                                        ^
+projects/can_data_platform/src/processors/interfaces.py:47:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/interfaces.py:51:1: W293 blank line contains whitespace
+        """Process a single SQS message body.
+        
+        Args:
+            message_body: JSON string message body from SQS
+            
+        Returns:
+            ProcessingResult with success status and optional data
+        """
+^
+projects/can_data_platform/src/processors/interfaces.py:54:1: W293 blank line contains whitespace
+        """Process a single SQS message body.
+        
+        Args:
+            message_body: JSON string message body from SQS
+            
+        Returns:
+            ProcessingResult with success status and optional data
+        """
+^
+projects/can_data_platform/src/processors/interfaces.py:59:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/interfaces.py:68:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/interfaces.py:71:1: W293 blank line contains whitespace
+        """Initialize base processor.
+        
+        Args:
+            processor_name: Name for logging purposes
+        """
+^
+projects/can_data_platform/src/processors/interfaces.py:77:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/interfaces.py:81:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/interfaces.py:84:1: W293 blank line contains whitespace
+        """Parse JSON message body with error handling.
+        
+        Args:
+            message_body: JSON string to parse
+            
+        Returns:
+            Parsed dictionary or None if parsing failed
+        """
+^
+projects/can_data_platform/src/processors/interfaces.py:87:1: W293 blank line contains whitespace
+        """Parse JSON message body with error handling.
+        
+        Args:
+            message_body: JSON string to parse
+            
+        Returns:
+            Parsed dictionary or None if parsing failed
+        """
+^
+projects/can_data_platform/src/processors/interfaces.py:96:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/interfaces.py:99:1: W293 blank line contains whitespace
+        """Extract timestamp from event data for latency tracking.
+        
+        Args:
+            event_data: Parsed event dictionary
+            
+        Returns:
+            Event timestamp as float or None if not found
+        """
+^
+projects/can_data_platform/src/processors/interfaces.py:102:1: W293 blank line contains whitespace
+        """Extract timestamp from event data for latency tracking.
+        
+        Args:
+            event_data: Parsed event dictionary
+            
+        Returns:
+            Event timestamp as float or None if not found
+        """
+^
+projects/can_data_platform/src/processors/interfaces.py:108:58: W291 trailing whitespace
+            "epoch_timestamp", "timestamp", "event_time", 
+                                                         ^
+projects/can_data_platform/src/processors/interfaces.py:111:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/processors/interfaces.py:118:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/processors/interfaces.py:122:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/interfaces.py:126:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/processors/interfaces.py:129:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/processors/interfaces.py:132:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/processors/interfaces.py:135:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/interfaces.py:138:14: W291 trailing whitespace
+        self, 
+             ^
+projects/can_data_platform/src/processors/interfaces.py:139:36: W291 trailing whitespace
+        event_data: Dict[str, Any], 
+                                   ^
+projects/can_data_platform/src/processors/interfaces.py:143:1: W293 blank line contains whitespace
+        """Process a parsed event. Subclasses must implement this.
+        
+        Args:
+            event_data: Parsed event dictionary
+            event_timestamp: Extracted event timestamp
+            
+        Returns:
+            ProcessingResult with processing outcome
+        """
+^
+projects/can_data_platform/src/processors/interfaces.py:147:1: W293 blank line contains whitespace
+        """Process a parsed event. Subclasses must implement this.
+        
+        Args:
+            event_data: Parsed event dictionary
+            event_timestamp: Extracted event timestamp
+            
+        Returns:
+            ProcessingResult with processing outcome
+        """
+^
+projects/can_data_platform/src/processors/interfaces.py:151:34: W292 no newline at end of file
+        raise NotImplementedError                                 ^
+projects/can_data_platform/src/processors/telemetry_processor.py:13:89: E501 line too long (90 > 88 characters)
+    """Processor for battery telemetry messages following Single Responsibility Principle.
+    
+    Handles CAN bus telemetry events with validation and processing logic.
+    """
+                                                                                        ^
+projects/can_data_platform/src/processors/telemetry_processor.py:14:1: W293 blank line contains whitespace
+    """Processor for battery telemetry messages following Single Responsibility Principle.
+    
+    Handles CAN bus telemetry events with validation and processing logic.
+    """
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:17:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:21:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:29:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:31:14: W291 trailing whitespace
+        self, 
+             ^
+projects/can_data_platform/src/processors/telemetry_processor.py:32:36: W291 trailing whitespace
+        event_data: Dict[str, Any], 
+                                   ^
+projects/can_data_platform/src/processors/telemetry_processor.py:36:1: W293 blank line contains whitespace
+        """Process a parsed telemetry event with validation.
+        
+        Args:
+            event_data: Parsed telemetry event dictionary
+            event_timestamp: Extracted event timestamp
+            
+        Returns:
+            ProcessingResult with processing outcome
+        """
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:40:1: W293 blank line contains whitespace
+        """Process a parsed telemetry event with validation.
+        
+        Args:
+            event_data: Parsed telemetry event dictionary
+            event_timestamp: Extracted event timestamp
+            
+        Returns:
+            ProcessingResult with processing outcome
+        """
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:48:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:52:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:54:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:59:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:64:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:67:1: W293 blank line contains whitespace
+        """Validate that the event contains required telemetry fields.
+        
+        Args:
+            event_data: Event data to validate
+            
+        Returns:
+            ProcessingResult indicating validation success or failure
+        """
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:70:1: W293 blank line contains whitespace
+        """Validate that the event contains required telemetry fields.
+        
+        Args:
+            event_data: Event data to validate
+            
+        Returns:
+            ProcessingResult indicating validation success or failure
+        """
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:80:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:88:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:90:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:93:1: W293 blank line contains whitespace
+        """Process and enrich telemetry data.
+        
+        Args:
+            event_data: Raw telemetry event data
+            
+        Returns:
+            Processed and enriched telemetry data
+        """
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:96:1: W293 blank line contains whitespace
+        """Process and enrich telemetry data.
+        
+        Args:
+            event_data: Raw telemetry event data
+            
+        Returns:
+            Processed and enriched telemetry data
+        """
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:103:40: W291 trailing whitespace
+            event_data["Cell2Voltage"], 
+                                       ^
+projects/can_data_platform/src/processors/telemetry_processor.py:107:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:110:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:113:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:116:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:119:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:122:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:126:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:132:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:137:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/processors/telemetry_processor.py:141:43: W292 no newline at end of file
+        return TelemetryMessageProcessor()                                          ^
+projects/can_data_platform/src/publishers/__init__.py:7:1: W391 blank line at end of file
+
+^
+projects/can_data_platform/src/publishers/interfaces.py:14:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/publishers/interfaces.py:19:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/publishers/interfaces.py:24:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/publishers/interfaces.py:35:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/publishers/interfaces.py:37:89: E501 line too long (123 > 88 characters)
+    def publish(self, events: List[Dict[str, Any]], progress_tracker: Optional["ProgressTracker"] = None) -> PublishResult:
+                                                                                        ^
+projects/can_data_platform/src/publishers/interfaces.py:39:1: W293 blank line contains whitespace
+        """Publish a list of events.
+        
+        Args:
+            events: List of event dictionaries to publish
+            progress_tracker: Optional progress tracker for real-time updates
+            
+        Returns:
+            PublishResult with operation statistics
+        """
+^
+projects/can_data_platform/src/publishers/interfaces.py:43:1: W293 blank line contains whitespace
+        """Publish a list of events.
+        
+        Args:
+            events: List of event dictionaries to publish
+            progress_tracker: Optional progress tracker for real-time updates
+            
+        Returns:
+            PublishResult with operation statistics
+        """
+^
+projects/can_data_platform/src/publishers/interfaces.py:48:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/publishers/interfaces.py:53:1: W391 blank line at end of file
+
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:23:1: W293 blank line contains whitespace
+    """SQS publisher following Single Responsibility Principle.
+    
+    Handles SQS publishing with proper error handling and retry logic.
+    """
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:26:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:29:1: W293 blank line contains whitespace
+        """Initialize SQS publisher.
+        
+        Args:
+            queue_url: SQS queue URL
+            region_name: AWS region name
+        """
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:36:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:40:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:43:1: W293 blank line contains whitespace
+        """Publish events to SQS one by one.
+        
+        Args:
+            events: List of event dictionaries
+            
+        Returns:
+            PublishResult with operation statistics
+        """
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:46:1: W293 blank line contains whitespace
+        """Publish events to SQS one by one.
+        
+        Args:
+            events: List of event dictionaries
+            
+        Returns:
+            PublishResult with operation statistics
+        """
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:51:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:57:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:59:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:65:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:70:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:76:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:79:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:93:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:95:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:104:1: W293 blank line contains whitespace
+    """Batch SQS publisher for high-throughput operations.
+    
+    Extends SQSPublisher to add batch publishing capabilities.
+    """
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:107:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:116:1: W293 blank line contains whitespace
+        """Initialize batch SQS publisher.
+        
+        Args:
+            queue_url: SQS queue URL
+            region_name: AWS region name
+            batch_size: Number of messages per batch (max 10)
+            stream_interval: Delay between batches in seconds
+        """
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:126:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:127:89: E501 line too long (123 > 88 characters)
+    def publish(self, events: List[Dict[str, Any]], progress_tracker: Optional["ProgressTracker"] = None) -> PublishResult:
+                                                                                        ^
+projects/can_data_platform/src/publishers/sqs_publisher.py:129:1: W293 blank line contains whitespace
+        """Publish events using batch operations.
+        
+        Args:
+            events: List of event dictionaries
+            progress_tracker: Optional progress tracker for real-time updates
+            
+        Returns:
+            PublishResult with operation statistics
+        """
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:133:1: W293 blank line contains whitespace
+        """Publish events using batch operations.
+        
+        Args:
+            events: List of event dictionaries
+            progress_tracker: Optional progress tracker for real-time updates
+            
+        Returns:
+            PublishResult with operation statistics
+        """
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:141:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:143:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:149:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:154:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:166:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:176:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:180:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:182:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:188:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:192:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:198:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:200:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:206:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:212:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:227:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:228:89: E501 line too long (89 > 88 characters)
+                logger.debug("Successfully published batch of %d messages", len(entries))
+                                                                                        ^
+projects/can_data_platform/src/publishers/sqs_publisher.py:230:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:233:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:247:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/publishers/sqs_publisher.py:249:1: W391 blank line at end of file
+
+^
+projects/can_data_platform/src/sqs/__init__.py:17:1: W391 blank line at end of file
+
+^
+projects/can_data_platform/src/sqs/config.py:35:1: W391 blank line at end of file
+
+^
+projects/can_data_platform/src/sqs/manager.py:84:1: W391 blank line at end of file
+
+^
+projects/can_data_platform/src/sqs/policy.py:67:1: W391 blank line at end of file
+
+^
+projects/can_data_platform/src/tracking/progress.py:11:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:16:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:21:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:26:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:31:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:40:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:43:1: W293 blank line contains whitespace
+        """Initialize progress tracker.
+        
+        Args:
+            unit: Unit of measurement for progress
+        """
+^
+projects/can_data_platform/src/tracking/progress.py:49:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:61:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:66:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:71:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:76:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:86:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:90:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:94:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:98:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:102:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:110:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/tracking/progress.py:115:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/src/utils/__init__.py:2:1: W391 blank line at end of file
+
+^
+projects/can_data_platform/src/utils/config.py:20:1: W391 blank line at end of file
+
+^
+1     C901 'ConsumerApp.run' is too complex (16)
+22    E501 line too long (99 > 88 characters)
+7     F401 'typing.Optional' imported but unused
+9     W291 trailing whitespace
+14    W292 no newline at end of file
+431   W293 blank line contains whitespace
+12    W391 blank line at end of file
+tests/can_data_platform/unit/test_gen_sample_events.py:14:1: F401 'projects.can_data_platform.scripts.gen_sample_events.create_app' imported but unused
+from projects.can_data_platform.scripts.gen_sample_events import (
+^
+tests/can_data_platform/unit/test_gen_sample_events.py:26:18: F821 undefined name 'generate_events'
+        events = generate_events(num_events)
+                 ^
+tests/can_data_platform/unit/test_gen_sample_events.py:45:18: F821 undefined name 'generate_events'
+        events = generate_events(num_events, num_modules=num_modules)
+                 ^
+tests/can_data_platform/unit/test_gen_sample_events.py:54:18: F821 undefined name 'generate_events'
+        events = generate_events(num_events, num_modules=4, offset_range=offset_range)
+                 ^
+tests/can_data_platform/unit/test_gen_sample_events.py:63:18: F821 undefined name 'generate_events'
+        events = generate_events(5, num_modules=4)
+                 ^
+tests/can_data_platform/unit/test_gen_sample_events.py:88:18: F821 undefined name 'generate_events'
+        events = generate_events(10, num_modules=4)
+                 ^
+tests/can_data_platform/unit/test_gen_sample_events.py:101:18: F821 undefined name 'generate_events'
+        events = generate_events(10)
+                 ^
+tests/can_data_platform/unit/test_gen_sample_events.py:109:18: F821 undefined name 'generate_events'
+        events = generate_events(0)
+                 ^
+tests/can_data_platform/unit/test_gen_sample_events.py:115:18: F821 undefined name 'generate_events'
+        events = generate_events(1)
+                 ^
+tests/can_data_platform/unit/test_gen_sample_events.py:122:18: F821 undefined name 'generate_events'
+        events = generate_events(num_events)
+                 ^
+tests/can_data_platform/unit/test_gen_sample_events.py:127:18: F821 undefined name 'generate_events'
+        events = generate_events(50, num_modules=4)
+                 ^
+tests/can_data_platform/unit/test_gen_sample_events.py:158:18: F821 undefined name 'generate_events'
+        events = generate_events(2, num_modules=4)
+                 ^
+tests/can_data_platform/unit/test_gen_sample_events.py:166:18: F821 undefined name 'generate_events'
+        events = generate_events(5, num_modules=4)
+                 ^
+tests/can_data_platform/unit/test_gen_sample_events.py:172:18: F821 undefined name 'generate_events'
+        events = generate_events(5, offset_range=(0, 0))
+                 ^
+tests/can_data_platform/unit/test_gen_sample_events.py:179:18: F821 undefined name 'generate_events'
+        events = generate_events(3, num_modules=16)
+                 ^
+tests/can_data_platform/unit/test_gen_sample_events.py:187:18: F821 undefined name 'generate_events'
+        events = generate_events(num_events, num_modules=num_modules)
+                 ^
+tests/can_data_platform/unit/test_gen_sample_events.py:345:9: F821 undefined name 'publish_to_sqs'
+        publish_to_sqs(events, "fake_url", max_retries=2)
+        ^
+tests/can_data_platform/unit/test_gen_sample_events.py:363:9: F821 undefined name 'publish_to_sqs'
+        publish_to_sqs(events, "fake_url", max_retries=2)
+        ^
+tests/can_data_platform/unit/test_gen_sample_events.py:379:13: F821 undefined name 'publish_to_sqs'
+            publish_to_sqs(events, "fake_url", max_retries=2)
+            ^
+tests/can_data_platform/unit/test_gen_sample_events.py:388:13: F821 undefined name 'write_events_to_file'
+            write_events_to_file(events, output_path)
+            ^
+1     F401 'projects.can_data_platform.scripts.gen_sample_events.create_app' imported but unused
+19    F821 undefined name 'generate_events'
+projects/can_data_platform/scripts/gen_sample_events.py:184:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/src/config/consumer_config.py:71:75: W291 trailing whitespace
+    DEFAULT_LATENCY_OUTPUT_DIR = "projects/can_data_platform/data/metrics"  
+                                                                          ^
+projects/can_data_platform/src/metrics/interfaces.py:46:1: W293 blank line contains whitespace
+        """Track how long messages sit in SQS queue.
+        
+        Args:
+            message_sent_timestamp: SQS SentTimestamp (milliseconds since epoch)
+            receive_timestamp: When message was received (seconds since epoch)
+        """
+^
+projects/can_data_platform/src/metrics/latency_tracker.py:88:1: W293 blank line contains whitespace
+        """Track how long messages sit in SQS queue.
+        
+        Args:
+            message_sent_timestamp: SQS SentTimestamp (milliseconds since epoch)
+            receive_timestamp: When message was received (seconds since epoch)
+        """
+^
+1     W291 trailing whitespace
+3     W293 blank line contains whitespace
+projects/can_data_platform/scripts/e2e_telemetry.py:46:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:54:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:58:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:85:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:90:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:99:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:105:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:109:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:117:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:119:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:129:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:145:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:148:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:153:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:161:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:167:1: W293 blank line contains whitespace
+                    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:170:1: W293 blank line contains whitespace
+                    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:174:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:180:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:202:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:206:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:211:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:224:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:227:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:231:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:237:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:242:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:260:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:269:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:272:89: E501 line too long (103 > 88 characters)
+    def save_processing_metrics(self, processed_messages: List[Dict[str, Any]], file_path: str = None):
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:279:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:283:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:298:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:299:61: W291 trailing whitespace
+            logger.info("Saved %d processing metrics to %s", 
+                                                            ^
+projects/can_data_platform/scripts/e2e_telemetry.py:300:24: E128 continuation line under-indented for visual indent
+                       len(processed_messages), file_path)
+                       ^
+projects/can_data_platform/scripts/e2e_telemetry.py:315:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:320:5: C901 'ConcurrentConsumer.consume_batch' is too complex (11)
+    def consume_batch(self) -> Dict[str, Any]:
+    ^
+projects/can_data_platform/scripts/e2e_telemetry.py:330:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:338:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:340:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:348:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:351:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:357:1: W293 blank line contains whitespace
+                        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:361:1: W293 blank line contains whitespace
+                            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:371:1: W293 blank line contains whitespace
+                        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:374:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:378:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:384:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:409:89: E501 line too long (109 > 88 characters)
+    async def execute_workflow(self, num_events: int = 100, max_processing_time: int = 60) -> Dict[str, Any]:
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:413:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:420:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:425:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:430:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:435:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:438:89: E501 line too long (110 > 88 characters)
+                print(f"\n🧹 Draining {initial_depth['total']} old messages (discarding high latency data)...")
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:439:89: E501 line too long (90 > 88 characters)
+                logger.info("Draining %d old messages from queue", initial_depth['total'])
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:440:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:441:89: E501 line too long (89 > 88 characters)
+                # Process old messages but don't save metrics (discard high latency data)
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:444:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:452:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:456:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:460:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:463:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:465:89: E501 line too long (105 > 88 characters)
+                print(f"✅ Generated and published {generation_results['events_published']} fresh events")
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:466:89: E501 line too long (91 > 88 characters)
+                print(f"  • Generation time: {generation_results['generation_time']:.2f}s")
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:467:89: E501 line too long (95 > 88 characters)
+                print(f"  • Throughput: {generation_results['throughput_eps']:.1f} events/sec")
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:468:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:472:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:478:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:483:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:487:89: E501 line too long (104 > 88 characters)
+                    self._process_fresh_messages(max_processing_time + 10)  # Extra 10s for fresh events
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:491:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:493:89: E501 line too long (95 > 88 characters)
+                print(f"  • Fresh messages processed: {processing_results['total_processed']}")
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:495:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:497:89: E501 line too long (124 > 88 characters)
+                if 'processor_stats' in processing_results and processing_results['processor_stats'].get('avg_e2e_latency'):
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:500:89: E501 line too long (101 > 88 characters)
+                    print(f"  • Messages with latency data: {stats.get('messages_with_latency', 0)}")
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:507:89: E501 line too long (97 > 88 characters)
+                print(f"❌ Generation failed: {generation_results.get('error', 'Unknown error')}")
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:511:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:516:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:519:89: E501 line too long (94 > 88 characters)
+            print(f"  • Messages processed: {results['processing_phase']['total_processed']}")
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:520:89: E501 line too long (93 > 88 characters)
+            events_generated = results.get('generation_phase', {}).get('events_published', 0)
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:522:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:524:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:530:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:541:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:546:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:552:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:557:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:560:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:562:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:571:89: E501 line too long (95 > 88 characters)
+        """Drain old messages from queue without saving metrics (discard high latency data)."""
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:577:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:580:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:590:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:593:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:595:89: E501 line too long (95 > 88 characters)
+                    logger.info("Draining %d old messages (not saving metrics)", len(messages))
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:596:1: W293 blank line contains whitespace
+                    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:607:1: W293 blank line contains whitespace
+                    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:611:1: W293 blank line contains whitespace
+                    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:615:1: W293 blank line contains whitespace
+                    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:618:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:622:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:636:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:639:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:641:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:646:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:650:89: E501 line too long (95 > 88 characters)
+                logger.info("Processed %d fresh messages", batch_results['messages_processed'])
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:653:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:656:89: E501 line too long (113 > 88 characters)
+                logger.info("No more fresh messages after %d empty batches, stopping", consecutive_empty_batches)
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:658:1: W293 blank line contains whitespace
+                
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:661:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:663:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:675:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:678:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:681:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:683:89: E501 line too long (89 > 88 characters)
+            publish_results = self.event_generator.publish_to_sqs(events, self.queue_url)
+                                                                                        ^
+projects/can_data_platform/scripts/e2e_telemetry.py:684:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:686:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:695:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:713:1: W293 blank line contains whitespace
+        epilog="""
+Examples:
+  # Basic workflow
+  python e2e_telemetry.py --queue-url https://sqs.us-east-1.amazonaws.com/123/queue
+  
+  # Custom parameters
+  python e2e_telemetry.py --queue-url YOUR_QUEUE_URL --events 500 --max-time 120
+        """
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:718:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:725:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:732:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:739:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:746:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:752:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:760:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:766:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:770:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:777:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:780:1: W293 blank line contains whitespace
+    
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:786:1: W293 blank line contains whitespace
+        
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:789:1: W293 blank line contains whitespace
+            
+^
+projects/can_data_platform/src/consumers/concurrent_sqs_consumer.py:182:1: W293 blank line contains whitespace
+            
+^
+1     C901 'ConcurrentConsumer.consume_batch' is too complex (11)
+1     E128 continuation line under-indented for visual indent
+20    E501 line too long (103 > 88 characters)
+1     W291 trailing whitespace
+111   W293 blank line contains whitespace
+projects/can_data_platform/scripts/e2e_telemetry.py:84:1: W293 blank line contains whitespace
+        """Initialize EventGenerator with module configuration.
+        
+        Args:
+            num_modules: Number of battery modules to simulate (default: 4).
+        """
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:328:1: W293 blank line contains whitespace
+        """Initialize ConcurrentConsumer with SQS configuration.
+        
+        Args:
+            queue_url: SQS queue URL to consume from.
+            aws_region: AWS region for SQS client (default: us-east-1).
+            max_workers: Maximum number of worker threads (default: 4).
+        """
+^
+projects/can_data_platform/scripts/e2e_telemetry.py:448:1: W293 blank line contains whitespace
+        """Initialize E2ETelemetryOrchestrator with SQS configuration.
+        
+        Args:
+            queue_url: SQS queue URL for telemetry workflow.
+            aws_region: AWS region for SQS operations (default: us-east-1).
+        """
+^
+3     W293 blank line contains whitespace

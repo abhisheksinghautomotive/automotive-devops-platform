@@ -7,7 +7,7 @@ AWS SQS queues in the automotive DevOps platform CAN data processing pipeline.
 import json
 from typing import Dict, Any, Optional
 
-import boto3
+import boto3  # type: ignore
 
 from .config import SQSQueueConfig
 
